@@ -1,7 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
+async function getBackEndData() {
+  const response =  await axios.get('http://localhost:3001/gethello');
+  return response;
+}
 function App() {
+  const response = getBackEndData();
+  console.log(response);
   return (
     <div className="App">
       <header className="App-header">
@@ -15,7 +22,6 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
         </a>
       </header>
     </div>
