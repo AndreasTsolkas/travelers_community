@@ -2,8 +2,10 @@ import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 
+import { backEndBaseUrl } from './important';
+
 async function getBackEndData() {
-  const response =  await axios.get('http://localhost:3001/gethello');
+  const response =  await axios.get(backEndBaseUrl+'/gethello');
   return response;
 }
 function App() {
@@ -13,16 +15,6 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        </a>
       </header>
     </div>
   );
