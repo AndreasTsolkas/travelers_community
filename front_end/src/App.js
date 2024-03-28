@@ -1,21 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 
+import {httpClient} from 'src/requests';
 import { backEndBaseUrl } from './important';
 
 async function getBackEndData() {
-  const response =  await axios.get(backEndBaseUrl+'/gethello');
-  return response;
+  const response =  await httpClient.get(backEndBaseUrl+'/gethello');
+  return response.data;
 }
 function App() {
-  const response = getBackEndData();
-  console.log(response);
+  const data = getBackEndData();
+  console.log(data);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
+      <h3>here again</h3>
     </div>
   );
 }
