@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as Important from "src/important";
+import * as Important from "./important";
 
 const backEndBaseUrl = Important.backEndBaseUrl;
 
@@ -13,23 +13,22 @@ const axiosConfig = {
         initialized: false
 };
     
-async function getRequest() {
+async function getRequest(requestUrl, params = {}) {
         try {
-                if(params) 
-                  axiosConfig.params = params;
-                  
-                const response = await axios.get(requestUrl, {
-                        baseURL: axiosConfig.url,
-                        headers: axiosConfig.headers,
-                        params: axiosConfig.params
-                });
-                return response;
+            const config = {
+                baseURL: axiosConfig.url,
+                headers: axiosConfig.headers,
+                params: params
+            };
+    
+            const response = await axios.get(requestUrl, config);
+            return response;
         } catch (error) {
-                throw error;
+            throw error;
         }
-}
+    }
 
-async function deleteRequest() {
+async function deleteRequest(requestUrl) {
         try {
                 const response = await axios.delete(requestUrl, {
                         baseURL: axiosConfig.url,
@@ -41,7 +40,7 @@ async function deleteRequest() {
         }
 }
 
-async function postRequest(){
+async function postRequest(requestUrl, data){
         try{
                 const response = await axios.post(`${requestUrl}`, data, {
                         baseURL: axiosConfig.url,
@@ -53,7 +52,7 @@ async function postRequest(){
         }
 }
 
-async function patchRequest(){
+async function patchRequest(requestUrl, data){
         try{
                 const response = await axios.patch(`${requestUrl}`, data, {
                         baseURL: axiosConfig.url,
@@ -65,7 +64,7 @@ async function patchRequest(){
         }
 }
 
-async function putRequest(){
+async function putRequest(requestUrl, data){
         try{
                 const response = await axios.put(`${requestUrl}`, data, {
                         baseURL: axiosConfig.url,
@@ -92,30 +91,30 @@ export const initializeAxiosConfig = () => {
         axiosConfig.initialized = true;
 };
 
-const authGetRequest = async () => {
+const authGetRequest = async (requestUrl, params = {}) => {
         if(axiosConfig.initialized === false) {}
           initializeAxiosConfig();
         return getRequest(requestUrl, params);
 }
-const authDeleteRequest = async () => {
+const authDeleteRequest = async (requestUrl) => {
         if(axiosConfig.initialized === false) 
           initializeAxiosConfig();
         return deleteRequest(requestUrl);
 }
 
-const authPostRequest = async () => {
+const authPostRequest = async (requestUrl, data) => {
         if(axiosConfig.initialized === false) 
           initializeAxiosConfig();
         return postRequest(requestUrl, data);
 }
 
-const authPatchRequest = async () => {
+const authPatchRequest = async (requestUrl, data) => {
         if(axiosConfig.initialized === false) 
           initializeAxiosConfig();
         return patchRequest(requestUrl, data);
 }
 
-const authPutRequest = async () => {
+const authPutRequest = async (requestUrl, data) => {
         if(axiosConfig.initialized === false) 
           initializeAxiosConfig();
         return putRequest(requestUrl, data);
