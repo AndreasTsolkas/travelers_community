@@ -1,6 +1,4 @@
 import './App.css';
-import axios from 'axios';
-
 import {httpClient} from './requests';
 import { backEndBaseUrl } from './important';
 
