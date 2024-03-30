@@ -21,4 +21,7 @@ export class Book {
   @Column({name: 'author', type: 'varchar', length: 30 })
   author: string;
 
+  @Column({name: 'description', type: 'varchar', length: 1000 })
+  description: string;
+
 }
