@@ -1,42 +1,24 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import {databaseSchemaName} from 'src/important';
 
-@Entity({ schema: databaseSchemaName, name: 'employee'})
-export class Employee {
+@Entity({ schema: databaseSchemaName, name: 'book'})
+export class Book {
   @PrimaryGeneratedColumn({name: 'id'})
   id: number;
   
-  @Column({name: 'name', type: 'varchar', length: 255})
-  name: string;
+  @Column({name: 'title', type: 'varchar', length: 30})
+  title: string;
 
-  @Column({name: 'surname', type: 'varchar', length: 255})
-  surname: string;
+  @Column({name: 'gender', type: 'varchar', length: 20})
+  gender: string;
 
-  @Column({name: 'email', type: 'varchar', length: 255 })
-  email: string;
+  @Column({name: 'pages', type: 'int', length: 8 })
+  pages: number;
 
-  @Column({name: 'start_date' })
-  startDate: Date;
+  @Column({name: 'publication_date' })
+  publicationDate: Date;
 
-  @Column({name: 'vacation_days' })
-  vacationDays: number;
-
-  @Column({name: 'salary' })
-  salary: number;
-
-  @Column({name: 'employment_type', type: 'varchar', length: 255 })
-  employmentType: string;
-
-  @Column({name: 'employee_uid' })
-  employeeUid: number;
-
-  @Column({name: 'password', type: 'varchar', length: 20})
-  password: string;
-
-  @Column({name: 'is_accepted'})
-  isAccepted: boolean;
-
-  @Column({name: 'is_admin'})
-  isAdmin: boolean;
+  @Column({name: 'author', type: 'varchar', length: 30 })
+  author: string;
 
 }
