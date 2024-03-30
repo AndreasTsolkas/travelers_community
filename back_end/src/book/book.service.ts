@@ -69,5 +69,5 @@ export class BookService {
           console.error(error);
           throw new InternalServerErrorException();
         }
-      }
+    }
 }

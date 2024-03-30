@@ -12,7 +12,7 @@ export class Book {
   @Column({name: 'gender', type: 'varchar', length: 20})
   gender: string;
 
-  @Column({name: 'pages', type: 'int', length: 8 })
+  @Column({name: 'pages' })
   pages: number;
 
   @Column({name: 'publication_date' })
