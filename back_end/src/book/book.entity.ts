@@ -1,4 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import {databaseSchemaName} from 'src/important';
 
 @Entity({ schema: databaseSchemaName, name: 'employee'})
 export class Employee {
@@ -25,10 +26,6 @@ export class Employee {
 
   @Column({name: 'employment_type', type: 'varchar', length: 255 })
   employmentType: string;
-
-  @ManyToOne(() => Department, (department) => department.id)
-  @JoinColumn({ name: 'department_id' }) 
-  department: Department;
 
   @Column({name: 'employee_uid' })
   employeeUid: number;
