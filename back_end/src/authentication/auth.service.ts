@@ -14,17 +14,16 @@ export class AuthService {
     private jwtService: JwtService
   ) {}
 
-  async signIn(email, pass) { 
+  async signIn(username, pass) { 
     try {
-      const user = await this.userService.findOneWithRelationshipsBySpecificFieldAndValue("email",email, true);
-
+      const user = await this.userService.findOneWithRelationshipsBySpecificFieldAndValue("username",username, true);
       if (!user) 
         throw new BadRequestException;
   
 
       const isValid =  await bcrypt.compare(pass, user.password);
       if(isValid) {
-        const payload = { id: user.id, email: user.email };
+        const payload = { id: user.id, username: user.username };
         return {
           access_token: await this.jwtService.signAsync(payload)
         };
@@ -34,7 +33,7 @@ export class AuthService {
     catch (error) {
       console.log(error);
       if(error instanceof BadRequestException)
-        throw new BadRequestException('User with the email : '+email+' not found.');
+        throw new BadRequestException('User with the username : '+username+' not found.');
       else if(error instanceof UnauthorizedException) {
         let message = 'Password given is incorrect.';
         throw new UnauthorizedException(message);
@@ -56,7 +55,7 @@ export class AuthService {
     catch(error) {
       let message = "New account creation failed.";
       if(error.code==23505) {
-        message= "Email given is used by another user.";
+        message= "Username given is used by another user.";
         throw new BadRequestException(message);
       }
       throw new InternalServerErrorException(message);
