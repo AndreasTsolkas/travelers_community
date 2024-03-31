@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { EntityManager, FindOptionsSelect, IsNull, Not, Repository, getManager } from 'typeorm';
 
 import { User } from './user.entity';
+import {bcryptSaltOrRounds, selectColumns} from "src/important";
 
 
 @Injectable()
@@ -12,6 +13,18 @@ export class UserService {
        @InjectRepository(User)
        private userRepository: Repository<User>,
     ) {}
+
+    deletePasswordsFromResultSet(result: any) {
+      result.map((item: any) => {
+        delete item.password;
+      });
+      return result;
+    }
+  
+    deletePasswordFromRecord(record: any) {
+      delete record.password;
+      return record;
+    }
 
     async findAll(): Promise<User[]> {
         try {
@@ -31,6 +44,39 @@ export class UserService {
           console.log(error);
           throw new InternalServerErrorException();
         }
+    }
+
+    async findOneWithRelationshipsBySpecificFieldAndValue(field: string, value: any, findPassword: boolean): Promise<User | null> {
+      try {
+  
+        if (findPassword) {
+          selectColumns.push('password');
+        }
+  
+        const where: Record<string, any> = {};
+        where[field] = value;
+  
+        return await this.userRepository.findOne({
+          select: selectColumns as FindOptionsSelect<User>,
+          where,
+        });
+      } catch (error) {
+        console.error(error);
+        throw new InternalServerErrorException();
+      }
+    }
+
+    async findManyWithRelationshipsBySpecificFieldAndValue(field: string, value: any): Promise<User[] | null> {
+      try {
+        let result: any = await this.userRepository
+          .createQueryBuilder('user')
+          .where(`user.${field} = :value`, { value })
+          .getMany();
+        return result;
+      } catch (error) {
+        console.log(error);
+        throw new InternalServerErrorException();
+      }
     }
 
     async update(id: number, userData: Partial<User>): Promise<User | null> {

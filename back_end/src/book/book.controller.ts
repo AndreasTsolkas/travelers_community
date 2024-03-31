@@ -3,7 +3,7 @@ import { Book } from './book.entity';
 import { BookService } from './book.service';
 import { AuthGuard } from 'src/auth.guard';
 
-/*@UseGuards(AuthGuard)*/
+@UseGuards(AuthGuard)
 @Controller('book')
 export class  BookController {
   

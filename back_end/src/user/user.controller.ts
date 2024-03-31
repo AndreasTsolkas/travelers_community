@@ -3,7 +3,7 @@ import { User } from './user.entity';
 import { UserService } from './user.service';
 import { AuthGuard } from 'src/auth.guard';
 
-/*@UseGuards(AuthGuard)*/
+@UseGuards(AuthGuard)
 @Controller('user')
 export class UserController {
   
