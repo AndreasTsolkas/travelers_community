@@ -1,6 +1,7 @@
 import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EntityManager, FindOptionsSelect, IsNull, Not, Repository, getManager } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 
 import { User } from './user.entity';
 import {bcryptSaltOrRounds, selectColumns} from "src/important";
@@ -28,7 +29,9 @@ export class UserService {
 
     async findAll(): Promise<User[]> {
         try {
-          return await this.userRepository.find();
+          let result = await this.userRepository.find();
+          this.deletePasswordsFromResultSet(result);
+          return result;
         }
         catch(error) {
           console.log(error);
@@ -36,14 +39,19 @@ export class UserService {
         }
     }
 
-    async findOne(id: any): Promise<User | null> {
-        try {
-          return await this.userRepository.findOneBy({ id });
+    async findOne(id: number, findPassword: boolean) {
+      try {
+        if (findPassword) {
+          selectColumns.push('password');
         }
-        catch(error) {
-          console.log(error);
-          throw new InternalServerErrorException();
-        }
+        return await this.userRepository.findOne({
+          select: selectColumns as FindOptionsSelect<User>,
+          where: { id } 
+        });
+      } catch (error) {
+        console.log(error);
+        throw new InternalServerErrorException();
+      }
     }
 
     async findOneWithRelationshipsBySpecificFieldAndValue(field: string, value: any, findPassword: boolean): Promise<User | null> {
@@ -115,5 +123,34 @@ export class UserService {
           console.error(error);
           throw new InternalServerErrorException();
         }
+    }
+
+    ///
+
+    async checkIfPasswordIsCorrect(id: number, password: string) {
+      let result = false;
+      let userPassword = '';
+      const user = await this.findOne(id, true);
+      if(!user)
+        return null;
+      userPassword = user.password;
+      if(await bcrypt.compare(password, userPassword))
+        result = true;
+      return result;
+    }
+  
+    async updatePassword(id: number, newPassword: string) {
+      let user: User = new User();
+      const hashedPassword = await bcrypt.hash(newPassword,bcryptSaltOrRounds);
+      user.password = hashedPassword;
+      try {
+        let updatedUser: any = await this.update(id, user);
+        updatedUser = this.deletePasswordFromRecord(updatedUser);
+        return updatedUser;
+      }
+      catch(error) {
+        console.log(error);
+        throw new InternalServerErrorException();
+      }
     }
 }

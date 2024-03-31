@@ -3,7 +3,7 @@ import { User } from './user.entity';
 import { UserService } from './user.service';
 import { AuthGuard } from 'src/auth.guard';
 
-@UseGuards(AuthGuard)
+/*@UseGuards(AuthGuard)*/
 @Controller('user')
 export class UserController {
   
@@ -18,7 +18,7 @@ export class UserController {
 
   @Get('/:id')
   async findOne(@Param('id') id: any) {
-    return await this.userService.findOne(id);
+    return await this.userService.findOne(id, false);
   }
 
   @Patch('/:id')

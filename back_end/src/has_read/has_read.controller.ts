@@ -3,7 +3,7 @@ import { AuthGuard } from 'src/auth.guard';
 import { HasRead } from 'src/has_read/has_read.entity';
 import { HasReadService } from 'src/has_read/has_read.service';
 
-@UseGuards(AuthGuard)
+/*@UseGuards(AuthGuard)*/
 @Controller('has_read')
 export class HasReadController {
   
