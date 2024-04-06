@@ -1,8 +1,9 @@
 
 import 'src/App.css'
 import 'src/basic.css'
-import Page1 from 'src/pages/Page1'
-import Page2 from 'src/pages/Page2'
+import MyBooks from 'src/pages/MyBooks'
+import Suggestions from 'src/pages/Suggestions'
+import Home from 'src/pages/Home'
 import { Link, Route, Routes } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 
@@ -12,18 +13,18 @@ function App() {
       <nav>
         <ul>
           <li>
-            <Link to="/page1">Page 1</Link>
+            <Link to="/mybooks">My books</Link>
           </li>
           <li>
-            <Link to="/page2">Page 2</Link>
+            <Link to="/suggestions">Suggestions</Link>
           </li>
         </ul>
       </nav>
 
       <Routes>
-        <Route path="/" element={<Page1 />} />
-        <Route path="/page1" element={<Page1 />} />
-        <Route path="/page2" element={<Page2 />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/mybooks" element={<MyBooks />} />
+        <Route path="/suggestions" element={<Suggestions />} />
       </Routes>
       
     </div>
