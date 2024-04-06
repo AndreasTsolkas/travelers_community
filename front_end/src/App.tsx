@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import 'src/App.css';
 import 'src/basic.css';
-import MyBooks from 'src/pages/MyBooks';
+import MyReads from 'src/pages/MyReads';
 import Suggestions from 'src/pages/Suggestions';
 import Home from 'src/pages/Home';
 import Button from 'react-bootstrap/Button';
@@ -13,7 +13,7 @@ function App() {
       <nav className="navbar">
         <ul>
           <li>
-            <Link to="/mybooks">My books</Link>
+            <Link to="/myreads">My reads</Link>
           </li>
           <li>
             <Link to="/suggestions">Suggestions</Link>
@@ -23,7 +23,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/mybooks" element={<MyBooks />} />
+        <Route path="/myreads" element={<MyReads />} />
         <Route path="/suggestions" element={<Suggestions />} />
       </Routes>
       
