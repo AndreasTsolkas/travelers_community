@@ -1,16 +1,16 @@
-
-import 'src/App.css'
-import 'src/basic.css'
-import MyBooks from 'src/pages/MyBooks'
-import Suggestions from 'src/pages/Suggestions'
-import Home from 'src/pages/Home'
-import { Link, Route, Routes } from 'react-router-dom'
-import Button from 'react-bootstrap/Button'
+import React from 'react';
+import { Link, Route, Routes } from 'react-router-dom';
+import 'src/App.css';
+import 'src/basic.css';
+import MyBooks from 'src/pages/MyBooks';
+import Suggestions from 'src/pages/Suggestions';
+import Home from 'src/pages/Home';
+import Button from 'react-bootstrap/Button';
 
 function App() {
   return (
     <div className="container">
-      <nav>
+      <nav className="navbar">
         <ul>
           <li>
             <Link to="/mybooks">My books</Link>

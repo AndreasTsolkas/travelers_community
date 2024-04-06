@@ -2,7 +2,7 @@
 function MyBooks() {
 
   return (
-    <h2>1</h2>
+    <h2>My books</h2>
   )
 }
 

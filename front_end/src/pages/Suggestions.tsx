@@ -2,7 +2,7 @@
 function Suggestions() {
 
   return (
-    <h2>2</h2>
+    <h2>Suggestions</h2>
   )
 }
 
