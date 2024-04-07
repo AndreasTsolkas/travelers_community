@@ -4,23 +4,15 @@ import 'src/App.css';
 import 'src/basic.css';
 import MyReads from 'src/pages/MyReads';
 import Suggestions from 'src/pages/Suggestions';
+import Navbar from 'src/Navbar';
 import Home from 'src/pages/Home';
 import Button from 'react-bootstrap/Button';
 
 function App() {
   return (
     <div className="container">
-      <nav className="navbar">
-        <ul>
-          <li>
-            <Link to="/myreads">My reads</Link>
-          </li>
-          <li>
-            <Link to="/suggestions">Suggestions</Link>
-          </li>
-        </ul>
-      </nav>
-
+      
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/myreads" element={<MyReads />} />
