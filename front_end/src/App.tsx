@@ -6,6 +6,8 @@ import MyReads from 'src/pages/MyReads';
 import Suggestions from 'src/pages/Suggestions';
 import Navbar from 'src/Navbar';
 import Home from 'src/pages/Home';
+import {httpClient} from 'src/requests';
+import * as Important from 'src/important';
 
 function App() {
   return (
