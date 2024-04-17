@@ -40,7 +40,7 @@ function Navbar() {
         <nav className="navbar">
         <ul>
           <li >
-          <div style ={{marginLeft:'-900px'}}>
+          <div style ={{marginLeft:'-890px'}}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu}  >
               <Avatar 

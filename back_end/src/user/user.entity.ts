@@ -36,4 +36,7 @@ export class User {
   @Column({name: 'date_signed' })
   dateSigned: Date;
 
+  @Column({name: 'avatar_filepath', type: 'varchar', length: 30 })
+  avatarFilepath: string;
+
 }

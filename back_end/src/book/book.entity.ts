@@ -24,4 +24,7 @@ export class Book {
   @Column({name: 'description', type: 'varchar', length: 1000 })
   description: string;
 
+  @Column({name: 'book_cover_filepath', type: 'varchar', length: 30 })
+  bookCoverFilepath: string;
+
 }

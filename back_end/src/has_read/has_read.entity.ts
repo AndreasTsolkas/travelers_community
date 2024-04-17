@@ -29,4 +29,7 @@ export class HasRead {
   @Column({name: 'would_suggest_it'})
   wouldSuggestIt: boolean;
 
+  @Column({name: 'book_cover_filepath', type: 'varchar', length: 30 })
+  bookCoverFilepath: string;
+
 }

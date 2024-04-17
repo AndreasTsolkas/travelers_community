@@ -48,5 +48,7 @@ export class ProfileController {
   async updatePassword(@Param('id') id: number, @Body('newpassword') password: string) {
     return await this.profileService.updatePassword(id, password);
   }
+
+  
   
 }
