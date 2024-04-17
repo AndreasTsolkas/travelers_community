@@ -40,7 +40,7 @@ function Navbar() {
         <nav className="navbar">
         <ul>
           <li >
-          <div style ={{marginLeft:'-1050px'}}>
+          <div style ={{marginLeft:'-900px'}}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu}  >
               <Avatar 
@@ -83,10 +83,16 @@ function Navbar() {
           </div>
           </li>
           <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
             <Link to="/myreads">My reads</Link>
           </li>
           <li>
             <Link to="/suggestions">Suggestions</Link>
+          </li>
+          <li>
+            <Link to="/statistics">Statistics</Link>
           </li>
         </ul>
         </nav>
