@@ -9,10 +9,9 @@ export interface IPost {
   id?: number;
   title?: string;
   author?: string;
-  gender?: string;
-  pages?: number;
-  publicationDate?: Date;
-  description: string;
+  dateStarted?: Date;
+  dateFinished?: Date;
+  enjoynessLevel?: string;
 }
 
 function MyReads() {
@@ -20,6 +19,7 @@ function MyReads() {
   const [rows, setRows] = useState<IPost[]>([]);
   const [readyToDisplayPage, setReadyToDisplayPage] = useState<boolean>(false);
 
+  const backEndProfileUrl = Important.backEndProfileUrl;
 
   const columns: GridColDef[] = [
     { field: "id", headerName: "id", flex: 1 },
@@ -70,7 +70,7 @@ function MyReads() {
 
   async function getAllBooks() {
     try {
-      const response = await httpClient.get(Important.backEndBaseUrl+'/has_read/all');
+      const response = await httpClient.get(backEndProfileUrl+'/myreads');
       setReadRows(response.data);
     }
     catch(error) {

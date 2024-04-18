@@ -3,28 +3,30 @@ import { AuthGuard } from 'src/auth.guard';
 import { User } from 'src/user/user.entity';
 import { JwtService } from '@nestjs/jwt';
 import { ProfileService } from 'src/profile/profile.service';
-import { Token } from 'src/token';
+import { TokenService } from 'src/token.service';
 
 @UseGuards(AuthGuard)
 @Controller('profile')
 export class ProfileController {
   
   constructor(private profileService: ProfileService,
-    private readonly token: Token
+    private readonly tokenService: TokenService
     ) {
 
+  }
+
+  prepareUserId(authorization: string) {
+    const decodedToken =  this.tokenService.decodeToken(authorization);
+    const userId: number  =  this.tokenService.extractField(decodedToken, 'id');
+    return userId;
   }
 
   @Get()
   async findOneWithRelationshipsAndSpecialDetails(@Headers('Authorization') authorization: string) {
     if (!authorization) return { message: 'Unauthorized' };
-    const decodedToken =  this.token.decodeToken(authorization);
-    const userId: number  =  this.token.extractField(decodedToken, 'id');
+    const userId: number = this.prepareUserId(authorization);
     if (userId !== undefined) {
-      let basicData = await this.profileService.findOne(userId as number);
-      return {
-        basicData
-      }
+      return await this.profileService.findOne(userId as number);
     }
     else throw new BadRequestException('User id is missing.');
   }
@@ -49,6 +51,17 @@ export class ProfileController {
     return await this.profileService.updatePassword(id, password);
   }
 
-  
+  @Get('/myreads')
+  async findMyReads(@Headers('Authorization') authorization: string) {
+    /*if (!authorization) return { message: 'Unauthorized' };
+    const userId: number = this.prepareUserId(authorization);*/
+    const userId = 2;
+    if (userId !== undefined) {
+      return this.profileService.findMyReads(userId as number);
+    }
+    else throw new BadRequestException('User id is missing.');
+    
+  }
+
   
 }

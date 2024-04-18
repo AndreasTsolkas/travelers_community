@@ -6,7 +6,7 @@ import {bcryptSaltOrRounds} from "src/important";
 
 
 @Injectable()
-export class Token {
+export class TokenService {
   constructor(
     private userService: UserService,
     private jwtService: JwtService

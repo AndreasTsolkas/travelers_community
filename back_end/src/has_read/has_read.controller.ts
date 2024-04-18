@@ -4,7 +4,7 @@ import { HasRead } from 'src/has_read/has_read.entity';
 import { HasReadService } from 'src/has_read/has_read.service';
 
 /*@UseGuards(AuthGuard)*/
-@Controller('has_read')
+@Controller('hasread')
 export class HasReadController {
   
   constructor(private hasReadService: HasReadService) {
@@ -33,6 +33,11 @@ export class HasReadController {
   @Delete('/:id')
   async remove(@Param('id') id: number) {
     return this.hasReadService.remove(id);
+  }
+
+  @Get('/byuser/:id')
+  async findAllByUser(@Param('id') userId: any) {
+    return this.hasReadService.findAllByUser(userId);
   }
 
   

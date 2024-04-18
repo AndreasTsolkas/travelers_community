@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { EntityManager, IsNull, Not, Repository, getManager } from 'typeorm';
 import { User } from 'src/user/user.entity';
 import { UserService } from 'src/user/user.service';
+import { HasReadService } from 'src/has_read/has_read.service';
 
 
 @Injectable()
@@ -11,6 +12,7 @@ export class ProfileService {
   constructor(
     private readonly entityManager: EntityManager,
     private readonly userService: UserService,
+    private readonly hasReadService: HasReadService,
   ) {}
 
   async findAll() {
@@ -74,6 +76,10 @@ export class ProfileService {
 
   async updatePassword(id: number, password: string) {
     return await this.userService.updatePassword(id, password);
+  }
+
+  async findMyReads(userId: any) {
+    return this.hasReadService.findAllByUser(userId);
   }
 
 }

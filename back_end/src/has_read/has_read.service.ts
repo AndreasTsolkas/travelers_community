@@ -30,8 +30,36 @@ export class HasReadService {
     try {
       let result: any = await this.hasReadRepository
         .createQueryBuilder('has_read')
-        .leftJoinAndSelect('has_read.user_id', 'user')
-        .leftJoinAndSelect('has_read.book_id', 'book')
+        .leftJoinAndSelect('has_read.user', 'user')
+        .leftJoinAndSelect('has_read.book', 'book')
+        .where(`has_read.${field} = :value`, { value })
+        .getMany();
+      return result;
+    } catch (error) {
+      console.log(error);
+      throw new InternalServerErrorException();
+    }
+  }
+
+  async findManyWithBookRelationshipBySpecificFieldAndValue(field: string, value: any): Promise<HasRead[] | null> {
+    try {
+      let result: any = await this.hasReadRepository
+        .createQueryBuilder('has_read')
+        .leftJoinAndSelect('has_read.book', 'book')
+        .where(`has_read.${field} = :value`, { value })
+        .getMany();
+      return result;
+    } catch (error) {
+      console.log(error);
+      throw new InternalServerErrorException();
+    }
+  }
+
+  async findManyWithUserRelationshipBySpecificFieldAndValue(field: string, value: any): Promise<HasRead[] | null> {
+    try {
+      let result: any = await this.hasReadRepository
+        .createQueryBuilder('has_read')
+        .leftJoinAndSelect('has_read.user', 'user')
         .where(`has_read.${field} = :value`, { value })
         .getMany();
       return result;
@@ -123,6 +151,9 @@ export class HasReadService {
     }
   }
 
+  async findAllByUser(userId: any) {
+    return this.findManyWithBookRelationshipBySpecificFieldAndValue('user_id', userId);
+  }
 }
 
 
