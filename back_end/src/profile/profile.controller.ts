@@ -5,7 +5,7 @@ import { JwtService } from '@nestjs/jwt';
 import { ProfileService } from 'src/profile/profile.service';
 import { TokenService } from 'src/token.service';
 
-@UseGuards(AuthGuard)
+/*@UseGuards(AuthGuard)*/
 @Controller('profile')
 export class ProfileController {
   

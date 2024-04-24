@@ -1,4 +1,4 @@
-import { Box, CircularProgress } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
 export function DisplayDataGrid({rows, columns}:{rows: any, columns: any}) {
@@ -28,3 +28,20 @@ export function DisplayLoader() {
     </Box>
   );
 }
+
+export const displayTitleWithTypography = (name:string) => {
+  return (
+    <Typography  variant="h5" gutterBottom>
+        {name}
+    </Typography>
+  );
+  
+}
+
+export const DisplayTableTitle = ({ text }: { text: string }) => {
+  return (
+    <div style={{ marginTop: '30px', marginBottom: '20px' }}>
+      {displayTitleWithTypography(text)}
+    </div>
+  );
+};

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import {httpClient} from 'src/requests';
 import * as Important from 'src/important';
-import {DisplayDataGrid, DisplayLoader} from 'src/display';
+import {DisplayDataGrid, DisplayLoader, DisplayTableTitle} from 'src/display';
 
 export interface IPost {
   id?: number;
@@ -92,7 +92,7 @@ function MyReads() {
     <div>
     {readyToDisplayPage ? (
         <>
-    <h2>My reads</h2>
+    <DisplayTableTitle text= {'My reads'} />
     <DisplayDataGrid rows = {rows ?? []} columns = {columns}/>
     </>
     ) : (
