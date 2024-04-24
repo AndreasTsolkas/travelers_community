@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import {httpClient} from 'src/requests';
 import * as Important from 'src/important';
 import {DisplayDataGrid, DisplayLoader, DisplayTableTitle} from 'src/display';
+import { hasAccessAuth } from "src/useAuth";
 
 export interface IPost {
   id?: number;
@@ -20,6 +21,8 @@ function MyReads() {
   const [readyToDisplayPage, setReadyToDisplayPage] = useState<boolean>(false);
 
   const backEndProfileUrl = Important.backEndProfileUrl;
+
+  hasAccessAuth();
 
   const columns: GridColDef[] = [
     { field: "id", headerName: "id", flex: 1 },
