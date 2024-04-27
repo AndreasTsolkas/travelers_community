@@ -14,7 +14,7 @@ function Home() {
   useEffect(() => {
     const token = cookies[accessTokenCookie];
     if (!token) 
-      navigate('/signIn');
+      navigate('/signin');
   }, [cookies, navigate, accessTokenCookie]);
     
     return (

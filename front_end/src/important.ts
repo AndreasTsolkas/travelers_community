@@ -22,4 +22,4 @@ export const getAllUser = userUrl + standartGetAllExtension;
 export const getAllBooks = bookUrl + standartGetAllExtension;
 export const getAllHasReadUrl = hasReadUrl + standartGetAllExtension;
 
-export const redirectWhenHasNoAccess = '/signIn';
+export const redirectWhenHasNoAccess = '/signin';

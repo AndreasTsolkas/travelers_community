@@ -15,7 +15,7 @@ export const isTokenExpired = () => {
     const expirationDate = new Date(tokenPayload.exp * 1000);
   
     return (expirationDate < new Date());
-  };
+};
   
 
 export const deleteAllCookies = () => {
@@ -30,4 +30,4 @@ export const cookiesValidation = () => {
       deleteAllCookies();
     }
     return isNotExpired;
-  };
+};

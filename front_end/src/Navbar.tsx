@@ -3,9 +3,12 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Important from 'src/important';
 import 'src/basic.css';
+import { useCookies } from "react-cookie";
 
 function Navbar() {
   const navigate = useNavigate();
+  const [cookies, setCookie, removeCookie] = useCookies();
+  const accessTokenCookie = Important.accessTokenCookie;
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const isLoggedIn: boolean = true;
   const settings = ['My Profile', 'Sign Out'];
@@ -26,10 +29,9 @@ function Navbar() {
   const logoutUser = async () => {
     try {
       if (isLoggedIn) {
-        /*removeCookie(accessTokenCookie);
-        removeCookie(adminCookie);*/
+        removeCookie(accessTokenCookie);
         await new Promise(resolve => setTimeout(resolve, 1000));
-        navigate('/signIn');
+        navigate('/signin');
       }
       } catch (error) {
          console.log(error);

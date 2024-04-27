@@ -54,7 +54,6 @@ export default function SignIn() {
       const admin = response.data.admin;
 
       setCookie(accessTokenCookie, token);
-      setCookie(adminCookie, admin);
       
       await new Promise(resolve => setTimeout(resolve, 1000));
       Requests.initializeAxiosConfig(); // It initialize the configuration that each request will use
@@ -82,7 +81,7 @@ export default function SignIn() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 2,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -95,8 +94,8 @@ export default function SignIn() {
             </Box>
           ) : (
             <>
-              <Avatar sx={{ width: 94, height: 94, marginBottom: '30px' }}
-                src="https://t3.ftcdn.net/jpg/04/62/48/52/360_F_462485281_5KvGWMEhKb8GyOBXs0pV5vRt7gNw1mD3.jpg" />
+              <Avatar sx={{ width: 124, height: 134, marginBottom: '30px' }}
+                src={Important.appLogoImage} />
               <Typography component="h1" variant="h5">
                 Sign In
               </Typography>
@@ -126,7 +125,7 @@ export default function SignIn() {
                 </Button>
                 <Grid container>
                   <Grid item>
-                    <Link fontSize="20px" href="/register" variant="body2">
+                    <Link fontSize="20px" href="/signup" variant="body2">
                       {"You do not have an account; Register here"}
                     </Link>
                   </Grid>

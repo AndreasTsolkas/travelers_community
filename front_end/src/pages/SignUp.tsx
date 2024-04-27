@@ -83,11 +83,11 @@ export default function SignUp() {
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline>
-        <Box sx={{marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center',}}>
-        <Avatar sx={{ width: 94, height: 94, marginBottom: '30px' }}
-        src="https://t3.ftcdn.net/jpg/04/62/48/52/360_F_462485281_5KvGWMEhKb8GyOBXs0pV5vRt7gNw1mD3.jpg" />
+        <Box sx={{marginTop: 2, display: 'flex', flexDirection: 'column', alignItems: 'center',}}>
+        <Avatar sx={{ width: 124, height: 134, marginBottom: '30px' }}
+        src={Important.appLogoImage} />
           <Typography component="h1" variant="h5">
-            Register
+            Sign Up
           </Typography>
          <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
@@ -225,7 +225,7 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Register
+              Sign up
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
