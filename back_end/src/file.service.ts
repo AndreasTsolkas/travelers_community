@@ -22,11 +22,21 @@ export class FileService {
       .jpeg()
       .toBuffer();
   }
-  
+
   async getAbsolutePath(relativePath: any): Promise<string> {
     const path = require('path');
     const absolutePath = path.resolve(relativePath);
     return absolutePath;
   }
+  
+  async setAbsolutePath(parentFolderPath, fileName) {
+    return path.join(process.cwd(), parentFolderPath, fileName);
+  }
+
+  async storeFile(filePath, file) {
+    fs.writeFileSync(filePath, file.buffer);
+  }
+
+  
 
 }

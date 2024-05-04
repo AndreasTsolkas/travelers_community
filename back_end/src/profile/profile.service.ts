@@ -110,8 +110,8 @@ export class ProfileService {
     if(!this.fileService.isFileJpg(file)) 
       imageBuffer = await this.fileService.convertToJpg(file.buffer);
 
-    const imagePath = path.join(process.cwd(), 'app_images/user_avatars', fileName);
-    fs.writeFileSync(imagePath, file.buffer);
+    const imagePath = this.fileService.setAbsolutePath('app_images/user_avatars', fileName);
+    this.fileService.storeFile(imagePath, file.buffer);
 
     const savedImagePath = 'user_avatars/' + fileName;
     await this.userService.update(userId, {avatarFilepath: savedImagePath});
