@@ -34,12 +34,15 @@ const defaultTheme = createTheme();
 const registerSchema = yup.object().shape({
   name: yup.string().required("Name is required."),
   surname: yup.string().required("Surname is required."),
-  employeeUid: yup.number().required("Employee UId is required."),
+  username: yup.string().required("Username is required."),
   email: yup.string().required("Email is required.").email("Email must be valid."),
-  startDate: yup.date().required("Start date is required."),
+  age: yup.number().required("Age is required."),
+  nationality: yup.string().required("Nationality is required."),
+  country: yup.string().required("Country is required."),
+  avatarImage: yup.string().required("Avatar image is required."),
   password: yup.string().min(4,'Password must have at least 4 characters.').max(20, 'The password must not exceed 20 characters.').required("Password is required."),
   confirmPassword: yup.string().oneOf([yup.ref('password')], 'Confirmation password should be correct.').required("Confirm the password."),
-  employmentType: yup.string().required("Employment type is required."),
+  
 });
 
 
@@ -122,6 +125,21 @@ export default function SignUp() {
                   )}
                 />
               </Grid>
+              <Grid item xs={12} >
+              <Controller
+                  name="username"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }:{field:any}) => (
+                    <TextField
+                      {...field}
+                      label="Username*"
+                      error={!!errors.username}
+                      helperText={errors.username?.message}
+                    />
+                  )}
+                />
+              </Grid>
               <Grid item xs={12}>
               <Controller
                 name="email"
@@ -133,36 +151,6 @@ export default function SignUp() {
                     label="Email*"
                     error={!!errors.email}
                     helperText={errors.email?.message}
-                    fullWidth
-                  />
-                )}
-              />
-              </Grid>
-              <Grid item xs={12}>
-              <Controller
-                name="employeeUid"
-                control={control}
-                render={({ field }:{field:any}) => (
-                  <TextField
-                    {...field}
-                    label="employeeUid*"
-                    error={!!errors.employeeUid}
-                    helperText={errors.employeeUid?.message}
-                    fullWidth
-                  />
-                )}
-              />
-              </Grid>
-              <Grid item xs={12}>
-              <Controller
-                name="startDate"
-                control={control}
-                render={({ field }:{field:any}) => (
-                  <TextField
-                    {...field}
-                    label="startDate*"
-                    error={!!errors.startDate}
-                    helperText={errors.startDate?.message}
                     fullWidth
                   />
                 )}
@@ -202,22 +190,6 @@ export default function SignUp() {
                 )}
               />
               </Grid> 
-              <Grid item xs={12}>
-              <Controller
-                name="employmentType"
-                control={control}
-                defaultValue=""
-                render={({ field }:{field:any}) => (
-                  <TextField
-                    {...field}
-                    label="Employment type*"
-                    error={!!errors.employmentType}
-                    helperText={errors.employmentType?.message}
-                    fullWidth
-                  />
-                )}
-              />
-              </Grid>
             </Grid>
             <Button
               type="submit"

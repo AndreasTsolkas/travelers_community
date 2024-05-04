@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EntityManager, IsNull, Not, Repository, getManager } from 'typeorm';
 import { User } from 'src/user/user.entity';
@@ -81,6 +81,12 @@ export class ProfileService {
   async findMyReads(userId: any) {
     return this.hasReadService.findAllByUser(userId);
   }
+
+  async getAvatarFilePath(userId: number): Promise<string | undefined> {
+    const user = await this.userService.findOne(userId, false);
+    return user?.avatarFilepath;
+  }
+
 
 }
 
