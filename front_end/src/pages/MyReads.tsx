@@ -86,10 +86,6 @@ function MyReads() {
     getAllBooks();
   }, []);
 
-  useEffect(() => {
-    console.log(rows);
-  }, [rows]);
-
   
   return (
     <div>
