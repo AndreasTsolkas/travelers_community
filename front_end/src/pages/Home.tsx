@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { hasAccessAuth } from "src/useAuth";
 
 import * as Important from "src/important";
+import { DisplayTableTitle } from "src/display";
 
 function Home() {
 
@@ -19,7 +20,7 @@ function Home() {
     
     return (
       <div>
-      <h2>Home</h2>
+      <DisplayTableTitle text= {'Home'} />
       </div>
     )
 }

@@ -1,3 +1,4 @@
+import { DisplayTableTitle } from "src/display";
 import { hasAccessAuth } from "src/useAuth";
 
 function Statistics() {
@@ -6,7 +7,7 @@ function Statistics() {
     
     return (
       <div>
-      <h2>Statistics</h2>
+      <DisplayTableTitle text= {'Statistics'} />
       </div>
     )
   }
