@@ -18,6 +18,7 @@ export class FileService {
   }
 
   async convertToJpg(imageBuffer: Buffer): Promise<Buffer> {
+    console.log("here");
     return sharp(imageBuffer)
       .jpeg()
       .toBuffer();
@@ -30,11 +31,13 @@ export class FileService {
   }
   
   async setAbsolutePath(parentFolderPath, fileName) {
+    const path = require('path');
     return path.join(process.cwd(), parentFolderPath, fileName);
   }
 
   async storeFile(filePath, file) {
-    fs.writeFileSync(filePath, file.buffer);
+    const buffer = Buffer.from(file.buffer);
+    fs.writeFileSync(filePath, buffer);
   }
 
   

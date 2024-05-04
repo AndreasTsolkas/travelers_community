@@ -84,7 +84,6 @@ export class ProfileController {
   async storeImage(@UploadedFile() file) {
     /*if (!authorization) return { message: 'Unauthorized' };
     const userId: number = this.prepareUserId(authorization);*/
-    console.log(file);
     const userId = 1;
     await this.profileService.storeImage(userId, file);
   }

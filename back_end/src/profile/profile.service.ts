@@ -101,6 +101,7 @@ export class ProfileService {
 
   async storeImage(userId: any, file: any) {
     const fileName = 'img'+userId;
+    const fileNameWithType = fileName+'.jpg';
     let imageBuffer = file;
 
     if (!this.fileService.isFileImage(file)) {
@@ -110,9 +111,9 @@ export class ProfileService {
     if(!this.fileService.isFileJpg(file)) 
       imageBuffer = await this.fileService.convertToJpg(file.buffer);
 
-    const imagePath = this.fileService.setAbsolutePath('app_images/user_avatars', fileName);
-    this.fileService.storeFile(imagePath, file.buffer);
-
+    const imagePath = await this.fileService.setAbsolutePath('app_images/user_avatars', fileNameWithType);
+    this.fileService.storeFile(imagePath, imageBuffer);
+    
     const savedImagePath = 'user_avatars/' + fileName;
     await this.userService.update(userId, {avatarFilepath: savedImagePath});
   }
