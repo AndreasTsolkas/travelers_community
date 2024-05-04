@@ -1,11 +1,11 @@
-import { Body, Controller, Delete, Get, Param, Patch, Put, Query, Req, UseGuards, Headers, BadRequestException, Post, Res, NotFoundException  } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Put, Query, Req, UseGuards, Headers, BadRequestException, Post, Res, NotFoundException, UseInterceptors, UploadedFile  } from '@nestjs/common';
 import { Response } from 'express';
 import { AuthGuard } from 'src/auth.guard';
 import { User } from 'src/user/user.entity';
 import { JwtService } from '@nestjs/jwt';
 import { ProfileService } from 'src/profile/profile.service';
 import { TokenService } from 'src/token.service';
-import path, { join } from 'path';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 /*@UseGuards(AuthGuard)*/
 @Controller('profile')
@@ -70,15 +70,22 @@ export class ProfileController {
   async getAvatar(@Res() res: Response) {
     /*if (!authorization) return { message: 'Unauthorized' };
     const userId: number = this.prepareUserId(authorization);*/
-    const path = require('path');
-    const userId = 2;
+    const userId = 1;
     const filePath = await this.profileService.getAvatarFilePath(userId);
     if (!filePath) 
-      throw new NotFoundException('Avatar not found');
-    const relativePath = 'app_images/user_avatars/img1';
-    const absolutePath = path.resolve(relativePath);
-    console.log(absolutePath);
+      throw new NotFoundException('Avatar not found.');
+    const absolutePath: string = await this.profileService.getAvatarAbsolutePath(filePath);
     return res.sendFile(absolutePath);
 
   }
+
+  @Post('upload')
+  @UseInterceptors(FileInterceptor('image'))
+  async uploadImage(@UploadedFile() file) {
+    /*if (!authorization) return { message: 'Unauthorized' };
+    const userId: number = this.prepareUserId(authorization);*/
+    const userId = 1;
+    await this.profileService.storeImage(userId, file);
+  }
+
 }

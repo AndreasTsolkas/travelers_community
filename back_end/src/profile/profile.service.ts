@@ -4,6 +4,10 @@ import { EntityManager, IsNull, Not, Repository, getManager } from 'typeorm';
 import { User } from 'src/user/user.entity';
 import { UserService } from 'src/user/user.service';
 import { HasReadService } from 'src/has_read/has_read.service';
+import { FileService } from 'src/file.service';
+import path from 'path';
+import * as fs from 'fs';
+import * as sharp from 'sharp';
 
 
 @Injectable()
@@ -13,7 +17,9 @@ export class ProfileService {
     private readonly entityManager: EntityManager,
     private readonly userService: UserService,
     private readonly hasReadService: HasReadService,
+    private readonly fileService: FileService,
   ) {}
+
 
   async findAll() {
     try {
@@ -86,6 +92,32 @@ export class ProfileService {
     const user = await this.userService.findOne(userId, false);
     return user?.avatarFilepath;
   }
+
+  async getAvatarAbsolutePath(filePath: any): Promise<string> {
+    const relativePath = 'app_images/'+filePath+'.jpg';
+    const absolutePath = this.fileService.getAbsolutePath(filePath);
+    return absolutePath;
+  }
+
+  async storeImage(userId: any, file: any) {
+    const fileName = 'img'+userId;
+    let imageBuffer = file;
+
+    if (!this.fileService.isFileImage(file)) {
+      throw new Error('Only images are allowed.');
+    }
+
+    if(!this.fileService.isFileJpg(file)) 
+      imageBuffer = await this.fileService.convertToJpg(file.buffer);
+
+    const imagePath = path.join(process.cwd(), 'app_images/user_avatars', fileName);
+    fs.writeFileSync(imagePath, file.buffer);
+
+    const savedImagePath = 'user_avatars/' + fileName;
+    await this.userService.update(userId, {avatarFilepath: savedImagePath});
+  }
+
+  
 
 
 }

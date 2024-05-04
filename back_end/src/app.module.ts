@@ -24,6 +24,7 @@ import { HasReadService } from 'src/has_read/has_read.service';
 import { AuthService } from 'src/authentication/auth.service';
 import { ProfileService } from 'src/profile/profile.service';
 import { TokenService } from 'src/token.service';
+import { FileService } from 'src/file.service';
 
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -48,6 +49,6 @@ dotenv.config();
     BookModule, UserModule, HasReadModule, AuthModule
   ],
   controllers: [AppController, BookController, UserController, HasReadController, AuthController, ProfileController],
-  providers: [AppService, BookService, UserService, HasReadService, AuthService, ProfileService, TokenService],
+  providers: [AppService, BookService, UserService, HasReadService, AuthService, ProfileService, TokenService, FileService],
 })
 export class AppModule {}
