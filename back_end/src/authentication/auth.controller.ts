@@ -1,7 +1,9 @@
-import { Body, Controller, Post, HttpCode, HttpStatus, UseGuards, Get } from '@nestjs/common';
+import { Body, Controller, Post, HttpCode, HttpStatus, UseGuards, Get, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { AuthGuard } from 'src/auth.guard';
 import { User } from 'src/user/user.entity';
 import { AuthService } from 'src/authentication/auth.service';
+import { NewUserDto } from 'src/dto/new.user.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('auth')
 export class AuthController {
@@ -15,8 +17,11 @@ export class AuthController {
 
     @HttpCode(HttpStatus.OK)
     @Post('register')
-    register(@Body() user: User) {
-      return this.authService.register(user);
+    @UseInterceptors(FileInterceptor('image'))
+    register(@Body() newUserDto: NewUserDto, @UploadedFile() file) {
+      console.log(file);
+      console.log(newUserDto);
+      /*return this.authService.register(file, newUserDto);*/
     }
   
   }

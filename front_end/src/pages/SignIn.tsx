@@ -34,9 +34,6 @@ export default function SignIn() {
   const accessTokenCookie = Important.accessTokenCookie;
   const adminCookie = Important.adminCookie;
 
-
-
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -44,8 +41,6 @@ export default function SignIn() {
     const data = new FormData(event.currentTarget);
     const email = data.get('email') as  string;
     const password = data.get('password') as string;
-
-    
     
     try {
       setIsLoading(true);

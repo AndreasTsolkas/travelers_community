@@ -16,6 +16,7 @@ import { BookModule } from 'src/book/book.module';
 import { UserModule } from 'src/user/user.module';
 import { HasReadModule } from 'src/has_read/has_read.module';
 import { AuthModule } from 'src/authentication/auth.module';
+import { ProfileModule } from 'src/profile/profile.module';
 
 import { AppService } from './app.service';
 import { BookService } from 'src/book/book.service';
@@ -24,7 +25,7 @@ import { HasReadService } from 'src/has_read/has_read.service';
 import { AuthService } from 'src/authentication/auth.service';
 import { ProfileService } from 'src/profile/profile.service';
 import { TokenService } from 'src/token.service';
-import { FileService } from 'src/file.service';
+import { FileService } from 'src/file/file.service';
 
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -46,7 +47,7 @@ dotenv.config();
       entities: [Book, User, HasRead],
       synchronize: false,
     }),
-    BookModule, UserModule, HasReadModule, AuthModule
+    BookModule, UserModule, HasReadModule, AuthModule, ProfileModule
   ],
   controllers: [AppController, BookController, UserController, HasReadController, AuthController, ProfileController],
   providers: [AppService, BookService, UserService, HasReadService, AuthService, ProfileService, TokenService, FileService],

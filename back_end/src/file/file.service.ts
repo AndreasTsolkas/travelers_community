@@ -18,7 +18,6 @@ export class FileService {
   }
 
   async convertToJpg(imageBuffer: Buffer): Promise<Buffer> {
-    console.log("here");
     return sharp(imageBuffer)
       .jpeg()
       .toBuffer();

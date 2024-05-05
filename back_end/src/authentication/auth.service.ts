@@ -3,7 +3,9 @@ import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from 'bcrypt';
 
 import { User } from "src/user/user.entity";
+import { NewUserDto } from 'src/dto/new.user.dto';
 import { UserService } from "src/user/user.service";
+import { ProfileService } from "src/profile/profile.service";
 import {bcryptSaltOrRounds} from "src/important";
 
 
@@ -11,6 +13,7 @@ import {bcryptSaltOrRounds} from "src/important";
 export class AuthService {
   constructor(
     private userService: UserService,
+    private profileService: ProfileService,
     private jwtService: JwtService
   ) {}
 
@@ -42,14 +45,15 @@ export class AuthService {
     }
   }
 
-  async register(user: User): Promise<User> {
+  async register(file: any, newUserDto: NewUserDto): Promise<User> {
 
-    const hashedPassword = await bcrypt.hash(user.password,bcryptSaltOrRounds);
-    user.password = hashedPassword;
+    const hashedPassword = await bcrypt.hash(newUserDto.password,bcryptSaltOrRounds);
+    newUserDto.password = hashedPassword;
 
     try{
-      let newUser: any = await this.userService.create(user);
+      let newUser: any = await this.userService.create(newUserDto);
       newUser = this.userService.deletePasswordFromRecord(newUser);
+      await this.profileService.storeImage(newUser.id,file);
       return newUser;
     } 
     catch(error) {
