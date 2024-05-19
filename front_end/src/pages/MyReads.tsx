@@ -1,10 +1,13 @@
 import { GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from 'react';
-
+import SettingsIcon from '@mui/icons-material/Settings';
+import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import {httpClient} from 'src/requests';
 import * as Important from 'src/important';
 import {DisplayDataGrid, DisplayLoader, DisplayTableTitle} from 'src/display';
 import { hasAccessAuth } from "src/useAuth";
+import { IconButton } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export interface IPost {
   id?: number;
@@ -17,6 +20,7 @@ export interface IPost {
 
 function MyReads() {
 
+  const navigate = useNavigate();
   const [rows, setRows] = useState<IPost[]>([]);
   const [readyToDisplayPage, setReadyToDisplayPage] = useState<boolean>(false);
 
@@ -51,6 +55,24 @@ function MyReads() {
       headerName: "Enjoyness level",
       flex: 1,
     },
+    {
+      field: "actions",
+      headerName: "More info",
+      flex: 0.5,
+      renderCell: (cellValues: any) => {
+        
+        return (
+          <>
+            <IconButton
+              color="primary"
+              onClick={() => navigate(Important.moreInformationLinkBase+cellValues?.row?.id)}
+            >
+              <ReadMoreIcon />
+            </IconButton>
+          </>
+        );
+      }
+     },
     
   ];
 

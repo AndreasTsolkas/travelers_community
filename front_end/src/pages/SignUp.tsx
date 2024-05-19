@@ -125,7 +125,7 @@ export default function SignUp() {
                   )}
                 />
               </Grid>
-              <Grid item xs={12} >
+              <Grid item xs={12}  >
               <Controller
                   name="username"
                   control={control}
@@ -136,6 +136,7 @@ export default function SignUp() {
                       label="Username*"
                       error={!!errors.username}
                       helperText={errors.username?.message}
+                      fullWidth
                     />
                   )}
                 />

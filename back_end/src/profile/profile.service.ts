@@ -94,27 +94,12 @@ export class ProfileService {
   }
 
   async getAvatarAbsolutePath(filePath: any): Promise<string> {
-    const relativePath = 'app_images/'+filePath+'.jpg';
     const absolutePath = this.fileService.getAbsolutePath(filePath);
     return absolutePath;
   }
 
-  async storeImage(userId: any, file: any) {
-    const fileName = 'img'+userId;
-    const fileNameWithType = fileName+'.jpg';
-    let imageBuffer = file;
-
-    if (!this.fileService.isFileImage(file)) {
-      throw new Error('Only images are allowed.');
-    }
-
-    if(!this.fileService.isFileJpg(file)) 
-      imageBuffer = await this.fileService.convertToJpg(file.buffer);
-
-    const imagePath = await this.fileService.setAbsolutePath('app_images/user_avatars', fileNameWithType);
-    this.fileService.storeFile(imagePath, imageBuffer);
-    
-    const savedImagePath = 'user_avatars/' + fileName;
+  async storeAvatar(userId: any, file: any) {
+    let savedImagePath = await this.fileService.storeImage(userId, file, 'avatar');
     await this.userService.update(userId, {avatarFilepath: savedImagePath});
   }
 

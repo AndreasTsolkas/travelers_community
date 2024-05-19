@@ -2,6 +2,7 @@ import { BadRequestException, Injectable, InternalServerErrorException, Unauthor
 import path from 'path';
 import * as fs from 'fs';
 import * as sharp from 'sharp';
+import { StoreImage} from 'src/enums/store.image.enum';
 
 @Injectable()
 export class FileService {
@@ -37,6 +38,26 @@ export class FileService {
   async storeFile(filePath, file) {
     const buffer = Buffer.from(file.buffer);
     fs.writeFileSync(filePath, buffer);
+  }
+
+  async storeImage(number: any, file: any, storeImageCase:any) {
+    const fileName = 'img'+number;
+    const fileNameWithType = fileName+'.jpg';
+    let imageBuffer = file;
+    let imageFolder = StoreImage[storeImageCase];
+
+    if (!this.isFileImage(file)) {
+      throw new Error('Only images are allowed.');
+    }
+
+    if(!this.isFileJpg(file)) 
+      imageBuffer = await this.convertToJpg(file.buffer);
+
+    const imagePath = await this.setAbsolutePath('app_images/'+imageFolder, fileNameWithType);
+    this.storeFile(imagePath, imageBuffer);
+    
+    const savedImagePath = imageFolder+'/' + fileName;
+    return savedImagePath;
   }
 
   

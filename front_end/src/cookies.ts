@@ -2,7 +2,6 @@ import {Cookies} from 'react-cookie';
 import * as Important from "src/important";
 
 const accessTokenCookieName = Important.accessTokenCookie;
-const adminCookieName = Important.adminCookie;
 
 export const isTokenExpired = () => {
     const cookies = new Cookies();

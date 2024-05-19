@@ -81,11 +81,11 @@ export class ProfileController {
 
   @Post('/upload')
   @UseInterceptors(FileInterceptor('image'))
-  async storeImage(@UploadedFile() file) {
+  async storeAvatar(@UploadedFile() file) {
     /*if (!authorization) return { message: 'Unauthorized' };
     const userId: number = this.prepareUserId(authorization);*/
     const userId = 1;
-    await this.profileService.storeImage(userId, file);
+    await this.profileService.storeAvatar(userId, file);
   }
 
 }

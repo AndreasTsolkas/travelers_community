@@ -23,3 +23,4 @@ export const getAllBooks = bookUrl + standartGetAllExtension;
 export const getAllHasReadUrl = hasReadUrl + standartGetAllExtension;
 
 export const redirectWhenHasNoAccess = '/signin';
+export const moreInformationLinkBase = 'ReadView/';
