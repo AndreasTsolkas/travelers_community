@@ -89,12 +89,15 @@ export class ProfileService {
   }
 
   async getAvatarRelativeFilePath(userId: number): Promise<string | undefined> {
+
+    let result = 'app_images/user_avatars/default.jpg';
     const user = await this.userService.findOne(userId, false);
-    return user?.avatarFilepath;
+    if(user)
+      result = 'app_images/'+user?.avatarFilepath+'.jpg';
+    return result;
   }
 
   async getAvatarAbsolutePath(filePath: any): Promise<string> {
-    filePath = 'app_images/'+filePath+'.jpg';
     const absolutePath = this.fileService.getAbsolutePath(filePath);
     return absolutePath;
   }
