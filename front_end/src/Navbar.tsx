@@ -9,6 +9,7 @@ function Navbar() {
   const navigate = useNavigate();
   const [cookies, setCookie, removeCookie] = useCookies();
   const accessTokenCookie = Important.accessTokenCookie;
+  const avatarImageUrlCookie = Important.avatarImageUrlCookie;
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const isLoggedIn: boolean = true;
   const settings = ['My Profile', 'Sign Out'];
@@ -30,6 +31,7 @@ function Navbar() {
     try {
       if (isLoggedIn) {
         removeCookie(accessTokenCookie);
+        removeCookie(avatarImageUrlCookie);
         await new Promise(resolve => setTimeout(resolve, 1000));
         navigate('/signin');
       }
@@ -38,6 +40,7 @@ function Navbar() {
          return [];
       } 
   }
+  const avatarImageUrl = cookies[avatarImageUrlCookie];
     return (
         <nav className="navbar">
         <ul>
@@ -46,7 +49,7 @@ function Navbar() {
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu}  >
               <Avatar 
-                src={Important.appLogoImage} />
+                src={avatarImageUrl} />
               </IconButton>
             </Tooltip>
             <Menu

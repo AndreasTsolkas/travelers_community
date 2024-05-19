@@ -88,13 +88,22 @@ export class ProfileService {
     return this.hasReadService.findAllByUser(userId);
   }
 
-  async getAvatarFilePath(userId: number): Promise<string | undefined> {
+  async getAvatarRelativeFilePath(userId: number): Promise<string | undefined> {
     const user = await this.userService.findOne(userId, false);
     return user?.avatarFilepath;
   }
 
   async getAvatarAbsolutePath(filePath: any): Promise<string> {
+    filePath = 'app_images/'+filePath+'.jpg';
     const absolutePath = this.fileService.getAbsolutePath(filePath);
+    return absolutePath;
+  }
+
+  async getAvatarFilePath(userId: any): Promise<string> {
+    const relativeFilePath = await this.getAvatarRelativeFilePath(userId);
+    if (!relativeFilePath) 
+      throw new NotFoundException('Avatar not found.');
+    const absolutePath: string = await this.getAvatarAbsolutePath(relativeFilePath);
     return absolutePath;
   }
 
@@ -102,6 +111,8 @@ export class ProfileService {
     let savedImagePath = await this.fileService.storeImage(userId, file, 'avatar');
     await this.userService.update(userId, {avatarFilepath: savedImagePath});
   }
+
+
 
   
 

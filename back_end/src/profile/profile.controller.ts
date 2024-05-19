@@ -71,11 +71,8 @@ export class ProfileController {
     /*if (!authorization) return { message: 'Unauthorized' };
     const userId: number = this.prepareUserId(authorization);*/
     const userId = 1;
-    const filePath = await this.profileService.getAvatarFilePath(userId);
-    if (!filePath) 
-      throw new NotFoundException('Avatar not found.');
-    const absolutePath: string = await this.profileService.getAvatarAbsolutePath(filePath);
-    return res.sendFile(absolutePath);
+    const filePath: string = await this.profileService.getAvatarFilePath(userId);
+    return res.sendFile(filePath);
 
   }
 

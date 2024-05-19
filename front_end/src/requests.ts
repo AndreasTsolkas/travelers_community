@@ -5,7 +5,7 @@ import * as Important from "src/important";
 const backEndBaseUrl = Important.backEndBaseUrl;
 const accessTokenCookie = Important.accessTokenCookie;
 
-const axiosConfig = {
+export const axiosConfig = {
         url:'',
         headers: {
             'Authorization': ''

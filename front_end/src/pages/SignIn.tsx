@@ -28,30 +28,36 @@ export default function SignIn() {
   
   const navigate = useNavigate();
   const authUrl = Important.authUrl;
+  const profileUrl = Important.profileUrl;
   const[isLoading, setIsLoading] = React.useState<boolean>(false);
   const [cookies, setCookie, removeCookie] = useCookies();
 
   const accessTokenCookie = Important.accessTokenCookie;
-  const adminCookie = Important.adminCookie;
+  const avatarImageUrlCookie = Important.avatarImageUrlCookie;
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const requestUrl = authUrl+'/signin';
+    const signInUrl = authUrl+'/signin';
+    const getAvatarUrl = profileUrl+'/avatar';
     const data = new FormData(event.currentTarget);
     const email = data.get('email') as  string;
     const password = data.get('password') as string;
     
     try {
       setIsLoading(true);
-      const response = await httpClient.post(requestUrl, {email, password});
+      let response = await httpClient.post(signInUrl, {email, password});
       const token = response.data.access_token;
-      const admin = response.data.admin;
-
       setCookie(accessTokenCookie, token);
-      
+
       await new Promise(resolve => setTimeout(resolve, 1000));
       Requests.initializeAxiosConfig(); // It initialize the configuration that each request will use
+
+      response = await httpClient.get(getAvatarUrl) ;
+      const blob = await new Blob([response.data])
+      const avatarUrl = URL.createObjectURL(blob);
+      console.log(avatarUrl);
+      setCookie(avatarImageUrlCookie, avatarUrl);
     
     } catch(error: any) {
       console.log(error?.response?.status);

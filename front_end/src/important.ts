@@ -1,7 +1,7 @@
 export const appLogoImage = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiHqFLMP_n6u8RhHsT-ERKE4xXGiKs6VdqCw&s';
 export const backEndBaseUrl = 'http://localhost:3001';
 export const accessTokenCookie = 'access_token';
-export const adminCookie = 'admin';
+export const avatarImageUrlCookie = 'avatar_img_url';
 
 export const authUrl =  '/auth';
 export const userUrl =  '/user';
@@ -24,3 +24,4 @@ export const getAllHasReadUrl = hasReadUrl + standartGetAllExtension;
 
 export const redirectWhenHasNoAccess = '/signin';
 export const moreInformationLinkBase = 'ReadView/';
+export let userProfileImage = undefined;
