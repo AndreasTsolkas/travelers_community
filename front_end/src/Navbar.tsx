@@ -41,6 +41,7 @@ function Navbar() {
       } 
   }
   const avatarImageUrl = cookies[avatarImageUrlCookie];
+  console.log("this "+avatarImageUrl);
     return (
         <nav className="navbar">
         <ul>
@@ -49,7 +50,7 @@ function Navbar() {
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu}  >
               <Avatar 
-                src={avatarImageUrl} />
+                src={'http://localhost:5173/86f99a9d-5cc4-488a-956b-f45cfab6bc53'} />
               </IconButton>
             </Tooltip>
             <Menu

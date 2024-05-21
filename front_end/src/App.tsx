@@ -9,8 +9,6 @@ import Statistics from 'src/pages/Statistics';
 import SignIn from 'src/pages/SignIn';
 import SignUp from 'src/pages/SignUp';
 import Navbar from 'src/Navbar';
-import {httpClient} from 'src/requests';
-import * as Important from 'src/important';
 
 function App() {
 

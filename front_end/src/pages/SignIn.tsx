@@ -54,7 +54,7 @@ export default function SignIn() {
       Requests.initializeAxiosConfig(); // It initialize the configuration that each request will use
 
       response = await httpClient.get(getAvatarUrl) ;
-      const blob = await new Blob([response.data])
+      const blob = await new Blob([response.data]);
       const avatarUrl = URL.createObjectURL(blob);
       console.log(avatarUrl);
       setCookie(avatarImageUrlCookie, avatarUrl);
