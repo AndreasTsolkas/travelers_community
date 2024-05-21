@@ -1,15 +1,15 @@
 import { DisplayTableTitle } from "src/display";
 import { hasAccessAuth } from "src/useAuth";
 
-function ReadView() {
+function NewTravel() {
 
     hasAccessAuth();
     
     return (
       <div>
-      <DisplayTableTitle text= {'Read view'} />
+      <DisplayTableTitle text= {'New read'} />
       </div>
     )
   }
   
-  export default ReadView;
+  export default NewTravel;
