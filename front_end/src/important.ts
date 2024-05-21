@@ -1,4 +1,4 @@
-export const appLogoImage = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiHqFLMP_n6u8RhHsT-ERKE4xXGiKs6VdqCw&s';
+export const appLogoImage = 'https://static.vecteezy.com/system/resources/previews/015/716/237/original/paper-plane-flying-around-the-globe-around-the-world-travelling-by-plane-airplane-trip-in-various-country-planet-earth-travel-and-tourism-concept-vector.jpg';
 export const backEndBaseUrl = 'http://localhost:3001';
 export const accessTokenCookie = 'access_token';
 export const avatarImageUrlCookie = 'avatar_img_url';
