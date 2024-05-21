@@ -1,5 +1,5 @@
 import { User } from "src/user/user.entity";
-export const databaseSchemaName = 'book_manager';
+export const databaseSchemaName = 'travelers_community';
 
 export const jwtExpiresIn = '1d';
 export const bcryptSaltOrRounds = 10;
