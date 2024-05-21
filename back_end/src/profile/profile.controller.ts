@@ -54,18 +54,6 @@ export class ProfileController {
     return await this.profileService.updatePassword(id, password);
   }
 
-  @Get('/myreads')
-  async findMyReads(@Headers('Authorization') authorization: string) {
-    /*if (!authorization) return { message: 'Unauthorized' };
-    const userId: number = this.prepareUserId(authorization);*/
-    const userId = 2;
-    if (userId !== undefined) {
-      return this.profileService.findMyReads(userId as number);
-    }
-    else throw new BadRequestException('User id is missing.');
-    
-  }
-
   @Get('/avatar')
   async getAvatar(@Res() res: Response) {
     /*if (!authorization) return { message: 'Unauthorized' };
