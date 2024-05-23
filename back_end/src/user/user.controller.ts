@@ -30,5 +30,10 @@ export class UserController {
   async create(@Body() userData: Partial<User>) {
     return this.userService.create(userData);
   }
+
+  @Delete('/:id')
+  async remove(@Param('id') id: number) {
+    return this.userService.remove(id);
+  }
   
 }
