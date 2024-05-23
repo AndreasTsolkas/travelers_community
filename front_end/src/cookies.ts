@@ -2,6 +2,7 @@ import {Cookies} from 'react-cookie';
 import * as Important from "src/important";
 
 const accessTokenCookieName = Important.accessTokenCookie;
+const avatarImageUrlCookie = Important.avatarImageUrlCookie;
 
 export const isTokenExpired = () => {
     const cookies = new Cookies();
@@ -20,6 +21,7 @@ export const isTokenExpired = () => {
 export const deleteAllCookies = () => {
     const cookies = new Cookies();
     cookies.remove(accessTokenCookieName);
+    cookies.remove(avatarImageUrlCookie);
 };
 
 export const cookiesValidation = () => {
