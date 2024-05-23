@@ -20,7 +20,7 @@ function Home() {
     
     return (
       <div>
-      <DisplayTableTitle text= {'Home'} />
+      <DisplayTableTitle text= {'Welcome to our community! Share your travel experiences and contribute to our community`s travel knowledge.'} />
       </div>
     )
 }
