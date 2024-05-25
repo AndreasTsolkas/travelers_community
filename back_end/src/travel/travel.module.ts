@@ -8,4 +8,4 @@ import { TravelService } from './travel.service';
   providers: [TravelService],
   exports: [TravelService, TypeOrmModule],
 })
-export class UserModule {}
+export class TravelModule {}

@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { EntityManager, IsNull, Not, Repository, getManager } from 'typeorm';
 import { User } from 'src/user/user.entity';
 import { UserService } from 'src/user/user.service';
+import { TravelService } from 'src/travel/travel.service';
 import { FileService } from 'src/file/file.service';
 import path from 'path';
 import * as fs from 'fs';
@@ -15,6 +16,7 @@ export class ProfileService {
   constructor(
     private readonly entityManager: EntityManager,
     private readonly userService: UserService,
+    private readonly travelService: TravelService,
     private readonly fileService: FileService,
   ) {}
 
@@ -108,6 +110,10 @@ export class ProfileService {
   async storeAvatar(userId: any, file: any) {
     let savedImagePath = await this.fileService.storeImage(userId, file, 'avatar');
     await this.userService.update(userId, {avatarFilepath: savedImagePath});
+  }
+
+  async findMyTravels(userId: any) {
+    return this.travelService.findManyWithRelationshipsBySpecificFieldAndValue('user_id',userId);
   }
 
 

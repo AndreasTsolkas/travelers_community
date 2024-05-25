@@ -2,15 +2,18 @@ import { Module } from '@nestjs/common';
 import * as dotenv from 'dotenv';
 
 import { User } from 'src/user/user.entity';
+import { Travel } from 'src/travel/travel.entity';
 
 import { AppController } from './app.controller';
 import { UserController } from 'src/user/user.controller';
 import { AuthController } from 'src/authentication/auth.controller';
 import { ProfileController } from 'src/profile/profile.controller';
+import { TravelController } from 'src/travel/travel.controller';
 
 import { UserModule } from 'src/user/user.module';
 import { AuthModule } from 'src/authentication/auth.module';
 import { ProfileModule } from 'src/profile/profile.module';
+import { TravelModule } from 'src/travel/travel.module';
 
 import { AppService } from './app.service';
 import { UserService } from 'src/user/user.service';
@@ -18,6 +21,7 @@ import { AuthService } from 'src/authentication/auth.service';
 import { ProfileService } from 'src/profile/profile.service';
 import { TokenService } from 'src/token.service';
 import { FileService } from 'src/file/file.service';
+import { TravelService } from 'src/travel/travel.service';
 
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -36,12 +40,12 @@ dotenv.config();
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
-      entities: [User],
+      entities: [User, Travel],
       synchronize: false,
     }),
-    UserModule, AuthModule, ProfileModule
+    UserModule, AuthModule, ProfileModule, TravelModule
   ],
-  controllers: [AppController, UserController, AuthController, ProfileController],
-  providers: [AppService, UserService, AuthService, ProfileService, TokenService, FileService],
+  controllers: [AppController, UserController, AuthController, ProfileController, TravelController],
+  providers: [AppService, UserService, AuthService, ProfileService, TokenService, FileService, TravelService],
 })
 export class AppModule {}

@@ -73,4 +73,13 @@ export class ProfileController {
     await this.profileService.storeAvatar(userId, file);
   }
 
+  @Get('/mytravels')
+  async getMyTravels(@Res() res: Response) {
+    /*if (!authorization) return { message: 'Unauthorized' };
+    const userId: number = this.prepareUserId(authorization);*/
+    const userId = 1;
+    return this.profileService.findMyTravels(userId);
+
+  }
+
 }
