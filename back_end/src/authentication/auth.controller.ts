@@ -16,7 +16,7 @@ export class AuthController {
 
     @HttpCode(HttpStatus.OK)
     @Post('/register')
-    async register(@Body() newUserDto: NewUserDto,) {
+    async register(@Body() newUserDto: NewUserDto) {
       return await this.authService.register(newUserDto);
     }
   
