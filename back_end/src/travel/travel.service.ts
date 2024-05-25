@@ -54,7 +54,7 @@ export class TravelService {
       try {
         let result: any = await this.travelRepository
           .createQueryBuilder('travel')
-          .where(`user.${field} = :value`, { value })
+          .where(`travel.${field} = :value`, { value })
           .getMany();
         return result;
       } catch (error) {
