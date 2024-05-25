@@ -92,7 +92,7 @@ function Navbar() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/myreads">My reads</Link>
+            <Link to="/mytravels">My travels</Link>
           </li>
           <li>
             <Link to="/suggestions">Suggestions</Link>
