@@ -18,7 +18,7 @@ export interface IPost {
   enjoynessLevel?: string;
 }
 
-function MyReads() {
+function MyTravels() {
 
   const navigate = useNavigate();
   const [rows, setRows] = useState<IPost[]>([]);
@@ -125,4 +125,4 @@ function MyReads() {
   )
 }
 
-export default MyReads;
+export default MyTravels;

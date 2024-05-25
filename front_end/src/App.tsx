@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import 'src/App.css';
 import 'src/basic.css';
-import MyReads from 'src/pages/MyReads';
+import MyTravels from 'src/pages/MyTravels';
 import Suggestions from 'src/pages/Suggestions';
 import Home from 'src/pages/Home';
 import Statistics from 'src/pages/Statistics';
@@ -21,7 +21,7 @@ function App() {
       {renderNavbar}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/myreads" element={<MyReads />} />
+        <Route path="/mytravels" element={<MyTravels />} />
         <Route path="/suggestions" element={<Suggestions />} />
         <Route path="/statistics" element={<Statistics />} />
         <Route path="/signin" element={<SignIn />} />
