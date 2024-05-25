@@ -10,12 +10,15 @@ import { IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 export interface IPost {
-  id?: number;
-  title?: string;
-  author?: string;
+  place?: string;
+  country?: string;
   dateStarted?: Date;
   dateFinished?: Date;
-  enjoynessLevel?: string;
+  isBusinessTravel?: Boolean;
+  description?: string;
+  experienceRate?: number;
+  wouldISuggestIt?: Boolean;
+
 }
 
 function MyTravels() {
@@ -31,13 +34,13 @@ function MyTravels() {
   const columns: GridColDef[] = [
     { field: "id", headerName: "id", flex: 1 },
     {
-      field: "title",
-      headerName: "Title",
+      field: "place",
+      headerName: "Place",
       flex: 1,
     },
     {
-      field: "author",
-      headerName: "Author",
+      field: "country",
+      headerName: "Country",
       flex: 1,
     },
     {
@@ -48,6 +51,11 @@ function MyTravels() {
     {
       field: "dateFinished",
       headerName: "Date finished",
+      flex: 1,
+    },
+    {
+      field: "isBusinessTravel",
+      headerName: "Business travel",
       flex: 1,
     },
     {
@@ -76,27 +84,29 @@ function MyTravels() {
     
   ];
 
-  function setReadRows(data: any) {
+  function setTravelRows(data: any) {
     setRows(
       data.map(
-        (hasRead: { id: any; book: any, dateStarted: any; dateFinished: any; enjoynessLevel: any;   }) => {
+        (travel: { id: any; place: any, country: any, dateStarted: any; dateFinished: any; 
+          enjoynessLevel: any; businessTravel: any}) => {
           return {
-            id: hasRead.id,
-            title: hasRead.book.title,
-            author: hasRead.book.author,
-            dateStarted: hasRead.dateStarted,
-            dateFinished: hasRead.dateFinished,
-            enjoynessLevel: hasRead.enjoynessLevel
+            id: travel.id,
+            dateStarted: travel.dateStarted,
+            dateFinished: travel.dateFinished,
+            place: travel.place,
+            country: travel.country,
+            businessTravel: travel.businessTravel,
+            enjoynessLevel: travel.enjoynessLevel
           };
         }
       )
     );
   }
 
-  async function getAllBooks() {
+  async function getMyTravels() {
     try {
-      const response = await httpClient.get(backEndProfileUrl+'/myreads');
-      setReadRows(response.data);
+      const response = await httpClient.get(backEndProfileUrl+'/mytravels');
+      setTravelRows(response.data);
     }
     catch(error) {
       console.error(error);
@@ -105,7 +115,7 @@ function MyTravels() {
   } 
 
   useEffect(() => {
-    getAllBooks();
+    getMyTravels();
   }, []);
 
   
@@ -113,7 +123,7 @@ function MyTravels() {
     <div>
     {readyToDisplayPage ? (
         <>
-    <DisplayTableTitle text= {'My reads'} />
+    <DisplayTableTitle text= {'My travels'} />
     <DisplayDataGrid rows = {rows ?? []} columns = {columns}/>
     </>
     ) : (

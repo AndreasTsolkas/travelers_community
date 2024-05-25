@@ -74,10 +74,9 @@ export class ProfileController {
   }
 
   @Get('/mytravels')
-  async getMyTravels(@Res() res: Response) {
-    /*if (!authorization) return { message: 'Unauthorized' };
-    const userId: number = this.prepareUserId(authorization);*/
-    const userId = 1;
+  async getMyTravels(@Headers('Authorization') authorization: string) {
+    if (!authorization) return { message: 'Unauthorized' };
+    const userId: number = this.prepareUserId(authorization);
     return this.profileService.findMyTravels(userId);
 
   }
