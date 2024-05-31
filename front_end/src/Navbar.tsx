@@ -50,7 +50,7 @@ function Navbar() {
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu}  >
               <Avatar 
-                src={'http://localhost:5173/86f99a9d-5cc4-488a-956b-f45cfab6bc53'} />
+                src={'http://localhost:5173/9afd8123-5338-4fa0-84f1-b953c072dc90' || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6tcD5h90YTk2sVcruvpVJ49YsR5H8o-Bl74I6VdrjIg&s'}  />
               </IconButton>
             </Tooltip>
             <Menu

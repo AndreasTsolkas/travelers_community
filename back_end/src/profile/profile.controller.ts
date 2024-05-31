@@ -58,7 +58,7 @@ export class ProfileController {
   async getAvatar(@Res() res: Response) {
     /*if (!authorization) return { message: 'Unauthorized' };
     const userId: number = this.prepareUserId(authorization);*/
-    const userId = 1;
+    const userId = 2;
     const filePath: string = await this.profileService.getAvatarFilePath(userId);
     return res.sendFile(filePath);
 

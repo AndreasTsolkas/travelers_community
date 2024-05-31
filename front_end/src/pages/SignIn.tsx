@@ -75,6 +75,8 @@ export default function SignIn() {
     }
   }, [navigate, cookies[accessTokenCookie]]);
 
+  
+
   return (
     <div className='authentication-pages'>
     <ThemeProvider theme={defaultTheme}>
