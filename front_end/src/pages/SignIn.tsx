@@ -56,7 +56,6 @@ export default function SignIn() {
       response = await httpClient.get(getAvatarUrl) ;
       const blob = await new Blob([response.data]);
       const avatarUrl = URL.createObjectURL(blob);
-      console.log(avatarUrl);
       setCookie(avatarImageUrlCookie, avatarUrl);
     
     } catch(error: any) {

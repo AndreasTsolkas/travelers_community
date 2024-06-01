@@ -54,7 +54,7 @@ function MyTravels() {
       flex: 1,
     },
     {
-      field: "isBusinessTravel",
+      field: "businessTravel",
       headerName: "Business travel",
       flex: 1,
     },
@@ -85,18 +85,20 @@ function MyTravels() {
   ];
 
   function setTravelRows(data: any) {
+    let isBusinessTravel = 'Yes';
     setRows(
       data.map(
         (travel: { id: any; place: any, country: any, dateStarted: any; dateFinished: any; 
-          enjoynessLevel: any; businessTravel: any}) => {
+          experienceRate: any; businessTravel: any}) => {
+          if(!travel.businessTravel) isBusinessTravel = 'No';
           return {
             id: travel.id,
             dateStarted: travel.dateStarted,
             dateFinished: travel.dateFinished,
             place: travel.place,
             country: travel.country,
-            businessTravel: travel.businessTravel,
-            enjoynessLevel: travel.enjoynessLevel
+            businessTravel: isBusinessTravel,
+            enjoynessLevel: travel.experienceRate
           };
         }
       )
