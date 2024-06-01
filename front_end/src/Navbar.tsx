@@ -41,7 +41,6 @@ function Navbar() {
       } 
   }
   const avatarImageUrl = cookies[avatarImageUrlCookie];
-  console.log("this "+avatarImageUrl);
     return (
         <nav className="navbar">
         <ul>
