@@ -23,5 +23,5 @@ export const getAllBooks = bookUrl + standartGetAllExtension;
 export const getAllHasReadUrl = hasReadUrl + standartGetAllExtension;
 
 export const redirectWhenHasNoAccess = '/signin';
-export const moreInformationLinkBase = 'ReadView/';
+export const moreInformationLinkBase = 'travelview/';
 export let userProfileImage = undefined;

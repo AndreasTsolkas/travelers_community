@@ -6,6 +6,7 @@ import MyTravels from 'src/pages/MyTravels';
 import Suggestions from 'src/pages/Suggestions';
 import Home from 'src/pages/Home';
 import Statistics from 'src/pages/Statistics';
+import TravelView from 'src/pages/TravelView';
 import SignIn from 'src/pages/SignIn';
 import SignUp from 'src/pages/SignUp';
 import Navbar from 'src/Navbar';
@@ -24,6 +25,7 @@ function App() {
         <Route path="/mytravels" element={<MyTravels />} />
         <Route path="/suggestions" element={<Suggestions />} />
         <Route path="/statistics" element={<Statistics />} />
+        <Route path="/travelview" element={<TravelView />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="*" element={<Home />} />

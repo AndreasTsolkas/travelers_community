@@ -1,14 +1,16 @@
 import { DisplayTableTitle } from "src/display";
 import { hasAccessAuth } from "src/useAuth";
+import {DisplayCard} from "src/display";
 
 function TravelView() {
 
     hasAccessAuth();
     
     return (
-      <div>
+      <>
       <DisplayTableTitle text= {'Travel view'} />
-      </div>
+      <DisplayCard content = {"Card content "} />
+      </>
     )
   }
   

@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography, Card, CardContent} from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
 export function DisplayDataGrid({rows, columns}:{rows: any, columns: any}) {
@@ -43,5 +43,11 @@ export const DisplayTableTitle = ({ text }: { text: string }) => {
     <div style={{ marginTop: '30px', marginBottom: '20px' }}>
       {displayTitleWithTypography(text)}
     </div>
+  );
+};
+
+export const DisplayCard = ({ content }: { content: string }) => {
+  return (
+    <Card variant="outlined">{content}</Card>
   );
 };
