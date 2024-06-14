@@ -1,6 +1,7 @@
 import { GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from 'react';
 import SettingsIcon from '@mui/icons-material/Settings';
+import AddIcon from "@mui/icons-material/Add";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import {httpClient} from 'src/requests';
 import * as Important from 'src/important';
@@ -68,12 +69,12 @@ function MyTravels() {
       headerName: "More info",
       flex: 0.5,
       renderCell: (cellValues: any) => {
-        
+        let redirectLink = Important.moreInformationLinkBase+cellValues?.row?.id;
         return (
           <>
             <IconButton
               color="primary"
-              onClick={() => navigate(Important.moreInformationLinkBase+cellValues?.row?.id)}
+              onClick={() => navigate(redirectLink)}
             >
               <ReadMoreIcon />
             </IconButton>
@@ -124,8 +125,20 @@ function MyTravels() {
   return (
     <div>
     {readyToDisplayPage ? (
-        <>
+    <>
+    <div
+      style={{
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      width: 900,
+      }}
+    >
     <DisplayTableTitle text= {'My travels'} />
+    <IconButton color="primary" onClick={() => navigate(`/newtravel`)}>
+      <AddIcon />
+    </IconButton>
+    </div>
     <DisplayDataGrid rows = {rows ?? []} columns = {columns}/>
     </>
     ) : (

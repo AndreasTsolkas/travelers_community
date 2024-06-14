@@ -5,23 +5,21 @@ export const avatarImageUrlCookie = 'avatar_img_url';
 
 export const authUrl =  '/auth';
 export const userUrl =  '/user';
-export const bookUrl = '/book';
-export const hasReadUrl = '/hasread';
+export const travelUrl = '/travel';
 export const profileUrl = '/profile';
 
 export const passwordUrl = '/password';
 
 export const backEndAuthUrl = backEndBaseUrl + authUrl;
 export const backEndUserUrl = backEndBaseUrl + userUrl;
-export const backEndBookUrl = backEndBaseUrl + bookUrl;
-export const backEndHasReadUrl = backEndBaseUrl + hasReadUrl;
+export const backEndTravelUrl = backEndBaseUrl + travelUrl;
 export const backEndProfileUrl = backEndBaseUrl + profileUrl;
 
 export const standartGetAllExtension = '/all';
 export const getAllUser = userUrl + standartGetAllExtension;
-export const getAllBooks = bookUrl + standartGetAllExtension;
-export const getAllHasReadUrl = hasReadUrl + standartGetAllExtension;
 
 export const redirectWhenHasNoAccess = '/signin';
-export const moreInformationLinkBase = 'travelview/';
+export const moreInformationLinkBase = '/travelview/';
 export let userProfileImage = undefined;
+
+export const datetimeFormat = 'DD/ MM/ YYYY';

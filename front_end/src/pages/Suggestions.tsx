@@ -1,4 +1,4 @@
-import { DisplayTableTitle } from "src/display";
+import { DisplayTableTitle, DisplayTitle } from "src/display";
 import { hasAccessAuth } from "src/useAuth";
 
 function Suggestions() {
@@ -7,7 +7,7 @@ function Suggestions() {
   
   return (
     <div>
-    <DisplayTableTitle text= {'Suggestions'} />
+    <DisplayTitle text= {'Suggestions'} />
     </div>
   )
 }
