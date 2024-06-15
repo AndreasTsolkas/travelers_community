@@ -1,4 +1,4 @@
-import { DisplayTableTitle } from "src/display";
+import { DisplayTableTitle, DisplayTitle } from "src/display";
 import { hasAccessAuth } from "src/useAuth";
 
 function NewTravel() {
@@ -7,7 +7,7 @@ function NewTravel() {
     
     return (
       <div>
-      <DisplayTableTitle text= {'New read'} />
+      <DisplayTitle text= {'New read'} />
       </div>
     )
   }

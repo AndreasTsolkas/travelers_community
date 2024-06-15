@@ -1,6 +1,7 @@
 import moment from 'moment';
 
 export function getDate(date:Date, format: string ) {
+   console.log(date);
    return moment(date).format(format);
 }
 

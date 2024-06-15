@@ -30,11 +30,12 @@ function TravelView() {
       if (result) {
         let isBusinessTravel = 'Yes';
         let suggestThisTravel = 'Yes';
+
         if(!result.isBusinessTravel) isBusinessTravel = 'No';
         if(!result.suggestThisTravel) suggestThisTravel = 'No';
         setDisplayData([
-        { key: 'Date started: ', value: Datetime.getDate(result.startDate, datetimeFormat) },
-        { key: 'Date finished: ', value: Datetime.getDate(result.startDate, datetimeFormat) },
+        { key: 'Date started: ', value: Datetime.getDate(result.dateStarted, datetimeFormat) },
+        { key: 'Date finished: ', value: Datetime.getDate(result.dateFinished, datetimeFormat) },
         { key: 'Experience rate: ', value: result.experienceRate },
         { key: 'Country: ', value: result.country },
         { key: 'Place: ', value: result.place },
