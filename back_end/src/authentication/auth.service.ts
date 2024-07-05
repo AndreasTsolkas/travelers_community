@@ -6,13 +6,14 @@ import { User } from "src/user/user.entity";
 import { NewUserDto } from 'src/dto/new.user.dto';
 import { UserService } from "src/user/user.service";
 import {bcryptSaltOrRounds} from "src/important";
+import {countryList} from "src/countries";
 
 
 @Injectable()
 export class AuthService {
   constructor(
     private userService: UserService,
-    private jwtService: JwtService
+    private jwtService: JwtService,
   ) {}
 
   async signIn(username, pass) { 

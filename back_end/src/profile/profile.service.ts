@@ -8,6 +8,7 @@ import { FileService } from 'src/file/file.service';
 import path from 'path';
 import * as fs from 'fs';
 import * as sharp from 'sharp';
+import {countryList} from "src/countries";
 
 
 @Injectable()
@@ -114,6 +115,10 @@ export class ProfileService {
 
   async findMyTravels(userId: any) {
     return this.travelService.findManyWithRelationshipsBySpecificFieldAndValue('user_id',userId);
+  }
+
+  async getAllCountries() {
+    return countryList;
   }
 
 

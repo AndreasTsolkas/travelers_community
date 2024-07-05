@@ -81,4 +81,13 @@ export class ProfileController {
 
   }
 
+  @Get('/getallcountries')
+  async getAllCountries(@Headers('Authorization') authorization: string) {
+    if (!authorization) return { message: 'Unauthorized' };
+    return this.profileService.getAllCountries();
+
+  }
+
+
+
 }
