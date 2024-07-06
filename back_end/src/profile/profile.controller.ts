@@ -6,6 +6,7 @@ import { JwtService } from '@nestjs/jwt';
 import { ProfileService } from 'src/profile/profile.service';
 import { TokenService } from 'src/token.service';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { Travel } from 'src/travel/travel.entity';
 
 /*@UseGuards(AuthGuard)*/
 @Controller('profile')
@@ -86,6 +87,13 @@ export class ProfileController {
     if (!authorization) return { message: 'Unauthorized' };
     return this.profileService.getAllCountries();
 
+  }
+
+  @Put('/newtravel')
+  async createNewTravel(@Headers('Authorization') authorization: string, @Body() travelData: Partial<Travel>) {
+    if (!authorization) return { message: 'Unauthorized' };
+    const userId: number = this.prepareUserId(authorization);
+    return this.profileService.createNewTravel(userId, travelData);
   }
 
 

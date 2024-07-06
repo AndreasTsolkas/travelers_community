@@ -9,6 +9,7 @@ import path from 'path';
 import * as fs from 'fs';
 import * as sharp from 'sharp';
 import {countryList} from "src/countries";
+import { Travel } from 'src/travel/travel.entity';
 
 
 @Injectable()
@@ -119,6 +120,14 @@ export class ProfileService {
 
   async getAllCountries() {
     return countryList;
+  }
+
+  async createNewTravel(userId: any, travelData: Partial<Travel>) {
+    travelData.user = await this.userService.findOne(userId,false);
+    travelData.dateStarted = new Date(travelData.dateStarted);
+    travelData.dateFinished = new Date(travelData.dateFinished);
+    console.log(travelData);
+    return await this.travelService.create(travelData);
   }
 
 

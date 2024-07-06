@@ -1,5 +1,5 @@
 import { Avatar, IconButton, Menu, MenuItem, Tooltip, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Important from 'src/important';
 import 'src/basic.css';
@@ -8,6 +8,7 @@ import { useCookies } from "react-cookie";
 function Navbar() {
   const navigate = useNavigate();
   const [cookies, setCookie, removeCookie] = useCookies();
+  const [avatarUrl, setAvatarUrl] = useState<string>('');
   const accessTokenCookie = Important.accessTokenCookie;
   const avatarImageUrlCookie = Important.avatarImageUrlCookie;
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -41,6 +42,14 @@ function Navbar() {
       } 
   }
   const avatarImageUrl = cookies[avatarImageUrlCookie];
+
+  useEffect(() => {
+    const storedAvatarUrl = localStorage.getItem('avatarImageUrl') || '';
+    setAvatarUrl(storedAvatarUrl);
+  }, []);
+
+  console.log(avatarUrl);
+  
     return (
         <nav className="navbar">
         <ul>
@@ -49,7 +58,7 @@ function Navbar() {
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu}  >
               <Avatar 
-                src={'http://localhost:5173/9afd8123-5338-4fa0-84f1-b953c072dc90' || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6tcD5h90YTk2sVcruvpVJ49YsR5H8o-Bl74I6VdrjIg&s'}  />
+                src={avatarUrl}  />
               </IconButton>
             </Tooltip>
             <Menu

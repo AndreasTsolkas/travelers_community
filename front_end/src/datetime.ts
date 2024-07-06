@@ -1,7 +1,6 @@
 import moment from 'moment';
 
 export function getDate(date:Date, format: string ) {
-   console.log(date);
    return moment(date).format(format);
 }
 
@@ -27,4 +26,8 @@ export function calculateDateDifference(startDate:any, endDate:any) {
 
 export function getUTCdate(date:any, format:any) {
     return moment.utc(date, format, true);
+}
+
+export function convertDatestringToDate(datestring: string) {
+    return new Date(datestring);
 }

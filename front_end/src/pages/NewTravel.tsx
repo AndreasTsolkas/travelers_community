@@ -3,26 +3,26 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Box, Button, Checkbox, FormControlLabel, Grid, InputLabel, Link, MenuItem, Select, Switch } from "@mui/material";
+import { Box, Button, Checkbox, FormControlLabel, Grid, InputLabel, Link, MenuItem, Select, Switch, TextField } from "@mui/material";
 import MuiTextField from "src/components/MuiTextField";
 import axios from "axios";
 import { toast } from "react-toastify";
 import * as Important from "src/important";
 import * as Display from "src/display";
-import {getCurrentDate} from "src/datetime";
+import {getCurrentDate, getDateFromCurrentDate, convertDatestringToDate} from "src/datetime";
 import { DisplayIconButton, DisplayViewTitle } from "src/display";
 import {hasAccessAuth, isAccessTokenNotExpired} from "src/useAuth";
 import { httpClient } from "src/requests";
 
 
 export const NewTravelSchema = yup.object({
-  startDate: yup.string().required("Start date is required."),
-  endDate: yup.string().required("Finish date is required."),
+  dateStarted: yup.string().required("Start date is required."),
+  dateFinished: yup.string().required("Finish date is required."),
   country: yup.string().required("Country is required."),
   place: yup.string().required("Place is required."),
   experienceRate: yup.number().required("Experience rate is required."),
-  isBusinessTravel: yup.boolean(),
-  wouldIsuggestIt: yup.boolean(),
+  businessTravel: yup.boolean(),
+  suggestIt: yup.boolean(),
   description: yup.string().max(2000, 'The description must not exceed 2000 characters.').required("Description is required."),
 });
 
@@ -30,7 +30,8 @@ const NewTravel = () => {
   const [countries, setCountries] = useState<any[]>([]);
   const [defaultCountryId, setDefaultCountryId] = useState<any | null>(null);
   const [defaultSelectedCountryId, setDefaultSelectedCountryId] = useState<any>('');
-  const defaultSelectedDate = getCurrentDate(Important.datetimeFormat);
+  const defaultSelectedStartDate = getCurrentDate(Important.datetimeFormat);
+  const defaultSelectedEndDate = getDateFromCurrentDate(1, 'DD/ MM/ YYYY');
   const navigate = useNavigate();
   const travelUrl = Important.travelUrl;
   const profileUrl = Important.profileUrl;
@@ -47,18 +48,19 @@ const NewTravel = () => {
     control,
   } = useForm({
     defaultValues: {
-      startDate: defaultSelectedDate,
-      endDate: defaultSelectedDate+1,
+      dateStarted: defaultSelectedStartDate,
+      dateFinished: defaultSelectedEndDate,
       place: "",
       experienceRate: 5,
-      isBusinessTravel: false,
-      wouldIsuggestIt: false,
+      businessTravel: false,
+      suggestIt: true,
       country: defaultSelectedCountryId
     },
     resolver: yupResolver(NewTravelSchema),
   });
 
   const onReset = async (data: any) => {
+    setDefaultSelectedCountryId(defaultCountryId);
     reset(data);
   }
 
@@ -76,17 +78,20 @@ const NewTravel = () => {
   const onSubmit =  async (data: any) => {
     if(data.country==='')
       data.country = countries[0].id;
+    data.dateStarted = convertDatestringToDate(data.dateStarted);
+    data.dateFinished = convertDatestringToDate(data.dateFinished);
+    console.log(data.startDate)
     let success = false;
     let response: any = '';
 
       try {
-        response = await httpClient.put(travelUrl, data);
+        response = await httpClient.put(profileUrl+'/newtravel', data);
         toast.success('The new travel was created successfully');
         success = true;
       } catch (error) {
         toast.error('New travel creation failed');
       }
-    if (success) navigate('/travel/'+response.data.id);
+    if (success) navigate('/travelview/'+response.data.id);
   };
 
   useEffect(() => {
@@ -104,7 +109,7 @@ const NewTravel = () => {
   console.log(defaultSelectedCountryId)
   
   return (
-    <div>
+    <div style={{marginTop: "65px"}}>
       {Display.DisplayIconButton()}
       <DisplayViewTitle text={formTitle} />
       <Box
@@ -119,7 +124,7 @@ const NewTravel = () => {
               <MuiTextField
                 errors={errors}
                 control={control}
-                name="startDate"
+                name="dateStarted"
                 label="Start datetime"
               />
             </Grid>
@@ -127,7 +132,7 @@ const NewTravel = () => {
               <MuiTextField
                 errors={errors}
                 control={control}
-                name="endDate"
+                name="dateFinished"
                 label="End datetime"
               />
             </Grid>
@@ -178,11 +183,11 @@ const NewTravel = () => {
             </Grid>
             <Grid item xs={4.5}>
               <Controller
-                name="isBusinessTravel"
+                name="businessTravel"
                 control={control}
                 render={({ field }) => (
                   <FormControlLabel
-                    control={<Checkbox {...field} size="medium" />}
+                    control={<Checkbox {...field} checked={field.value} size="medium" />}
                     label="Business travel"
                   />
                 )}
@@ -190,12 +195,31 @@ const NewTravel = () => {
             </Grid>
             <Grid item xs={4.5}>
               <Controller
-                name="wouldIsuggestIt"
+                name="suggestIt"
                 control={control}
                 render={({ field }) => (
                   <FormControlLabel
-                    control={<Checkbox {...field} size="medium" />}
+                    control={<Checkbox {...field} checked={field.value} size="medium" />}
                     label="Would I suggest it"
+                  />
+                )}
+              />
+            </Grid>
+
+            <Grid item xs={15}>
+              <Controller
+                name="description"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Description"
+                    multiline
+                    rows={5}
+                    variant="outlined"
+                    fullWidth
+                    error={!!errors.description}
+                    helperText={errors.description ? errors.description.message : ''}
                   />
                 )}
               />

@@ -34,6 +34,7 @@ export default function SignIn() {
 
   const accessTokenCookie = Important.accessTokenCookie;
   const avatarImageUrlCookie = Important.avatarImageUrlCookie;
+  const fileReader = new FileReader();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -53,10 +54,14 @@ export default function SignIn() {
       await new Promise(resolve => setTimeout(resolve, 1000));
       Requests.initializeAxiosConfig(); // It initialize the configuration that each request will use
 
-      response = await httpClient.get(getAvatarUrl) ;
-      const blob = await new Blob([response.data]);
-      const avatarUrl = URL.createObjectURL(blob);
-      setCookie(avatarImageUrlCookie, avatarUrl);
+      response = await axios.get(getAvatarUrl, { responseType: 'arraybuffer' });
+      const fileReader = new FileReader();
+      fileReader.onloadend = () => {
+      const base64image = fileReader.result as string;
+
+      // Save Base64 image to local storage
+      localStorage.setItem('avatarImageUrl', base64image);
+      };
     
     } catch(error: any) {
       console.log(error?.response?.status);
