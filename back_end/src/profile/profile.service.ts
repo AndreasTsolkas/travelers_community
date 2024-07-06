@@ -126,7 +126,6 @@ export class ProfileService {
     travelData.user = await this.userService.findOne(userId,false);
     travelData.dateStarted = new Date(travelData.dateStarted);
     travelData.dateFinished = new Date(travelData.dateFinished);
-    console.log(travelData);
     return await this.travelService.create(travelData);
   }
 

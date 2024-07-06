@@ -6,9 +6,9 @@ function Statistics() {
     hasAccessAuth();
     
     return (
-      <div>
+      <>
       <DisplayTitle text= {'Statistics'} />
-      </div>
+      </>
     )
   }
   

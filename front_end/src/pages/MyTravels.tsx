@@ -86,12 +86,15 @@ function MyTravels() {
   ];
 
   function setTravelRows(data: any) {
-    let isBusinessTravel = 'Yes';
+    
     setRows(
       data.map(
         (travel: { id: any; place: any, country: any, dateStarted: any; dateFinished: any; 
           experienceRate: any; businessTravel: any}) => {
-          if(!travel.businessTravel) isBusinessTravel = 'No';
+          let isBusinessTravel = 'Yes';
+          if(travel.businessTravel===false) {
+            isBusinessTravel = 'No';
+          }
           return {
             id: travel.id,
             dateStarted: travel.dateStarted,

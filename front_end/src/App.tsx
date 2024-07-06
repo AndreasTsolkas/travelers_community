@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import 'src/App.css';
 import 'src/basic.css';
 import MyTravels from 'src/pages/MyTravels';
+import MyStatistics from 'src/pages/MyStatistics';
 import Suggestions from 'src/pages/Suggestions';
 import Home from 'src/pages/Home';
 import Statistics from 'src/pages/Statistics';
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/mytravels" element={<MyTravels />} />
+        <Route path="/mystatistics" element={<MyStatistics />} />
         <Route path="/suggestions" element={<Suggestions />} />
         <Route path="/statistics" element={<Statistics />} />
         <Route path="/travelview/:id" element={<TravelView />} />

@@ -1,15 +1,14 @@
 import { DisplayTableTitle, DisplayTitle } from "src/display";
 import { hasAccessAuth } from "src/useAuth";
 
-function Suggestions() {
+function MyStatistics() {
 
-  hasAccessAuth(); 
-  
+  hasAccessAuth();
   return (
     <>
-    <DisplayTitle text= {'Suggestions'} />
+    <DisplayTitle text= {'My statistics'} />
     </>
   )
 }
 
-export default Suggestions;
+export default MyStatistics;

@@ -31,8 +31,8 @@ function TravelView() {
         let isBusinessTravel = 'Yes';
         let suggestThisTravel = 'Yes';
 
-        if(!result.isBusinessTravel) isBusinessTravel = 'No';
-        if(!result.suggestThisTravel) suggestThisTravel = 'No';
+        if(result.isBusinessTravel===false) isBusinessTravel = 'No';
+        if(!result.suggestThisTravel===false) suggestThisTravel = 'No';
         setDisplayData([
         { key: 'Date started: ', value: Datetime.getDate(result.dateStarted, datetimeFormat) },
         { key: 'Date finished: ', value: Datetime.getDate(result.dateFinished, datetimeFormat) },

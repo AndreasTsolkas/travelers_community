@@ -61,6 +61,7 @@ const NewTravel = () => {
 
   const onReset = async (data: any) => {
     setDefaultSelectedCountryId(defaultCountryId);
+    setValue('country', countries[0]);
     reset(data);
   }
 
@@ -80,7 +81,6 @@ const NewTravel = () => {
       data.country = countries[0].id;
     data.dateStarted = convertDatestringToDate(data.dateStarted);
     data.dateFinished = convertDatestringToDate(data.dateFinished);
-    console.log(data.startDate)
     let success = false;
     let response: any = '';
 
@@ -97,6 +97,10 @@ const NewTravel = () => {
   useEffect(() => {
     getAllCountriesList();
   }, []);
+
+  useEffect(() => {
+    setValue('country', countries[0]);
+  }, [countries]);
 
   useEffect(() => {
     if (countries.length > 0) {
