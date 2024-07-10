@@ -7,7 +7,7 @@ import {httpClient} from 'src/requests';
 import * as Important from 'src/important';
 import {DisplayDataGrid, DisplayLoader, DisplayTableTitle, DisplayTitle} from 'src/display';
 import { hasAccessAuth } from "src/useAuth";
-import { IconButton } from "@mui/material";
+import { IconButton, Link } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -149,7 +149,12 @@ function MyTravels() {
               <DisplayDataGrid rows={rows} columns={columns} />
             </>
           ) : (
-            <DisplayTitle text= {'You have not shared any travels yet.'} />
+            <div>
+              <DisplayTitle text= {'You have not shared any travels yet.'} />
+              <Link  fontSize="20px" href={'/newtravel'} variant="body2">
+                 Do you want to share a travel? Click here.
+              </Link>
+            </div>
           )}
         </>
       ) : (
