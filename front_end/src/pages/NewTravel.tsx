@@ -20,7 +20,7 @@ export const NewTravelSchema = yup.object({
   dateFinished: yup.string().required("Finish date is required."),
   country: yup.string().required("Country is required."),
   place: yup.string().required("Place is required."),
-  experienceRate: yup.number().required("Experience rate is required."),
+  experienceRate: yup.string().required("Experience rate is required."),
   businessTravel: yup.boolean(),
   suggestIt: yup.boolean(),
   description: yup.string().max(2000, 'The description must not exceed 2000 characters.').required("Description is required."),
@@ -51,7 +51,7 @@ const NewTravel = () => {
       dateStarted: defaultSelectedStartDate,
       dateFinished: defaultSelectedEndDate,
       place: "",
-      experienceRate: 5,
+      experienceRate: "",
       businessTravel: false,
       suggestIt: true,
       country: defaultSelectedCountry

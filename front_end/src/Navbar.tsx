@@ -28,6 +28,11 @@ function Navbar() {
      handleCloseUserMenu();
   }
 
+  const handleMyStatisticsClick = () => {
+    navigate('/mystatistics'); 
+    handleCloseUserMenu();
+ }
+
   const logoutUser = async () => {
     try {
       if (isLoggedIn) {
@@ -83,7 +88,9 @@ function Navbar() {
                   if (setting === 'Sign Out') {
                     logoutUser();
                   } else if (setting === 'My Profile') {
-                    handleProfileClick();
+                      handleProfileClick();
+                  } else if (setting === 'My Statistics') {
+                      handleMyStatisticsClick();
                   } else {
                     handleCloseUserMenu();
                   }
