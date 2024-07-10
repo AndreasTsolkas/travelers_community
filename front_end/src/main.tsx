@@ -12,8 +12,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <ScheduledTasks />
     <App />
     <ToastContainer 
-        position="top-right" // Positioning the toasts
-        autoClose={5000} // Auto close after 5 seconds
+        position="top-right" 
+        autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

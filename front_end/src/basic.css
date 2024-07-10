@@ -2,7 +2,7 @@
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #faf7fa;
+    background-color: #f3f1db;
   }
   
   .container {
@@ -12,27 +12,27 @@
   }
   
 
-/* Ensure the navbar spans horizontally across the entire page */
+
 .navbar {
   background-color: #05128a;
   overflow: hidden;
   width: 100%;
   position: fixed;
   top: 0;
-  left: 0; /* Add this line to ensure the navbar starts from the left edge */
-  z-index: 1000; /* Ensure the navbar is above other elements */
+  left: 0; 
+  z-index: 1000; 
 }
 
-/* Ensure the list items are displayed inline and centered */
+
 .navbar ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  text-align: center; /* Center the list items */
+  text-align: center; 
 }
 
 .navbar ul li {
-  display: inline-block; /* Use inline-block instead of float for better alignment */
+  display: inline-block; 
 }
 
 .navbar ul li a {
@@ -49,6 +49,6 @@
 }
 
 .navbar ul li:first-child a:hover {
-  background-color: transparent; /* Set the background color to transparent */
-  color: white; /* Change the text color */
+  background-color: transparent; 
+  color: white; 
 }

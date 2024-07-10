@@ -5,7 +5,7 @@ import AddIcon from "@mui/icons-material/Add";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import {httpClient} from 'src/requests';
 import * as Important from 'src/important';
-import {DisplayDataGrid, DisplayLoader, DisplayTableTitle} from 'src/display';
+import {DisplayDataGrid, DisplayLoader, DisplayTableTitle, DisplayTitle} from 'src/display';
 import { hasAccessAuth } from "src/useAuth";
 import { IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -129,30 +129,36 @@ function MyTravels() {
   
   return (
     <div>
-    {readyToDisplayPage ? (
-    <>
-    <div
-      style={{
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      width: 900,
-      }}
-    >
-    <DisplayTableTitle text= {'My travels'} />
-    <IconButton color="primary" onClick={() => navigate(`/newtravel`)}>
-      <AddIcon />
-    </IconButton>
+      {readyToDisplayPage ? (
+        <>
+          {rows.length > 0 ? (
+            <>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  width: 900,
+                }}
+              >
+                <DisplayTableTitle text={'My travels'} />
+                <IconButton color="primary" onClick={() => navigate(`/newtravel`)}>
+                  <AddIcon />
+                </IconButton>
+              </div>
+              <DisplayDataGrid rows={rows} columns={columns} />
+            </>
+          ) : (
+            <DisplayTitle text= {'You have not shared any travels yet.'} />
+          )}
+        </>
+      ) : (
+        <>
+          <DisplayLoader />
+        </>
+      )}
     </div>
-    <DisplayDataGrid rows = {rows ?? []} columns = {columns}/>
-    </>
-    ) : (
-      <>
-        <DisplayLoader />
-      </>
-    )}
-    </div>
-  )
+  );
 }
 
 export default MyTravels;
