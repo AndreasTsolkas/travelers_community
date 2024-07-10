@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import * as yup from "yup";
 import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import * as Important from "src/important";
 import * as Display from "src/display";
 import { useState, useEffect } from 'react';

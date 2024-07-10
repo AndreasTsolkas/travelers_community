@@ -12,6 +12,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { Box } from "@mui/material";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function TravelView() {
     const params: any | never = useParams();

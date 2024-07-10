@@ -9,6 +9,8 @@ import {DisplayDataGrid, DisplayLoader, DisplayTableTitle} from 'src/display';
 import { hasAccessAuth } from "src/useAuth";
 import { IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export interface IPost {
   place?: string;

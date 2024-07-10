@@ -14,6 +14,8 @@ import * as Datetime from "src/datetime";
 import {DisplayErrorMessage, DisplayFieldWithTypography, DisplayLoader, DisplayTableTitle} from 'src/display';
 import {hasAccessAuth, isAccessTokenNotExpired} from "src/useAuth";
 import { httpClient } from "src/requests";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const MyProfile = () => {

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Box, Button, Checkbox, FormControlLabel, Grid, InputLabel, Link, MenuItem, Select, Switch, TextField } from "@mui/material";
 import MuiTextField from "src/components/MuiTextField";
 import axios from "axios";
+import 'react-toastify/dist/ReactToastify.css';
 import { toast } from "react-toastify";
 import * as Important from "src/important";
 import * as Display from "src/display";

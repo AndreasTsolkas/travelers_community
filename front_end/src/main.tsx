@@ -11,6 +11,17 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
     <ScheduledTasks />
     <App />
+    <ToastContainer 
+        position="top-right" // Positioning the toasts
+        autoClose={5000} // Auto close after 5 seconds
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </BrowserRouter>
   </React.StrictMode>,
 )

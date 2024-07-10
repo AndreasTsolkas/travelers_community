@@ -12,6 +12,8 @@ import * as Display from "src/display";
 import { DisplayIconButton, DisplayViewTitle } from "src/display";
 import {hasAccessAuth, isAccessTokenNotExpired} from "src/useAuth";
 import { httpClient } from "src/requests";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 export const NewEmployeeSchema = yup.object({

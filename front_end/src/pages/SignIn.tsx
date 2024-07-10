@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { CircularProgress } from '@mui/material';
+import 'react-toastify/dist/ReactToastify.css';
 import { CookiesProvider, useCookies } from "react-cookie";
 import "src/index.css";
 import * as Important from "src/important";
