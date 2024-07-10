@@ -13,7 +13,7 @@ function Navbar() {
   const avatarImageUrlCookie = Important.avatarImageUrlCookie;
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const isLoggedIn: boolean = true;
-  const settings = ['My Profile', 'Sign Out'];
+  const settings = ['My Profile', 'My Statistics', 'Sign Out'];
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
      setAnchorElUser(event.currentTarget);
@@ -24,7 +24,7 @@ function Navbar() {
   };
 
   const handleProfileClick = () => {
-     navigate('/profile'); 
+     navigate('/myprofile'); 
      handleCloseUserMenu();
   }
 
@@ -47,8 +47,6 @@ function Navbar() {
     const storedAvatarUrl = localStorage.getItem('avatarImageUrl') || '';
     setAvatarUrl(storedAvatarUrl);
   }, []);
-
-  console.log(avatarUrl);
   
     return (
         <nav className="navbar">

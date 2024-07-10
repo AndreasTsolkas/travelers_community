@@ -54,6 +54,15 @@ export const displayTitleWithTypography = (name:string) => {
   
 }
 
+export const displaySmallTitleWithTypography = (name:string) => {
+  return (
+    <Typography  variant="h6" gutterBottom>
+        {name}
+    </Typography>
+  );
+  
+}
+
 export const DisplayViewTitle = ({text}:{text:any}) => {
   return (
 
@@ -104,4 +113,12 @@ export function DisplayIconButton(specialCase?: any, navigate?: any) {
       </div>
 
   );
+}
+
+export const DisplayGenericTitle = ({text}:{text:any}) => {
+  return displayTitleWithTypography(text);
+}
+
+export const DisplaySmallGenericTitle = ({text}:{text:any}) => {
+  return displaySmallTitleWithTypography(text);
 }

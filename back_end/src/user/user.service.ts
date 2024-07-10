@@ -144,6 +144,7 @@ export class UserService {
       const hashedPassword = await bcrypt.hash(newPassword,bcryptSaltOrRounds);
       user.password = hashedPassword;
       try {
+        console.log("here");
         let updatedUser: any = await this.update(id, user);
         updatedUser = this.deletePasswordFromRecord(updatedUser);
         return updatedUser;

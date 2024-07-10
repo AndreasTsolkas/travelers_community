@@ -7,8 +7,7 @@ export const authUrl =  '/auth';
 export const userUrl =  '/user';
 export const travelUrl = '/travel';
 export const profileUrl = '/profile';
-
-export const passwordUrl = '/password';
+export const passwordUrl = '/editpassword';
 
 export const backEndAuthUrl = backEndBaseUrl + authUrl;
 export const backEndUserUrl = backEndBaseUrl + userUrl;

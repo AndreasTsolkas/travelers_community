@@ -28,8 +28,8 @@ export const NewTravelSchema = yup.object({
 
 const NewTravel = () => {
   const [countries, setCountries] = useState<any[]>([]);
-  const [defaultCountryId, setDefaultCountryId] = useState<any | null>(null);
-  const [defaultSelectedCountryId, setDefaultSelectedCountryId] = useState<any>('');
+  const [defaultCountry, setDefaultCountry] = useState<any | null>(null);
+  const [defaultSelectedCountry, setDefaultSelectedCountry] = useState<any>('');
   const defaultSelectedStartDate = getCurrentDate(Important.datetimeFormat);
   const defaultSelectedEndDate = getDateFromCurrentDate(1, 'DD/ MM/ YYYY');
   const navigate = useNavigate();
@@ -54,13 +54,13 @@ const NewTravel = () => {
       experienceRate: 5,
       businessTravel: false,
       suggestIt: true,
-      country: defaultSelectedCountryId
+      country: defaultSelectedCountry
     },
     resolver: yupResolver(NewTravelSchema),
   });
 
   const onReset = async (data: any) => {
-    setDefaultSelectedCountryId(defaultCountryId);
+    setDefaultSelectedCountry(defaultCountry);
     setValue('country', countries[0]);
     reset(data);
   }
@@ -104,13 +104,12 @@ const NewTravel = () => {
 
   useEffect(() => {
     if (countries.length > 0) {
-      let defaultCountryId = countries[0];
-      setDefaultCountryId(defaultCountryId);
+      let defaultCountry = countries[0];
+      setDefaultCountry(defaultCountry);
     }
-    setDefaultSelectedCountryId(defaultCountryId);
+    setDefaultSelectedCountry(defaultCountry);
   }, [countries]);
 
-  console.log(defaultSelectedCountryId)
   
   return (
     <div style={{marginTop: "65px"}}>
@@ -152,10 +151,10 @@ const NewTravel = () => {
                       {...field}
                       fullWidth
                       variant="outlined"
-                      value={defaultSelectedCountryId || '' }
+                      value={defaultSelectedCountry || '' }
                       onChange={(event) => {
                         field.onChange(event);
-                        setDefaultSelectedCountryId(event.target.value);
+                        setDefaultSelectedCountry(event.target.value);
                       }}
                     >
                       {countries.map((item: any) => (

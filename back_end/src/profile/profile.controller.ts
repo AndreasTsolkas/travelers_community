@@ -45,14 +45,19 @@ export class ProfileController {
     return this.profileService.remove(id);
   }
 
-  @Post('/checkpassword/:id')
-  async checkIfPasswordIsCorrect(@Param('id') id: number, @Body('password') password: string) {
-    return await this.profileService.checkIfPasswordIsCorrect(id, password);
+  @Post('/checkpassword')
+  async checkIfPasswordIsCorrect(@Headers('Authorization') authorization: string, @Body('password') password: string) {
+    if (!authorization) return { message: 'Unauthorized' };
+    const userId: number = this.prepareUserId(authorization);
+    return await this.profileService.checkIfPasswordIsCorrect(userId, password);
   }
 
-  @Patch('/updatepassword/:id')
-  async updatePassword(@Param('id') id: number, @Body('newpassword') password: string) {
-    return await this.profileService.updatePassword(id, password);
+  @Patch('/update/password')
+  async updatePassword(@Headers('Authorization') authorization: string, @Body('newpassword') password: string) {
+    if (!authorization) return { message: 'Unauthorized' };
+    const userId: number = this.prepareUserId(authorization);
+    console.log(userId);
+    return await this.profileService.updatePassword(userId, password);
   }
 
   @Get('/avatar')
