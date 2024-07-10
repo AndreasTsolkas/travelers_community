@@ -36,14 +36,14 @@ const MyProfile = () => {
 
 
   function populateDisplayBasicDataArray() {
-    /*let sex = "Man";
-    if(result.sex === "W") sex ="Woman";*/
+    let sex = "Male";
     if (result) {
+      if(result.sex === "F") sex = "Female";
       setDisplayBasicData([
-      { key: 'Username: ', value: result.username },
       { key: 'Name: ', value: result.firstName },
       { key: 'Surname: ', value: result.lastName },
       { key: 'Age: ', value: result.age },
+      { key: 'Sex: ', value: sex },
       { key: 'Nationality: ', value: result.nationality },
       { key: 'Country: ', value: result.country },
       { key: 'Email: ', value: result.email },

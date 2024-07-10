@@ -46,7 +46,6 @@ const MyProfileEdit = () => {
     control,
   } = useForm({
     defaultValues: {
-      username: "",
       firstName: "",
       lastName: "",
       email: "",
@@ -134,14 +133,6 @@ const MyProfileEdit = () => {
       >
         <form  onReset={onReset} onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
-            <Grid item xs={4}>
-              <MuiTextField
-                errors={errors}
-                control={control}
-                name="username"
-                label="Username"
-              />
-            </Grid>
             <Grid item xs={4}>
               <MuiTextField
                 errors={errors}

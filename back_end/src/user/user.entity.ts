@@ -30,9 +30,6 @@ export class User {
   @Column({name: 'password', type: 'varchar', length: 30})
   password: string;
 
-  @Column({name: 'username', type: 'varchar', length: 20})
-  username: string;
-
   @Column({name: 'date_signed' })
   dateSigned: Date;
 

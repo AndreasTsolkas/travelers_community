@@ -8,7 +8,7 @@ import { FileService } from 'src/file/file.service';
 import path from 'path';
 import * as fs from 'fs';
 import * as sharp from 'sharp';
-import {countryList} from "src/countries";
+import {countryList} from "src/lists/countries";
 import { Travel } from 'src/travel/travel.entity';
 
 

@@ -6,7 +6,7 @@ import { User } from "src/user/user.entity";
 import { NewUserDto } from 'src/dto/new.user.dto';
 import { UserService } from "src/user/user.service";
 import {bcryptSaltOrRounds} from "src/important";
-import {countryList} from "src/countries";
+import {countryList} from "src/lists/countries";
 
 
 @Injectable()
@@ -16,16 +16,16 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async signIn(username, pass) { 
+  async signIn(email, pass) { 
     try {
-      const user = await this.userService.findOneWithRelationshipsBySpecificFieldAndValue("username",username, true);
+      const user = await this.userService.findOneWithRelationshipsBySpecificFieldAndValue("email",email, true);
       if (!user) 
         throw new BadRequestException;
   
 
       const isValid =  await bcrypt.compare(pass, user.password);
       if(isValid) {
-        const payload = { id: user.id, username: user.username };
+        const payload = { id: user.id, email: user.email };
         return {
           access_token: await this.jwtService.signAsync(payload)
         };
@@ -35,7 +35,7 @@ export class AuthService {
     catch (error) {
       console.log(error);
       if(error instanceof BadRequestException)
-        throw new BadRequestException('User with the username : '+username+' not found.');
+        throw new BadRequestException('User with the email : '+email+' not found.');
       else if(error instanceof UnauthorizedException) {
         let message = 'Password given is incorrect.';
         throw new UnauthorizedException(message);
@@ -57,7 +57,7 @@ export class AuthService {
     catch(error) {
       let message = "New account creation failed.";
       if(error.code==23505) {
-        message= "Username given is used by another user.";
+        message= "Email given is used by another user.";
         throw new BadRequestException(message);
       }
       throw new InternalServerErrorException(message);
