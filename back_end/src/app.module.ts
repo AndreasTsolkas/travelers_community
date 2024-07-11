@@ -9,11 +9,13 @@ import { UserController } from 'src/user/user.controller';
 import { AuthController } from 'src/authentication/auth.controller';
 import { ProfileController } from 'src/profile/profile.controller';
 import { TravelController } from 'src/travel/travel.controller';
+import { ListController } from 'src/lists/list.controller';
 
 import { UserModule } from 'src/user/user.module';
 import { AuthModule } from 'src/authentication/auth.module';
 import { ProfileModule } from 'src/profile/profile.module';
 import { TravelModule } from 'src/travel/travel.module';
+import { ListModule } from 'src/lists/list.module';
 
 import { AppService } from './app.service';
 import { UserService } from 'src/user/user.service';
@@ -22,6 +24,7 @@ import { ProfileService } from 'src/profile/profile.service';
 import { TokenService } from 'src/token.service';
 import { FileService } from 'src/file/file.service';
 import { TravelService } from 'src/travel/travel.service';
+import { ListService } from 'src/lists/list.service';
 
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -43,9 +46,9 @@ dotenv.config();
       entities: [User, Travel],
       synchronize: false,
     }),
-    UserModule, AuthModule, ProfileModule, TravelModule
+    UserModule, AuthModule, ProfileModule, TravelModule, ListModule
   ],
-  controllers: [AppController, UserController, AuthController, ProfileController, TravelController],
-  providers: [AppService, UserService, AuthService, ProfileService, TokenService, FileService, TravelService],
+  controllers: [AppController, UserController, AuthController, ProfileController, TravelController, ListController],
+  providers: [AppService, UserService, AuthService, ProfileService, TokenService, FileService, TravelService, ListService],
 })
 export class AppModule {}

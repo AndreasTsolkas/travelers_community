@@ -26,6 +26,7 @@ import "src/index.css";
 import * as Important from "src/important";
 import { Link as RouterLink } from 'react-router-dom';
 import { httpClient } from 'src/requests';
+import { useEffect, useState } from 'react';
 
 
 
@@ -33,17 +34,15 @@ import { httpClient } from 'src/requests';
 const defaultTheme = createTheme();
 
 const registerSchema = yup.object().shape({
-  name: yup.string().required("Name is required."),
-  surname: yup.string().required("Surname is required."),
-  username: yup.string().required("Username is required."),
-  email: yup.string().required("Email is required.").email("Email must be valid."),
-  age: yup.number().required("Age is required."),
+  firstName: yup.string().required("Name is required."),
+  lastName: yup.string().required("Surname is required."),
+  age: yup.number().required("Age is required.").min(15, 'You have to be older than 15 years old.').max(120),
+  sex: yup.string().required("Sex is required."),
   nationality: yup.string().required("Nationality is required."),
   country: yup.string().required("Country is required."),
-  avatarImage: yup.string().required("Avatar image is required."),
   password: yup.string().min(4,'Password must have at least 4 characters.').max(20, 'The password must not exceed 20 characters.').required("Password is required."),
   confirmPassword: yup.string().oneOf([yup.ref('password')], 'Confirmation password should be correct.').required("Confirm the password."),
-  
+  email: yup.string().required("Email is required.").email("Email must be valid."),
 });
 
 
@@ -51,9 +50,20 @@ const registerSchema = yup.object().shape({
 export default function SignUp() {
 
   const authUrl = Important.authUrl;
+  const profileUrl = Important.profileUrl;
+  const listUrl = Important.listUrl;
   const navigate = useNavigate();
   const [cookies] = useCookies();
   const accessTokenCookie = Important.accessTokenCookie;
+  const [defaultCountry, setDefaultCountry] = useState<any | null>(null);
+  const [deafaultSelectedCountry, setDefaultSelectedCountry] = useState<any>('');
+  const [countries, setCountries] = useState<any[]>([]);
+  const [defaultNationality, setDefaultNationality] = useState<any | null>(null);
+  const [deafaultSelectedNationality, setDeafaultSelectedNationality] = useState<any>('');
+  const [nationalities, setNationalities] = useState<any[]>([]);
+  const [defaultSex, setDefaultSex] = useState<any | null>(null);
+  const [deafaultSelectedSex, setDeafaultSelectedSex] = useState<any>('');
+  const [sexes, setSexes] = useState<any[]>([]);
 
   React.useEffect(() => {
     const token = cookies[accessTokenCookie];
@@ -67,11 +77,6 @@ export default function SignUp() {
   });
 
   const onSubmit = async (data: any) => {  
-    data.isAccepted=false;
-    data.isAdmin=false;
-    data.department=null;
-    data.salary=0;
-    data.vacationDays=0;
     const requestUrl = authUrl+'/register';
     try {
       const response = await httpClient.post(requestUrl, data );  
@@ -81,6 +86,74 @@ export default function SignUp() {
       toast.error(message || 'An error occurred');
     }
   };
+
+  const getAllCountriesList = async () => {
+    try {
+      const response: any = await httpClient.get(listUrl+'/getallcountries');
+      setCountries(response.data);
+    }
+    catch(error) {
+      toast.error('Countries list got failed.');
+    }
+  }
+
+  const getAllNationalitiesList = async () => {
+    try {
+      const response: any = await httpClient.get(listUrl+'/getallnationalities');
+      setCountries(response.data);
+    }
+    catch(error) {
+      toast.error('Nationalities list got failed.');
+    }
+  }
+
+  const getAllSexesList = async () => {
+    try {
+      const response: any = await httpClient.get(listUrl+'/getallsexes');
+      setCountries(response.data);
+    }
+    catch(error) {
+      toast.error('Sexes list got failed.');
+    }
+  }
+
+  useEffect(() => {
+    getAllCountriesList();
+  }, []);
+
+  useEffect(() => {
+    getAllNationalitiesList();
+  }, []);
+
+  useEffect(() => {
+    getAllSexesList();
+  }, []);
+
+
+  useEffect(() => {
+    if (countries.length > 0) {
+      let defaultCountryGet  = countries[0];
+      setDefaultSelectedCountry(defaultCountryGet);
+    }
+  }, [countries]);
+
+  useEffect(() => {
+    if (nationalities.length > 0) {
+      let defaultNationalityGet  = nationalities[0];
+      setDeafaultSelectedNationality(defaultNationalityGet);
+    }
+  }, [nationalities]);
+
+  useEffect(() => {
+    if (sexes.length > 0) {
+      let defaultSexGet  = sexes[0];
+      setDeafaultSelectedSex(defaultSexGet);
+    }
+  }, [sexes]);
+
+  console.log(defaultCountry);
+  console.log(defaultNationality);
+  console.log(defaultSex);
 
   return (
     <div className='authentication-pages'>
@@ -97,15 +170,15 @@ export default function SignUp() {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <Controller
-                  name="name"
+                  name="firstName"
                   control={control}
                   defaultValue=""
                   render={({ field }:{field:any}) => (
                     <TextField
                       {...field}
-                      label="Name*"
-                      error={!!errors.name}
-                      helperText={errors.surname?.message}
+                      label="First name*"
+                      error={!!errors.firstName}
+                      helperText={errors.firstName?.message}
                     />
                   )}
                 />
@@ -113,31 +186,15 @@ export default function SignUp() {
               
               <Grid item xs={12} sm={6}>
               <Controller
-                  name="surname"
+                  name="lastName"
                   control={control}
                   defaultValue=""
                   render={({ field }:{field:any}) => (
                     <TextField
                       {...field}
-                      label="Surname*"
-                      error={!!errors.surname}
-                      helperText={errors.surname?.message}
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid item xs={12}  >
-              <Controller
-                  name="username"
-                  control={control}
-                  defaultValue=""
-                  render={({ field }:{field:any}) => (
-                    <TextField
-                      {...field}
-                      label="Username*"
-                      error={!!errors.username}
-                      helperText={errors.username?.message}
-                      fullWidth
+                      label="Last mame*"
+                      error={!!errors.lastName}
+                      helperText={errors.lastName?.message}
                     />
                   )}
                 />
@@ -192,6 +249,93 @@ export default function SignUp() {
                 )}
               />
               </Grid> 
+              <Grid item xs={4}>
+              <Controller
+                name="country"
+                control={control}
+                render={ ({ field }) => {
+                     
+                  return (
+                  <>
+                    <Select
+                      {...field}
+                      fullWidth
+                      variant="outlined"
+                      value={deafaultSelectedCountry || '' }
+                      onChange={(event) => {
+                        field.onChange(event);
+                        setDefaultSelectedCountry(event.target.value);
+                      }}
+                    >
+                      {countries.map((item: any) => (
+                        <MenuItem key={item} value={item}>
+                          {item} 
+                        </MenuItem>
+                      ))}
+                      
+                    </Select>
+                  </>
+                );}}
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <Controller
+                name="nationality"
+                control={control}
+                render={ ({ field }) => {
+                     
+                  return (
+                  <>
+                    <Select
+                      {...field}
+                      fullWidth
+                      variant="outlined"
+                      value={deafaultSelectedNationality || '' }
+                      onChange={(event) => {
+                        field.onChange(event);
+                        setDeafaultSelectedNationality(event.target.value);
+                      }}
+                    >
+                      {nationalities.map((item: any) => (
+                        <MenuItem key={item} value={item}>
+                          {item} 
+                        </MenuItem>
+                      ))}
+                      
+                    </Select>
+                  </>
+                );}}
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <Controller
+                name="sex"
+                control={control}
+                render={ ({ field }) => {
+                     
+                  return (
+                  <>
+                    <Select
+                      {...field}
+                      fullWidth
+                      variant="outlined"
+                      value={deafaultSelectedSex || '' }
+                      onChange={(event) => {
+                        field.onChange(event);
+                        setDeafaultSelectedSex(event.target.value);
+                      }}
+                    >
+                      {sexes.map((item: any) => (
+                        <MenuItem key={item} value={item}>
+                          {item} 
+                        </MenuItem>
+                      ))}
+                      
+                    </Select>
+                  </>
+                );}}
+              />
+            </Grid>
             </Grid>
             <Button
               type="submit"
@@ -201,10 +345,9 @@ export default function SignUp() {
             >
               Sign up
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid container >
               <Grid item>
-                <Link fontSize="20px" href="/signin" variant="body2">
-                Already have an account? Sign in here
+                <Link fontSize="20px" href="/signin" variant="body2"> Already have an account? Sign in here
                 </Link>
               </Grid>
             </Grid>

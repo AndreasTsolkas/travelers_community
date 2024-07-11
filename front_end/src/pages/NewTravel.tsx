@@ -36,6 +36,7 @@ const NewTravel = () => {
   const navigate = useNavigate();
   const travelUrl = Important.travelUrl;
   const profileUrl = Important.profileUrl;
+  const listUrl = Important.listUrl;
   const [formTitle, setFormTitle] = useState<string>('Add a new travel:');
 
   
@@ -68,7 +69,7 @@ const NewTravel = () => {
 
   const getAllCountriesList = async () => {
     try {
-      const response: any = await httpClient.get(profileUrl+'/getallcountries');
+      const response: any = await httpClient.get(listUrl+'/getallcountries');
       console.log("countries: "+response);
       setCountries(response.data);
     }

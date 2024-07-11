@@ -9,6 +9,8 @@ import path from 'path';
 import * as fs from 'fs';
 import * as sharp from 'sharp';
 import {countryList} from "src/lists/countries";
+import {nationalityList} from "src/lists/nationalities";
+import {sexList} from "src/lists/sexes";
 import { Travel } from 'src/travel/travel.entity';
 
 
@@ -118,9 +120,6 @@ export class ProfileService {
     return this.travelService.findManyWithRelationshipsBySpecificFieldAndValue('user_id',userId);
   }
 
-  async getAllCountries() {
-    return countryList;
-  }
 
   async createNewTravel(userId: any, travelData: Partial<Travel>) {
     travelData.user = await this.userService.findOne(userId,false);

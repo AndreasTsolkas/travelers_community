@@ -87,13 +87,6 @@ export class ProfileController {
 
   }
 
-  @Get('/getallcountries')
-  async getAllCountries(@Headers('Authorization') authorization: string) {
-    if (!authorization) return { message: 'Unauthorized' };
-    return this.profileService.getAllCountries();
-
-  }
-
   @Put('/newtravel')
   async createNewTravel(@Headers('Authorization') authorization: string, @Body() travelData: Partial<Travel>) {
     if (!authorization) return { message: 'Unauthorized' };

@@ -27,11 +27,13 @@ export const NewEmployeeSchema = yup.object({
 const MyProfileEdit = () => {
   const params = useParams();
   const [defaultCountry, setDefaultCountry] = useState<any | null>(null);
+  const [deafaultSelectedCountry, setDefaultSelectedCountry] = useState<any>('');
   const [countries, setCountries] = useState<any[]>([]);
   const navigate = useNavigate();
   const profileUrl = Important.profileUrl;
+  const listUrl = Important.listUrl;
   const [formTitle, setFormTitle] = useState<string>('Edit your profile:');
-  const [deafaultSelectedCountry, setDefaultSelectedCountry] = useState<any>('');
+  
   const passwordRedirectUrl = Important.passwordUrl;
 
   hasAccessAuth();
@@ -95,7 +97,7 @@ const MyProfileEdit = () => {
 
   const getAllCountriesList = async () => {
     try {
-      const response: any = await httpClient.get(profileUrl+'/getallcountries');
+      const response: any = await httpClient.get(listUrl+'/getallcountries');
       setCountries(response.data);
     }
     catch(error) {
