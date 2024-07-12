@@ -151,10 +151,6 @@ export default function SignUp() {
     }
   }, [sexes]);
 
-  console.log(defaultCountry);
-  console.log(defaultNationality);
-  console.log(defaultSex);
-
   return (
     <div className='authentication-pages'>
     <ThemeProvider theme={defaultTheme}>
