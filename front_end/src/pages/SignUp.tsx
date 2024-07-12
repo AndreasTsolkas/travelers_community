@@ -100,7 +100,7 @@ export default function SignUp() {
   const getAllNationalitiesList = async () => {
     try {
       const response: any = await httpClient.get(listUrl+'/getallnationalities');
-      setCountries(response.data);
+      setNationalities(response.data);
     }
     catch(error) {
       toast.error('Nationalities list got failed.');
@@ -110,7 +110,7 @@ export default function SignUp() {
   const getAllSexesList = async () => {
     try {
       const response: any = await httpClient.get(listUrl+'/getallsexes');
-      setCountries(response.data);
+      setSexes(response.data);
     }
     catch(error) {
       toast.error('Sexes list got failed.');
@@ -277,8 +277,8 @@ export default function SignUp() {
                   </>
                 );}}
               />
-            </Grid>
-            <Grid item xs={4}>
+              </Grid>
+              <Grid item xs={4}>
               <Controller
                 name="nationality"
                 control={control}
@@ -305,9 +305,9 @@ export default function SignUp() {
                     </Select>
                   </>
                 );}}
-              />
-            </Grid>
-            <Grid item xs={4}>
+               />
+              </Grid>
+              <Grid item xs={4}>
               <Controller
                 name="sex"
                 control={control}
@@ -335,6 +335,9 @@ export default function SignUp() {
                   </>
                 );}}
               />
+            
+            
+            
             </Grid>
             </Grid>
             <Button
