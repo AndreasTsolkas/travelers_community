@@ -24,7 +24,6 @@ import MuiTextField from "src/components/MuiTextField";
 import MuiSelectField from "src/components/MuiSelectField";
 import "src/index.css";
 import * as Important from "src/important";
-import { Link as RouterLink } from 'react-router-dom';
 import { httpClient } from 'src/requests';
 import { useEffect, useState } from 'react';
 
@@ -45,12 +44,23 @@ const registerSchema = yup.object().shape({
   email: yup.string().required("Email is required.").email("Email must be valid."),
 });
 
+type FormData = {
+  firstName: string,
+  lastName: string,
+  age: number,
+  sex: string,
+  nationality: string,
+  country: string,
+  password: string,
+  confirmPassword: string,
+  email: string,
+};
+
 
 
 export default function SignUp() {
 
   const authUrl = Important.authUrl;
-  const profileUrl = Important.profileUrl;
   const listUrl = Important.listUrl;
   const navigate = useNavigate();
   const [cookies] = useCookies();
@@ -65,6 +75,7 @@ export default function SignUp() {
   const [deafaultSelectedSex, setDeafaultSelectedSex] = useState<any>('');
   const [sexes, setSexes] = useState<any[]>([]);
 
+
   React.useEffect(() => {
     const token = cookies[accessTokenCookie];
     if (token) 
@@ -72,14 +83,26 @@ export default function SignUp() {
   }, [navigate]);
 
   const { register, handleSubmit, control, formState: { errors } } = useForm({
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      age: 20,
+      sex: "",
+      nationality: "",
+      country: "",
+      password: "",
+      confirmPassword: "",
+      email: "",
+    },
     resolver: yupResolver(registerSchema),
     
   });
 
-  const onSubmit = async (data: any) => {  
+  const onSubmit = async (data: FormData) => {  
+    console.log("here");
     const requestUrl = authUrl+'/register';
     try {
-      const response = await httpClient.post(requestUrl, data );  
+      await httpClient.post(requestUrl, data );  
       navigate('/signin');
     } catch(error: any) {
       let message=error?.response?.data?.message;
@@ -151,6 +174,10 @@ export default function SignUp() {
     }
   }, [sexes]);
 
+  console.log(deafaultSelectedCountry);
+  console.log(deafaultSelectedNationality);
+  console.log(deafaultSelectedSex);
+
   return (
     <div className='authentication-pages'>
     <ThemeProvider theme={defaultTheme}>
@@ -162,14 +189,15 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign Up
           </Typography>
-         <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
+         <Box sx={{ mt: 3 }}>
+         <form  onSubmit={handleSubmit(onSubmit)}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <Controller
                   name="firstName"
                   control={control}
                   defaultValue=""
-                  render={({ field }:{field:any}) => (
+                  render={({ field }) => (
                     <TextField
                       {...field}
                       label="First name*"
@@ -185,7 +213,7 @@ export default function SignUp() {
                   name="lastName"
                   control={control}
                   defaultValue=""
-                  render={({ field }:{field:any}) => (
+                  render={({ field }) => (
                     <TextField
                       {...field}
                       label="Last mame*"
@@ -195,12 +223,26 @@ export default function SignUp() {
                   )}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} sm={6}>
+              <Controller
+                  name="age"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="Age*"
+                      error={!!errors.age}
+                      helperText={errors.age?.message}
+                    />
+                  )}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
               <Controller
                 name="email"
                 control={control}
                 defaultValue=""
-                render={({ field }:{field:any}) => (
+                render={({ field }) => (
                   <TextField
                     {...field}
                     label="Email*"
@@ -216,7 +258,7 @@ export default function SignUp() {
                 name="password"
                 control={control}
                 defaultValue=""
-                render={({ field }:{field:any}) => (
+                render={({ field }) => (
                   <TextField
                     {...field}
                     label="Password*"
@@ -233,7 +275,7 @@ export default function SignUp() {
                 name="confirmPassword"
                 control={control}
                 defaultValue=""
-                render={({ field }:{field:any}) => (
+                render={({ field }) => (
                   <TextField
                     {...field}
                     label="Confirm password*"
@@ -331,11 +373,9 @@ export default function SignUp() {
                   </>
                 );}}
               />
-            
-            
-            
             </Grid>
             </Grid>
+
             <Button
               type="submit"
               fullWidth
@@ -350,6 +390,7 @@ export default function SignUp() {
                 </Link>
               </Grid>
             </Grid>
+            </form>
           </Box> 
         </Box>
         </CssBaseline>

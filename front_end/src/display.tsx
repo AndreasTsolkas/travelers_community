@@ -40,7 +40,6 @@ export const DisplayFieldWithTypography = ({name, data, index}:{name: any, data:
   
 }
 
-
 export function DisplayErrorMessage({ message }: { message: string }) {
   return <h4>{message}</h4>;
 }
