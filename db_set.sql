@@ -15,6 +15,7 @@ CREATE TABLE travelers_community."user" (
 	date_signed date NOT NULL,
 	avatar_filepath varchar(30) NULL,
 	CONSTRAINT user_pk PRIMARY KEY (id)
+	CONSTRAINT user_unique UNIQUE (email)
 );
 
 -- Set table owner and permissions
