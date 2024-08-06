@@ -6,7 +6,7 @@ function MyAnalytics() {
   hasAccessAuth();
   return (
     <>
-    <DisplayTitle text= {'My analytics'} />
+    <DisplayTitle text= {'My Analytics'} />
     </>
   )
 }

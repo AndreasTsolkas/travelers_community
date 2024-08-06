@@ -28,7 +28,7 @@ function Navbar() {
      handleCloseUserMenu();
   }
 
-  const handleMyStatisticsClick = () => {
+  const handleMyAanalyticsClick = () => {
     navigate('/myanalytics'); 
     handleCloseUserMenu();
  }
@@ -46,12 +46,13 @@ function Navbar() {
          return [];
       } 
   }
-  const avatarImageUrl = cookies[avatarImageUrlCookie];
+  
 
   useEffect(() => {
-    const storedAvatarUrl = localStorage.getItem('avatarImageUrl') || '';
-    setAvatarUrl(storedAvatarUrl);
-  }, []);
+    const avatarImageUrl = cookies[avatarImageUrlCookie];
+    console.log(avatarImageUrl);
+    setAvatarUrl(avatarImageUrl);
+  }, [cookies, avatarImageUrlCookie]);
   
     return (
         <nav className="navbar">
@@ -89,8 +90,8 @@ function Navbar() {
                     logoutUser();
                   } else if (setting === 'My Profile') {
                       handleProfileClick();
-                  } else if (setting === 'My Statistics') {
-                      handleMyStatisticsClick();
+                  } else if (setting === 'My Analytics') {
+                      handleMyAanalyticsClick();
                   } else {
                     handleCloseUserMenu();
                   }
