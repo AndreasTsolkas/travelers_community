@@ -8,4 +8,5 @@ export class NewUserDto {
    email: string;
    password: string;
    username: string;
+   dateSigned: Date;
 }

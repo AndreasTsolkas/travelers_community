@@ -49,6 +49,8 @@ export class AuthService {
     const hashedPassword = await bcrypt.hash(newUserDto.password,bcryptSaltOrRounds);
     newUserDto.password = hashedPassword;
 
+    newUserDto.dateSigned = new Date();
+    
     try{
       let newUser: any = await this.userService.create(newUserDto);
       newUser = this.userService.deletePasswordFromRecord(newUser);
