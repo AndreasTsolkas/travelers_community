@@ -1,14 +1,14 @@
 import { DisplayTableTitle, DisplayTitle } from "src/display";
 import { hasAccessAuth } from "src/useAuth";
 
-function MyStatistics() {
+function MyAnalytics() {
 
   hasAccessAuth();
   return (
     <>
-    <DisplayTitle text= {'My statistics'} />
+    <DisplayTitle text= {'My analytics'} />
     </>
   )
 }
 
-export default MyStatistics;
+export default MyAnalytics;

@@ -13,7 +13,7 @@ function Navbar() {
   const avatarImageUrlCookie = Important.avatarImageUrlCookie;
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const isLoggedIn: boolean = true;
-  const settings = ['My Profile', 'My Statistics', 'Sign Out'];
+  const settings = ['My Profile', 'My Analytics', 'Sign Out'];
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
      setAnchorElUser(event.currentTarget);
@@ -29,7 +29,7 @@ function Navbar() {
   }
 
   const handleMyStatisticsClick = () => {
-    navigate('/mystatistics'); 
+    navigate('/myanalytics'); 
     handleCloseUserMenu();
  }
 
@@ -57,7 +57,7 @@ function Navbar() {
         <nav className="navbar">
         <ul>
           <li >
-          <div style ={{marginLeft:'-890px'}}>
+          <div style ={{marginLeft:'-820px'}}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu}  >
               <Avatar 
@@ -111,7 +111,10 @@ function Navbar() {
             <Link to="/suggestions">Suggestions</Link>
           </li>
           <li>
-            <Link to="/statistics">Statistics</Link>
+            <Link to="/analytics">Analytics</Link>
+          </li>
+          <li>
+            <Link to="/website">Website</Link>
           </li>
         </ul>
         </nav>

@@ -3,15 +3,15 @@ import { hasAccessAuth } from "src/useAuth";
 import 'react-toastify/dist/ReactToastify.css';
 
 
-function Statistics() {
+function Analytics() {
 
     hasAccessAuth();
     
     return (
       <>
-      <DisplayTitle text= {'Statistics'} />
+      <DisplayTitle text= {'Analytics'} />
       </>
     )
   }
   
-  export default Statistics;
+  export default Analytics;
