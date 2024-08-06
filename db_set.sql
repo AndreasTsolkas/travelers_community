@@ -15,11 +15,15 @@ CREATE TABLE travelers_community."user" (
 	date_signed date NOT NULL,
 	avatar_filepath varchar(30) NULL,
 	CONSTRAINT user_pk PRIMARY KEY (id)
+	CONSTRAINT user_unique UNIQUE (email)
 );
 
 -- Set table owner and permissions
 ALTER TABLE travelers_community."user" OWNER TO postgres;
 GRANT ALL ON TABLE travelers_community."user" TO postgres;
+
+--- Set the autoincrement start one number up to the id value of the last record
+ALTER SEQUENCE travelers_community.user_id_seq RESTART WITH 1000;
 
 -- Insert data into the user table
 INSERT INTO travelers_community."user" (id, first_name, last_name, age, sex, nationality, country, email, "password", date_signed, avatar_filepath) VALUES
@@ -54,6 +58,9 @@ CREATE TABLE travelers_community."travel" (
 
 -- Add foreign key constraint to the travel table
 ALTER TABLE travelers_community.travel ADD CONSTRAINT travel_user_fk FOREIGN KEY (user_id) REFERENCES travelers_community."user"(id);
+
+--- Set the autoincrement start one number up to the id value of the last record
+ALTER SEQUENCE travelers_community.travel_id_seq RESTART WITH 1000;
 
 -- Insert data into the travel table
 INSERT INTO travelers_community.travel (id, user_id, date_started, date_finished, experience_rate, description, place, country, business_travel, suggest_it) VALUES
