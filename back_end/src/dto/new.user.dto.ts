@@ -7,6 +7,5 @@ export class NewUserDto {
    country: string;
    email: string;
    password: string;
-   username: string;
    dateSigned: Date;
 }
