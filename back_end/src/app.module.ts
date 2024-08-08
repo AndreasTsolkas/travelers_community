@@ -37,7 +37,7 @@ dotenv.config();
       envFilePath: ['.env'],
     }),
     TypeOrmModule.forRoot({
-      type: 'postgres', 
+      type: 'postgres',
       host: process.env.POSTGRES_HOST,
       port: parseInt(process.env.POSTGRES_PORT, 10),
       username: process.env.POSTGRES_USER,
@@ -46,9 +46,29 @@ dotenv.config();
       entities: [User, Travel],
       synchronize: false,
     }),
-    UserModule, AuthModule, ProfileModule, TravelModule, ListModule
+    UserModule,
+    AuthModule,
+    ProfileModule,
+    TravelModule,
+    ListModule,
   ],
-  controllers: [AppController, UserController, AuthController, ProfileController, TravelController, ListController],
-  providers: [AppService, UserService, AuthService, ProfileService, TokenService, FileService, TravelService, ListService],
+  controllers: [
+    AppController,
+    UserController,
+    AuthController,
+    ProfileController,
+    TravelController,
+    ListController,
+  ],
+  providers: [
+    AppService,
+    UserService,
+    AuthService,
+    ProfileService,
+    TokenService,
+    FileService,
+    TravelService,
+    ListService,
+  ],
 })
 export class AppModule {}

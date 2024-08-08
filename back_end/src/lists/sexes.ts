@@ -1,4 +1,1 @@
-export const sexList = [
-    "Male",
-    "Female",
-];
+export const sexList = ['Male', 'Female'];

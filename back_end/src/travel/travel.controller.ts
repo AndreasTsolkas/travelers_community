@@ -1,4 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Patch, Put, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Put,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { Travel } from './travel.entity';
 import { TravelService } from './travel.service';
 import { AuthGuard } from 'src/auth.guard';
@@ -6,10 +16,7 @@ import { AuthGuard } from 'src/auth.guard';
 /*@UseGuards(AuthGuard)*/
 @Controller('travel')
 export class TravelController {
-  
-  constructor(private travelService: TravelService) {
-
-  }
+  constructor(private travelService: TravelService) {}
 
   @Get('/all')
   async findAll() {
@@ -35,5 +42,4 @@ export class TravelController {
   async remove(@Param('id') id: number) {
     return this.travelService.remove(id);
   }
-  
 }

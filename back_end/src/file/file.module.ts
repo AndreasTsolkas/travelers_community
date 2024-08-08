@@ -3,7 +3,7 @@ import { FileService } from 'src/file/file.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [], 
+  imports: [],
   providers: [FileService],
   exports: [FileService],
 })

@@ -1,4 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Patch, Put, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Put,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { User } from './user.entity';
 import { UserService } from './user.service';
 import { AuthGuard } from 'src/auth.guard';
@@ -6,10 +16,7 @@ import { AuthGuard } from 'src/auth.guard';
 /*@UseGuards(AuthGuard)*/
 @Controller('user')
 export class UserController {
-  
-  constructor(private userService: UserService) {
-
-  }
+  constructor(private userService: UserService) {}
 
   @Get('/all')
   async findAll() {
@@ -35,5 +42,4 @@ export class UserController {
   async remove(@Param('id') id: number) {
     return this.userService.remove(id);
   }
-  
 }

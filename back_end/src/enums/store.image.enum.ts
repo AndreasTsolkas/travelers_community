@@ -1,4 +1,4 @@
 export enum StoreImage {
-    avatar = 'user_avatars',
-    travelImages = 'travel_images'
+  avatar = 'user_avatars',
+  travelImages = 'travel_images',
 }

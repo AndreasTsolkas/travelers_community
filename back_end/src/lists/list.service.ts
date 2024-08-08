@@ -1,13 +1,11 @@
-import { Injectable } from "@nestjs/common";
-import {countryList} from "src/lists/countries";
-import {nationalityList} from "src/lists/nationalities";
-import {sexList} from "src/lists/sexes";
+import { Injectable } from '@nestjs/common';
+import { countryList } from 'src/lists/countries';
+import { nationalityList } from 'src/lists/nationalities';
+import { sexList } from 'src/lists/sexes';
 
 @Injectable()
 export class ListService {
-  constructor(
-    
-  ) {}
+  constructor() {}
 
   async getAllCountries() {
     return countryList;
@@ -20,5 +18,4 @@ export class ListService {
   async getAllSexes() {
     return sexList;
   }
-  
 }

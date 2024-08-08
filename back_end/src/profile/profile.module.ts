@@ -9,7 +9,12 @@ import { UserService } from 'src/user/user.service';
 import { ProfileService } from './profile.service';
 
 @Module({
-  imports: [UserModule, FileModule, TravelModule, TypeOrmModule.forFeature([User])], 
+  imports: [
+    UserModule,
+    FileModule,
+    TravelModule,
+    TypeOrmModule.forFeature([User]),
+  ],
   providers: [ProfileService],
   exports: [ProfileService, TypeOrmModule],
 })

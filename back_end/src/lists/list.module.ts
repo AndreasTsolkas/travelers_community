@@ -3,7 +3,7 @@ import { ListService } from 'src/lists/list.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [], 
+  imports: [],
   providers: [ListService],
   exports: [ListService],
 })

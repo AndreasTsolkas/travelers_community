@@ -1,15 +1,19 @@
-import { BadRequestException, Injectable, InternalServerErrorException, UnauthorizedException } from "@nestjs/common";
-import { JwtService } from "@nestjs/jwt";
+import {
+  BadRequestException,
+  Injectable,
+  InternalServerErrorException,
+  UnauthorizedException,
+} from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 
-import { UserService } from "src/user/user.service";
-import {bcryptSaltOrRounds} from "src/important";
-
+import { UserService } from 'src/user/user.service';
+import { bcryptSaltOrRounds } from 'src/important';
 
 @Injectable()
 export class TokenService {
   constructor(
     private userService: UserService,
-    private jwtService: JwtService
+    private jwtService: JwtService,
   ) {}
 
   decodeToken(authorization: string) {
@@ -22,5 +26,4 @@ export class TokenService {
     let extractedField: any = decodedToken?.[field];
     return extractedField;
   }
-
 }
