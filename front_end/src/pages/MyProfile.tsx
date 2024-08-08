@@ -47,7 +47,6 @@ const MyProfile = () => {
       { key: 'Nationality: ', value: result.nationality },
       { key: 'Country: ', value: result.country },
       { key: 'Email: ', value: result.email },
-      { key: 'Username: ', value: result.username },
       { key: 'Start datetime: ', value: Datetime.getDate(result.dateSigned, datetimeFormat)}
     ])}
   }
@@ -85,21 +84,19 @@ const MyProfile = () => {
         <>
           {Display.DisplayIconButton(undefined,navigate)}
           <Display.DisplayViewTitle text= {'My Profile:'} />
-          <Box sx={{
-              width: "600px"
-            }}>
-              <div >
-                {result ? (
-                  <div>
-                    {displayBasicData.map((item, index) => (
-                    <DisplayFieldWithTypography key={`basic-${index}`} name = {item.key} data = {item.value} index = {index} />
-                    ))}
-                  </div>
-                ) : (
-                  <DisplayErrorMessage message="Error searching for profile." />
-                )}
-              </div>
-          </Box>
+          <Box sx={{ width: '600px' }}>
+      <div>
+        {result ? (
+          <div>
+            {displayBasicData.map((item, index) => (
+              <DisplayFieldWithTypography key={`basic-${index}`} name={item.key} data={item.value} />
+            ))}
+          </div>
+        ) : (
+          <DisplayErrorMessage message="Error searching for profile." />
+        )}
+      </div>
+    </Box>
           <div style={{ marginTop: "35px" }}>
             <Link style={{ fontSize: '25px' }} to={editprofileRedirectUrl !== null ? editprofileRedirectUrl : ''}>Edit profile</Link>
           </div>

@@ -1,6 +1,6 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { Navigation, useNavigate, useParams } from "react-router-dom";
-import { Box, CircularProgress, Modal, Typography } from "@mui/material";
+import { Box, CircularProgress, Grid, Modal, Typography } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export function DisplayDataGrid({rows, columns}:{rows: any, columns: any}) {
@@ -31,14 +31,22 @@ export function DisplayLoader() {
   );
 }
 
-export const DisplayFieldWithTypography = ({name, data, index}:{name: any, data: any, index: number}) => {
+export const DisplayFieldWithTypography = ({ name, data }: { name: any, data: any }) => {
   return (
-    <Typography  variant="h6" key={index} >
-       <strong>{name}</strong> {data}
-    </Typography>
+    <Grid container spacing={1}>
+      <Grid item xs={6}>
+        <Typography variant="h6">
+          <strong>{name}</strong>
+        </Typography>
+      </Grid>
+      <Grid item xs={6}>
+        <Typography variant="h6">
+          {data}
+        </Typography>
+      </Grid>
+    </Grid>
   );
-  
-}
+};
 
 export function DisplayErrorMessage({ message }: { message: string }) {
   return <h4>{message}</h4>;
