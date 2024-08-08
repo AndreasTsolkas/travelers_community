@@ -1,28 +1,28 @@
-import React from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
-import 'src/App.css';
-import 'src/basic.css';
-import MyTravels from 'src/pages/MyTravels';
-import MyAnalytics from 'src/pages/MyAnalytics';
-import MyProfile from 'src/pages/MyProfile';
-import MyProfileEdit from 'src/pages/MyProfileEdit';
-import PasswordEdit from 'src/pages/PasswordEdit';
-import Suggestions from 'src/pages/Suggestions';
-import Home from 'src/pages/Home';
-import Analytics from 'src/pages/Analytics';
-import TravelView from 'src/pages/TravelView';
-import NewTravel from 'src/pages/NewTravel';
-import SignIn from 'src/pages/SignIn';
-import SignUp from 'src/pages/SignUp';
-import Website from 'src/pages/Website';
-import Navbar from 'src/Navbar';
+import React from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import "src/App.css";
+import "src/basic.css";
+import MyTravels from "src/pages/MyTravels";
+import MyAnalytics from "src/pages/MyAnalytics";
+import MyProfile from "src/pages/MyProfile";
+import MyProfileEdit from "src/pages/MyProfileEdit";
+import PasswordEdit from "src/pages/PasswordEdit";
+import Suggestions from "src/pages/Suggestions";
+import Home from "src/pages/Home";
+import Analytics from "src/pages/Analytics";
+import TravelView from "src/pages/TravelView";
+import NewTravel from "src/pages/NewTravel";
+import SignIn from "src/pages/SignIn";
+import SignUp from "src/pages/SignUp";
+import Website from "src/pages/Website";
+import Navbar from "src/Navbar";
 
 function App() {
-
   const location = useLocation();
-  const isSignInOrSignUpPage = location.pathname === '/signin' || location.pathname === '/signup';
+  const isSignInOrSignUpPage =
+    location.pathname === "/signin" || location.pathname === "/signup";
   const renderNavbar = !isSignInOrSignUpPage && <Navbar />;
-  
+
   return (
     <div className="container">
       {renderNavbar}

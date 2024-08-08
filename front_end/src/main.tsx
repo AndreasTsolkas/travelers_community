@@ -1,18 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
-import { BrowserRouter } from 'react-router-dom'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.tsx";
+import "./index.css";
+import { BrowserRouter } from "react-router-dom";
 import ScheduledTasks from "src/scheduled_tasks";
 import { ToastContainer } from "react-toastify";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
-    <ScheduledTasks />
-    <App />
-    <ToastContainer 
-        position="top-right" 
+      <ScheduledTasks />
+      <App />
+      <ToastContainer
+        position="top-right"
         autoClose={3000}
         hideProgressBar={true}
         newestOnTop={true}
@@ -23,5 +23,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         pauseOnHover
       />
     </BrowserRouter>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);

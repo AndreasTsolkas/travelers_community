@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import * as Important from 'src/important';
-import * as Cookies from 'src/cookies';
+import * as Important from "src/important";
+import * as Cookies from "src/cookies";
 
 const accessTokenCookie = Important.accessTokenCookie;
 
@@ -28,8 +28,6 @@ export const hasAccessAuth = () => {
 export const isAccessTokenNotExpired = () => {
   const navigate = useNavigate();
   const redirectTo = Important.redirectWhenHasNoAccess;
-  
-  if(!Cookies.cookiesValidation())
-    navigate(redirectTo);
 
+  if (!Cookies.cookiesValidation()) navigate(redirectTo);
 };

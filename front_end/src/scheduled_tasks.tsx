@@ -1,17 +1,13 @@
-import React, { useEffect } from 'react';
-import * as Cookies from 'src/cookies';
-
+import React, { useEffect } from "react";
+import * as Cookies from "src/cookies";
 
 const ScheduledTasks = () => {
-
   useEffect(() => {
-    const intervalId = setInterval(Cookies.cookiesValidation, 10000); 
+    const intervalId = setInterval(Cookies.cookiesValidation, 10000);
     return () => clearInterval(intervalId);
-  }, []); 
+  }, []);
 
-  return (<div></div>);
-
-
+  return <div></div>;
 };
 
 export default ScheduledTasks;

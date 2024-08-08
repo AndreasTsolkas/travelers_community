@@ -1,17 +1,15 @@
 import { DisplayTableTitle, DisplayTitle } from "src/display";
 import { hasAccessAuth } from "src/useAuth";
-import 'react-toastify/dist/ReactToastify.css';
-
+import "react-toastify/dist/ReactToastify.css";
 
 function Suggestions() {
+  hasAccessAuth();
 
-  hasAccessAuth(); 
-  
   return (
     <>
-    <DisplayTitle text= {'Suggestions'} />
+      <DisplayTitle text={"Suggestions"} />
     </>
-  )
+  );
 }
 
 export default Suggestions;
