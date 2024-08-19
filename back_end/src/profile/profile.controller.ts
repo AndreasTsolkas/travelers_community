@@ -78,7 +78,6 @@ export class ProfileController {
   ) {
     if (!authorization) return { message: 'Unauthorized' };
     const userId: number = this.prepareUserId(authorization);
-    console.log(userId);
     return await this.profileService.updatePassword(userId, password);
   }
 

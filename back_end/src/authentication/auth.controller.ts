@@ -27,7 +27,6 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @Post('/register')
   async register(@Body() newUserDto: NewUserDto) {
-    console.log(newUserDto);
     return await this.authService.register(newUserDto);
   }
 }
