@@ -12,9 +12,6 @@ import {
     Repository,
     getManager,
   } from 'typeorm';
-  import * as bcrypt from 'bcrypt';
-  
-  import { bcryptSaltOrRounds, selectColumns } from 'src/important';
   
   @Injectable()
   export class AnalyticsService {
