@@ -56,7 +56,6 @@ function Navbar() {
 
   useEffect(() => {
     const avatarImageUrl = cookies[avatarImageUrlCookie];
-    console.log(avatarImageUrl);
     setAvatarUrl(avatarImageUrl);
   }, [cookies, avatarImageUrlCookie]);
 
