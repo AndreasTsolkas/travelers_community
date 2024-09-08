@@ -2,6 +2,9 @@ import { Module } from '@nestjs/common';
 import * as dotenv from 'dotenv';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Connection } from 'typeorm';
+
+import {databaseSchemaName} from 'src/important';
 
 import { User } from 'src/user/user.entity';
 import { Travel } from 'src/travel/travel.entity';
@@ -13,6 +16,9 @@ import { TravelModule } from 'src/travel/travel.module';
 import { ListModule } from 'src/lists/list.module';
 import { AnalyticsModule } from 'src/analytics/analytics.module';
 
+import { DatabaseInitService } from 'src/database.init.service';
+
+
 dotenv.config();
 
 @Module({
@@ -22,6 +28,7 @@ dotenv.config();
       envFilePath: ['.env'],
     }),
     TypeOrmModule.forRoot({
+      logging: true,
       type: 'postgres',
       host: process.env.POSTGRES_HOST,
       port: parseInt(process.env.POSTGRES_PORT, 10),
@@ -36,7 +43,9 @@ dotenv.config();
     ProfileModule,
     TravelModule,
     ListModule,
-    AnalyticsModule
+    AnalyticsModule,
   ],
+  providers: [DatabaseInitService],
+
 })
 export class AppModule {}

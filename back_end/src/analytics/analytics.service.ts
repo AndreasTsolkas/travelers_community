@@ -21,12 +21,31 @@ import {
     ) {}
 
 
-    async performQuery(query: string, parameters:string[]) {
+    async performQuery(query: string, parameters?:string[]) {
+        const response = await this.entityManager.query(`SHOW search_path`);
+        console.log(response);
         return await this.entityManager.query(query, parameters);
     }
 
-    async service() {
-        return await this.performQuery(`SELECT * FROM "travelers_community"."user" WHERE "user"."country" = $1 AND "user"."nationality" = $2;`, ['United States of America', 'American'])
+    async test() {
+        return await this.performQuery(`SELECT COUNT(*) FROM travel`);
+    }
+
+    async getTravelsTotalNum() {
+      return await this.performQuery(`SELECT COUNT(*) FROM travel`);
+    }
+
+    async getBusinessTravelsTotalNum() {
+      return await this.performQuery(`SELECT COUNT(*) FROM travel WHERE business_travel=true`);
+    }
+
+    async getCurrentYearTravelsTotalNum() {
+      let currentYear = new Date();
+      return await this.performQuery(`SELECT COUNT(*) FROM travel WHERE business_travel=true`);
+    }
+
+    async getUsersTotalNum() {
+      return await this.performQuery(`SELECT COUNT(*) FROM "user"`);
     }
   
   }
