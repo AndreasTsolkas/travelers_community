@@ -45,7 +45,6 @@ dotenv.config();
     ListModule,
     AnalyticsModule,
   ],
-  providers: [DatabaseInitService],
 
 })
 export class AppModule {}
