@@ -29,7 +29,10 @@ import {
         }
         return await this.entityManager.query(query, parameters);
     }
-    
+
+
+    // Get total numbers
+
     async getTravelsTotalNum() {
       return await this.performQuery(`SELECT COUNT(*) FROM travel`);
     }
@@ -61,6 +64,41 @@ import {
     async getUsersTotalNum() {
       return await this.performQuery(`SELECT COUNT(*) FROM "user"`);
     }
+
+
+    // Get ranked data
+
+    async getCountriesByMostVisits() {
+      return await this.performQuery(`SELECT country, COUNT(*) as visits FROM travel GROUP BY country ORDER BY visits DESC`);
+    }
+
+    async getCountriesByMostVisitsBySex(sex: string) {
+      return await this.performQuery(
+        `SELECT travel.country, COUNT(*) as visits 
+         FROM travel 
+         INNER JOIN "user" ON travel.user_id = "user".id
+         WHERE "user".sex = $1
+         GROUP BY travel.country 
+         ORDER BY visits DESC`,
+        [sex]
+      );
+    }
+
+    async getCountriesByExperienceRate() {
+      return await this.performQuery(`SELECT country, SUM(experience_rate) as total_rate FROM travel GROUP BY country ORDER BY total_rate DESC`);
+    }
+
+    async getCountriesByTotalTimeSpent() {
+      return await this.performQuery(`SELECT country, SUM(date_finished - date_started) as total_time_spent FROM travel GROUP BY country ORDER BY total_time_spent DESC`);
+    }
+
+    async getCountriesByMostTravelSuggestions() {
+      return await this.performQuery(`SELECT country, COUNT(*) as total_suggestions FROM travel WHERE suggest_it = $1 GROUP BY country ORDER BY total_suggestions DESC`, [true]);
+    }
+
+
+
+
   
   }
   
