@@ -20,7 +20,7 @@ import {
 
     @Get('/test')
     async find() {
-      return await this.analyticsService.getCountriesByMostTravelSuggestions();
+      return await this.analyticsService.getCountriesByMostVisitsOnASpecificNationality('Greek');
     }
   
   }
