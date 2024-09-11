@@ -110,55 +110,54 @@ export class AnalyticsService {
 
   async getUserNationalitiesByMostTravels() {
     return await this.performQuery(
-      `SELECT "user".nationality, COUNT(*) as total_travels FROM "user" INNER JOIN "travel" ON "user".id = "travel".user_id GROUP BY "user".nationality ORDER BY total_travels DESC`
+      `SELECT "user".nationality, COUNT(*) as total_travels FROM "user" INNER JOIN "travel" ON "user".id = "travel".user_id GROUP BY "user".nationality ORDER BY total_travels DESC`,
     );
   }
 
   async getUserSexesByMostTravels() {
     return await this.performQuery(
-      `SELECT "user".sex, COUNT(*) as total_travels FROM "user" INNER JOIN "travel" ON "user".id = "travel".user_id GROUP BY "user".sex ORDER BY total_travels DESC`
+      `SELECT "user".sex, COUNT(*) as total_travels FROM "user" INNER JOIN "travel" ON "user".id = "travel".user_id GROUP BY "user".sex ORDER BY total_travels DESC`,
     );
   }
 
   async getUsersByMostTravels() {
     return await this.performQuery(
-      `SELECT "user".id, "user".first_name, "user".last_name, COUNT(*) as total_travels FROM "user" INNER JOIN "travel" ON "user".id = "travel".user_id GROUP BY "user".id ORDER BY total_travels DESC`
+      `SELECT "user".id, "user".first_name, "user".last_name, COUNT(*) as total_travels FROM "user" INNER JOIN "travel" ON "user".id = "travel".user_id GROUP BY "user".id ORDER BY total_travels DESC`,
     );
   }
 
   async getUsersByMostSuccessfulTravels() {
     return await this.performQuery(
-      `SELECT "user".id, "user".first_name, "user".last_name, SUM(experience_rate) as total_exeprience_rate FROM "user" INNER JOIN "travel" ON "user".id = "travel".user_id GROUP BY "user".id ORDER BY total_exeprience_rate DESC`
+      `SELECT "user".id, "user".first_name, "user".last_name, SUM(experience_rate) as total_exeprience_rate FROM "user" INNER JOIN "travel" ON "user".id = "travel".user_id GROUP BY "user".id ORDER BY total_exeprience_rate DESC`,
     );
   }
 
   async getUsersByMostBusinessTravels() {
     return await this.performQuery(
-      `SELECT "user".id, "user".first_name, "user".last_name, COUNT(*) as total_business_travels FROM "user" INNER JOIN "travel" ON "user".id = "travel".user_id WHERE "user".business_travel = $1 GROUP BY "user".id ORDER BY total_business_travels DESC`
-    , [true]);
+      `SELECT "user".id, "user".first_name, "user".last_name, COUNT(*) as total_business_travels FROM "user" INNER JOIN "travel" ON "user".id = "travel".user_id WHERE "user".business_travel = $1 GROUP BY "user".id ORDER BY total_business_travels DESC`,
+      [true],
+    );
   }
 
   async getUsersByMostCountriesVisited() {
     return await this.performQuery(
-      `SELECT "user".id, "user".first_name, "user".last_name, COUNT(DISTINCT "travel".country) as total_countries_visited FROM "user" INNER JOIN "travel" ON "user".id = "travel".user_id GROUP BY "user".id ORDER BY total_countries_visited DESC`
+      `SELECT "user".id, "user".first_name, "user".last_name, COUNT(DISTINCT "travel".country) as total_countries_visited FROM "user" INNER JOIN "travel" ON "user".id = "travel".user_id GROUP BY "user".id ORDER BY total_countries_visited DESC`,
     );
   }
 
-  async getCountriesByMostVisitsOnASpecificYear(year:any) {
+  async getCountriesByMostVisitsOnASpecificYear(year: any) {
     const startOfYear = Datetime.getStartOfTheYear(year);
     const endOfYear = Datetime.getEndOfTheYear(year);
     return await this.performQuery(
-      `SELECT country, COUNT(*) as total_visits_on_year FROM "travel" WHERE "travel".date_started >= $1 AND "travel".date_finished<= $2 GROUP BY country ORDER BY total_visits_on_year DESC`
-    ,[startOfYear, endOfYear]);
+      `SELECT country, COUNT(*) as total_visits_on_year FROM "travel" WHERE "travel".date_started >= $1 AND "travel".date_finished<= $2 GROUP BY country ORDER BY total_visits_on_year DESC`,
+      [startOfYear, endOfYear],
+    );
   }
 
-  async getCountriesByMostVisitsOnASpecificNationality(nationality:any) {
+  async getCountriesByMostVisitsOnASpecificNationality(nationality: any) {
     return await this.performQuery(
-      `SELECT "travel".country, COUNT(*) as total_visits_by_nationality FROM "travel" INNER JOIN "user" ON "travel".user_id = "user".id WHERE "user".nationality = $1 GROUP BY "travel".country ORDER BY total_visits_by_nationality DESC`
-    ,[nationality]);
+      `SELECT "travel".country, COUNT(*) as total_visits_by_nationality FROM "travel" INNER JOIN "user" ON "travel".user_id = "user".id WHERE "user".nationality = $1 GROUP BY "travel".country ORDER BY total_visits_by_nationality DESC`,
+      [nationality],
+    );
   }
-
-
-
-
 }
