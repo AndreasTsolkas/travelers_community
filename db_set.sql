@@ -26,20 +26,23 @@ GRANT ALL ON TABLE travelers_community."user" TO postgres;
 ALTER SEQUENCE travelers_community.user_id_seq RESTART WITH 1000;
 
 -- Insert data into the user table
-INSERT INTO travelers_community."user" (id, first_name, last_name, age, sex, nationality, country, email, "password", date_signed, avatar_filepath) VALUES
-	(1, 'Elvin', 'Schuchte', 28, 'M', 'German', 'Germany', 'nick@gmail.com', '$2b$10$ubJEQy3XC3JSlTyyHUNMvePZTcvZYdSbDKTyXjUDr9jlishc/.OCK', '2023-02-03', 'user_avatars/img1'),
-	(2, 'Marie', 'Zepon', 24, 'F', 'French', 'France', 'helen@gmail.com', '$2a$10$LsG9lJ1sLGjSjTdImqgkF.S4yMhjxKWKgYR2GXqwwu2s4tUyjL0lS', '2023-06-11', 'user_avatars/img2'),
-	(5, 'Jose', 'Pereldo', 25, 'M', 'Spanish', 'Spain', 'joperel@hotmail.com', '$2a$10$LsG9lJ1sLGjSjTdImqgkF.S4yMhjxKWKgYR2GXqwwu2s4tUyjL0lS', '2024-06-11', NULL),
-	(4, 'Nikos', 'Papadakos', 36, 'M', 'Greek', 'Greece', 'nickpapp@gmail.com', '$2a$10$LsG9lJ1sLGjSjTdImqgkF.S4yMhjxKWKgYR2GXqwwu2s4tUyjL0lS', '2024-02-11', NULL),
-	(9, 'William', 'Halley', 28, 'M', 'British', 'United Kingdom of Great Britain', 'williamhalley@gmail.com', '$2a$10$LsG9lJ1sLGjSjTdImqgkF.S4yMhjxKWKgYR2GXqwwu2s4tUyjL0lS', '2024-02-11', NULL),
-	(10, 'Jennifer', 'Ashley', 32, 'F', 'British', 'United Kingdom of Great Britain', 'jenniashley@yahoo.com', '$2a$10$LsG9lJ1sLGjSjTdImqgkF.S4yMhjxKWKgYR2GXqwwu2s4tUyjL0lS', '2024-02-11', NULL),
-	(11, 'Sofia', 'Severenski', 31, 'F', 'Serbian', 'Serbia', 'sofiaseverenski@gmail.com', '$2a$10$LsG9lJ1sLGjSjTdImqgkF.S4yMhjxKWKgYR2GXqwwu2s4tUyjL0lS', '2024-02-11', NULL),
-	(12, 'Mario', 'Dolliati', 24, 'M', 'Italian', 'Italy', 'mariodolliati@gmail.com', '$2a$10$LsG9lJ1sLGjSjTdImqgkF.S4yMhjxKWKgYR2GXqwwu2s4tUyjL0lS', '2024-02-11', NULL),
-	(13, 'Maria', 'Bellini', 29, 'F', 'Italian', 'Italy', 'mariabellini@hotmail.com', '$2a$10$LsG9lJ1sLGjSjTdImqgkF.S4yMhjxKWKgYR2GXqwwu2s4tUyjL0lS', '2024-02-11', NULL),
-	(15, 'Mario', 'Balardi', 30, 'M', 'Italian', 'Italy', 'marioballardi@gmail.com', '$2a$10$LsG9lJ1sLGjSjTdImqgkF.S4yMhjxKWKgYR2GXqwwu2s4tUyjL0lS', '2024-02-11', NULL),
-	(16, 'Marina', 'Fulgio', 37, 'F', 'Spanish', 'United States of America', 'marinafulgio@gmail.com', '$2a$10$LsG9lJ1sLGjSjTdImqgkF.S4yMhjxKWKgYR2GXqwwu2s4tUyjL0lS', '2024-02-11', NULL),
-	(17, 'Angela', 'Berley', 36, 'F', 'American', 'United States of America', 'angelaberley@gmail.com', '$2a$10$LsG9lJ1sLGjSjTdImqgkF.S4yMhjxKWKgYR2GXqwwu2s4tUyjL0lS', '2024-02-11', NULL),
-	(19, 'Barbara', 'Angey', 33, 'F', 'American', 'United States of America', 'barbarangie@gmail.com', '$2a$10$LsG9lJ1sLGjSjTdImqgkF.S4yMhjxKWKgYR2GXqwwu2s4tUyjL0lS', '2024-02-11', NULL);
+INSERT INTO travelers_community."user" 
+(first_name, last_name, age, sex, nationality, country, email, "password", date_signed, avatar_filepath) 
+VALUES
+    ('Elvin','Schuchte',28,'M','German','Germany','nick@gmail.com','$2b$10$ubJEQy3XC3JSl','2023-02-03','user_avatars/img1'),
+    ('Marie','Zepon',24,'F','French','France','helen@gmail.com','$2a$10$LsG9lJ1sLGjSj','2023-06-11','user_avatars/img2'),
+    ('Jose','Pereldo',25,'M','Spanish','Spain','joperel@hotmail.com','$2a$10$LsG9lJ1sLGjSj','2024-06-11',NULL),
+    ('Nikos','Papadakos',36,'M','Greek','Greece','nickpapp@gmail.com','$2a$10$LsG9lJ1sLGjSj','2024-02-11',NULL),
+    ('William','Halley',28,'M','British','United Kingdom of Great Britain','williamhalley@gmail.com','$2a$10$LsG9lJ1sLGjSj','2024-02-11',NULL),
+    ('Jennifer','Ashley',32,'F','British','United Kingdom of Great Britain','jenniashley@yahoo.com','$2a$10$LsG9lJ1sLGjSj','2024-02-11',NULL),
+    ('Sofia','Severenski',31,'F','Serbian','Serbia','sofiaseverenski@gmail.com','$2a$10$LsG9lJ1sLGjSj','2024-02-11',NULL),
+    ('Mario','Dolliati',24,'M','Italian','Italy','mariodolliati@gmail.com','$2a$10$LsG9lJ1sLGjSj','2024-02-11',NULL),
+    ('Maria','Bellini',29,'F','Italian','Italy','mariabellini@hotmail.com','$2a$10$LsG9lJ1sLGjSj','2024-02-11',NULL),
+    ('Mario','Balardi',30,'M','Italian','Italy','marioballardi@gmail.com','$2a$10$LsG9lJ1sLGjSj','2024-02-11',NULL),
+    ('Marina','Fulgio',37,'F','Spanish','United States of America','marinafulgio@gmail.com','$2a$10$LsG9lJ1sLGjSj','2024-02-11',NULL),
+    ('Angela','Berley',36,'F','American','United States of America','angelaberley@gmail.com','$2a$10$LsG9lJ1sLGjSj','2024-02-11',NULL),
+    ('Barbara','Angey',33,'F','American','United States of America','barbarangie@gmail.com','$2a$10$LsG9lJ1sLGjSj','2024-02-11',NULL),
+    ('ssaa','sdsds',20,'Female','Angolan','Anguilla','nickk@gmail.com','$2a$12$MlYkGcaJ8iAsIpKwyCJasuNty9E8DhnRZi0kTOmfVI3as7TLDiJ0a','2024-08-06',NULL);
 
 -- Create the travel table
 CREATE TABLE travelers_community."travel" (
@@ -63,9 +66,10 @@ ALTER TABLE travelers_community.travel ADD CONSTRAINT travel_user_fk FOREIGN KEY
 ALTER SEQUENCE travelers_community.travel_id_seq RESTART WITH 1000;
 
 -- Insert data into the travel table
-INSERT INTO travelers_community.travel (id, user_id, date_started, date_finished, experience_rate, description, place, country, business_travel, suggest_it) VALUES
-	(1, 1, '2023-02-02', '2023-04-02', 5, 'qeqeqeq', 'qeqweq', 'Anguilla', false, true),
-	(15, 1, '2024-06-07', '2024-07-11', 6, 'sdfsfsd', 'sdfsdfsdf', 'Bulgaria', false, true),
-	(16, 1, '2024-06-07', '2025-07-07', 5, 'dftterersdfs', '353sdds', 'Angola', false, false),
-	(17, 1, '2024-06-07', '2024-07-07', 6, 'Sasdsada', 'Agia Marina', 'Andorra', false, true),
-	(18, 1, '2024-06-07', '2024-07-07', 4, '4334sd', 'rtyrtr', 'Cabo Verde', true, true);
+INSERT INTO travelers_community.travel (user_id,date_started,date_finished,experience_rate,description,place,country,business_travel,suggest_it) VALUES
+	 (1,'2024-06-07','2024-07-07',4,'4334sd','rtyrtr','Egypt',true,true),
+	 (2,'2024-06-07','2024-07-12',7,'4334sd','rtyrtr','Russia',true,false),
+	 (12,'2023-02-02','2023-04-02',5,'qeqeqeq','qeqweq','India',false,true),
+	 (4,'2024-06-07','2025-07-07',5,'dftterersdfs','353sdds','India',false,false),
+	 (2,'2024-06-07','2024-07-07',6,'Sasdsada','Agia Marina','Egypt',false,true),
+	 (12,'2024-06-07','2024-11-07',6,'sdfsfsd','sdfsdfsdf','Egypt',false,true);
