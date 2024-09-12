@@ -114,10 +114,10 @@ const PasswordEdit = () => {
       {Display.DisplayIconButton()}
       <div>
         <Box sx={{ display: "flex", flexDirection: "row", width: "100%" }}>
-          <Box sx={{ width: "300px" }}>
+          <Box sx={{ width: "18.75rem" }}>
             {!passwordChangedSuccessfully ? (
               <form onReset={onReset} onSubmit={handleSubmit(onSubmit)}>
-                <div style={{ marginBottom: "15px", marginTop: "15px" }}>
+                <div style={{ marginBottom: "0.9375rem", marginTop: "0.9375rem" }}>
                   <DisplaySmallGenericTitle text={formTitle} />
                 </div>
                 {!isCurrentPasswordValidated ? (
@@ -144,7 +144,7 @@ const PasswordEdit = () => {
                 <Button
                   type="reset"
                   sx={{ mt: 1, mb: 2 }}
-                  style={{ marginLeft: "20px" }}
+                  style={{ marginLeft: "1.25rem" }}
                   variant="outlined"
                 >
                   Reset

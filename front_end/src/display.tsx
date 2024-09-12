@@ -11,7 +11,7 @@ export function DisplayDataGrid({
   columns: any;
 }) {
   return (
-    <Box sx={{ height: 500, width: 900 }}>
+    <Box sx={{ height: '31.25rem', width: "56.25rem" }}>
       <DataGrid
         rows={rows ?? []}
         columns={columns}
@@ -87,7 +87,7 @@ export const displaySmallTitleWithTypography = (name: string) => {
 
 export const DisplayViewTitle = ({ text }: { text: any }) => {
   return (
-    <div style={{ marginTop: "15px", marginBottom: "25px" }}>
+    <div style={{ marginTop: "0.9375rem", marginBottom: "1.5625rem" }}>
       {displayTitleWithTypography(text)}
     </div>
   );
@@ -96,7 +96,7 @@ export const DisplayViewTitle = ({ text }: { text: any }) => {
 export const DisplayTableTitle = ({ text }: { text: string }) => {
   return (
     <div
-      style={{ marginLeft: "350px", marginTop: "30px", marginBottom: "20px" }}
+      style={{ marginLeft: "21.875rem", marginTop: "1.875rem", marginBottom: "1.25rem" }}
     >
       {displayTitleWithTypography(text)}
     </div>
@@ -105,7 +105,7 @@ export const DisplayTableTitle = ({ text }: { text: string }) => {
 
 export const DisplayTitle = ({ text }: { text: string }) => {
   return (
-    <div style={{ marginTop: "30px", marginBottom: "20px" }}>
+    <div style={{ marginTop: "1.875rem", marginBottom: "1.25rem" }}>
       {displayTitleWithTypography(text)}
     </div>
   );
@@ -121,7 +121,7 @@ export function DisplayIconButton(specialCase?: any, navigate?: any) {
     cursor: "pointer",
   };
   return (
-    <div style={{ position: "relative", marginLeft: "-20px", height: "40px" }}>
+    <div style={{ position: "relative", marginLeft: "-1.25rem", height: "2.5rem" }}>
       <ArrowBackIcon
         onClick={() => navigate(redirectionPath)}
         color="primary"

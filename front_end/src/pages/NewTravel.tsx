@@ -128,13 +128,13 @@ const NewTravel = () => {
   }, [countries]);
 
   return (
-    <div style={{ marginTop: "65px" }}>
+    <div style={{ marginTop: "4.0625rem" }}>
       {Display.DisplayIconButton()}
       <DisplayViewTitle text={formTitle} />
       <Box
         sx={{
-          width: "500px",
-          marginTop: "30px",
+          width: "31.25rem",
+          marginTop: "1.875rem",
         }}
       >
         <form onReset={onReset} onSubmit={handleSubmit(onSubmit)}>
@@ -264,7 +264,7 @@ const NewTravel = () => {
             type="reset"
             variant="outlined"
             sx={{ mt: 3, mb: 2 }}
-            style={{ marginLeft: "20px" }}
+            style={{ marginLeft: "1.25rem" }}
           >
             Reset
           </Button>

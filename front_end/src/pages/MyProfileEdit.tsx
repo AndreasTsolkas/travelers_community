@@ -130,8 +130,8 @@ const MyProfileEdit = () => {
       <DisplayViewTitle text={formTitle} />
       <Box
         sx={{
-          width: "500px",
-          marginTop: "30px",
+          width: "31.25rem",
+          marginTop: "1.875rem",
         }}
       >
         <form onReset={onReset} onSubmit={handleSubmit(onSubmit)}>
@@ -196,14 +196,14 @@ const MyProfileEdit = () => {
             type="reset"
             variant="outlined"
             sx={{ mt: 3, mb: 2 }}
-            style={{ marginLeft: "20px" }}
+            style={{ marginLeft: "1.25rem" }}
           >
             Reset
           </Button>
         </form>
       </Box>
-      <div style={{ marginTop: "10px" }}>
-        <Link fontSize="20px" href={passwordRedirectUrl} variant="body2">
+      <div style={{ marginTop: "0.625rem" }}>
+        <Link fontSize="1.25rem" href={passwordRedirectUrl} variant="body2">
           Do you want to change your password? Click here.
         </Link>
       </div>

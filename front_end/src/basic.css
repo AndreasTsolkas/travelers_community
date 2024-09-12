@@ -60,8 +60,8 @@ body {
 .iframe-grid-item {
   background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.8);
-  width: 380px;
-  height: 400px;
-  padding: 20px;
-  margin: 5px;
+  width: 23.75rem;
+  height: 25rem;
+  padding: 1.25rem;
+  margin: 1.25rem;
 }

@@ -157,7 +157,7 @@ function MyTravels() {
           ) : (
             <div>
               <DisplayTitle text={"You have not shared any travels yet."} />
-              <Link fontSize="20px" href={"/newtravel"} variant="body2">
+              <Link fontSize="1.25rem" href={"/newtravel"} variant="body2">
                 Do you want to share a travel? Click here.
               </Link>
             </div>

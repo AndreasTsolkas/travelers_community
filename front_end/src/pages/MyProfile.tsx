@@ -86,12 +86,12 @@ const MyProfile = () => {
   }, [result]);
 
   return (
-    <div style={{ marginTop: "65px" }}>
+    <div style={{ marginTop: "4.0625rem" }}>
       {readyToDisplayPage ? (
         <>
           {Display.DisplayIconButton(undefined, navigate)}
           <Display.DisplayViewTitle text={"My Profile:"} />
-          <Box sx={{ width: "600px" }}>
+          <Box sx={{ width: "37.5rem" }}>
             <div>
               {result ? (
                 <div>
@@ -108,9 +108,9 @@ const MyProfile = () => {
               )}
             </div>
           </Box>
-          <div style={{ marginTop: "35px" }}>
+          <div style={{ marginTop: "2.1875rem" }}>
             <Link
-              style={{ fontSize: "25px" }}
+              style={{ fontSize: "1.5625rem" }}
               to={editprofileRedirectUrl !== null ? editprofileRedirectUrl : ""}
             >
               Edit profile

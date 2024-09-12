@@ -83,7 +83,7 @@ function TravelView() {
           <DisplayViewTitle text="Travel info: " />
           <Box
             sx={{
-              width: "600px",
+              width: "37.5rem",
             }}
           >
             <div>

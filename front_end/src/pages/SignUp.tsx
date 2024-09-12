@@ -213,7 +213,7 @@ export default function SignUp() {
               }}
             >
               <Avatar
-                sx={{ width: 124, height: 134, marginBottom: "30px" }}
+                sx={{ width: 124, height: 134, marginBottom: "1.875" }}
                 src={Important.appLogoImage}
               />
               <Typography component="h1" variant="h5">
@@ -415,7 +415,7 @@ export default function SignUp() {
                   </Button>
                   <Grid container>
                     <Grid item>
-                      <Link fontSize="20px" href="/signin" variant="body2">
+                      <Link fontSize="1.25rem" href="/signin" variant="body2">
                         {" "}
                         Already have an account? Sign in here
                       </Link>
