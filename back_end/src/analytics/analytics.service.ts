@@ -14,6 +14,7 @@ import {
 } from 'typeorm';
 import { databaseSchemaName } from 'src/important';
 import * as Datetime from 'src/datetime';
+import {AgeGroup} from 'src/enums/age.groups.custom.enum';
 
 @Injectable()
 export class AnalyticsService {
@@ -160,4 +161,37 @@ export class AnalyticsService {
       [nationality],
     );
   }
+
+  async getTravelsNumByAgeGroup(ageGroup: { min: number; max: number }) {
+    return this.performQuery(
+      `SELECT 
+          (SELECT COUNT(*) FROM "user" WHERE "user".age >= $1 AND "user".age <= $2) AS population,
+          COUNT(DISTINCT "user".id) AS travels
+       FROM "travel"
+       INNER JOIN "user" ON "travel".user_id = "user".id
+       WHERE "user".age >= $1 AND "user".age <= $2`,
+      [ageGroup.min, ageGroup.max]
+    );
+  }
+
+  async getTravelsNumForAllAgeGroups() {
+
+    const ageGroups = [
+      { label: 'young', group: AgeGroup.YOUNG },
+      { label: 'youngAdult', group: AgeGroup.YOUNG_ADULT },
+      { label: 'adult', group: AgeGroup.ADULT },
+      { label: 'middleAged', group: AgeGroup.MIDDLE_AGED },
+      { label: 'matureAdult', group: AgeGroup.MATURE_ADULT },
+      { label: 'old', group: AgeGroup.OLD },
+    ];
+  
+    const results = await Promise.all(
+      ageGroups.map(({ label, group }) =>
+        this.getTravelsNumByAgeGroup(group).then((result) => ({ [label]: result }))
+      )
+    );
+  
+    return Object.assign({}, ...results);
+  }
+
 }

@@ -11,6 +11,7 @@ import {
   } from '@nestjs/common';
   import { AuthGuard } from 'src/auth.guard';
   import { AnalyticsService } from 'src/analytics/analytics.service';
+  import {AgeGroup} from 'src/enums/age.groups.custom.enum';
 
   
   /*@UseGuards(AuthGuard)*/
@@ -20,7 +21,7 @@ import {
 
     @Get('/test')
     async find() {
-      return await this.analyticsService.getCountriesByMostVisitsOnASpecificNationality('Greek');
+      return await this.analyticsService.getUserSexesByMostTravels();
     }
   
   }
