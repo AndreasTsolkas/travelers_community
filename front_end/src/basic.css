@@ -84,13 +84,13 @@ body {
   margin: auto;
   padding: 1rem;
   background-color: #ffffff;
-  border-radius: 100px;
+  border-radius: 70px;
   box-shadow: 30px 7px 12px rgba(0, 0, 0, 0.1);
 }
 
 .display-form-box {
   height: auto;
-  width: auto;
+  width: 70%;
   max-width: 56.25rem;
   margin: auto;
   padding: 1rem;
@@ -101,5 +101,5 @@ body {
 
 .icon-button-no-focus:focus {
   outline: none;
-  box-shadow: none; 
+  box-shadow: 1px 1px; 
 }
