@@ -26,6 +26,7 @@ import {
 import { hasAccessAuth, isAccessTokenNotExpired } from "src/useAuth";
 import { httpClient } from "src/requests";
 import "react-toastify/dist/ReactToastify.css";
+import "../basic.css";
 
 const MyProfile = () => {
   const params: any | never = useParams();
@@ -86,12 +87,12 @@ const MyProfile = () => {
   }, [result]);
 
   return (
-    <div style={{ marginTop: "4.0625rem" }}>
+    <div style={{marginTop:'2.2rem'}}>
       {readyToDisplayPage ? (
         <>
+          <Box className='display-card-box'>
           {Display.DisplayIconButton(undefined, navigate)}
           <Display.DisplayViewTitle text={"My Profile:"} />
-          <Box sx={{ width: "37.5rem" }}>
             <div>
               {result ? (
                 <div>
@@ -108,7 +109,7 @@ const MyProfile = () => {
               )}
             </div>
           </Box>
-          <div style={{ marginTop: "2.1875rem" }}>
+          <div style={{ marginTop: "1.1875rem" }}>
             <Link
               style={{ fontSize: "1.5625rem" }}
               to={editprofileRedirectUrl !== null ? editprofileRedirectUrl : ""}
@@ -122,7 +123,7 @@ const MyProfile = () => {
           <DisplayLoader />
         </>
       )}
-    </div>
+      </div>
   );
 };
 

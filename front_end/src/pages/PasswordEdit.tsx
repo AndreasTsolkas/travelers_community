@@ -18,6 +18,7 @@ import {
   DisplayIconButton,
   DisplaySmallGenericTitle,
 } from "src/display";
+import "../basic.css"
 
 const PasswordEdit = () => {
   const params = useParams();
@@ -110,11 +111,10 @@ const PasswordEdit = () => {
   }, [isCurrentPasswordValidated]);
 
   return (
-    <div>
-      {Display.DisplayIconButton()}
-      <div>
-        <Box sx={{ display: "flex", flexDirection: "row", width: "100%" }}>
-          <Box sx={{ width: "18.75rem" }}>
+    <>
+      
+        <Box className='display-form-box'>
+        {Display.DisplayIconButton()}
             {!passwordChangedSuccessfully ? (
               <form onReset={onReset} onSubmit={handleSubmit(onSubmit)}>
                 <div style={{ marginBottom: "0.9375rem", marginTop: "0.9375rem" }}>
@@ -138,10 +138,11 @@ const PasswordEdit = () => {
                   />
                 )}
 
-                <Button type="submit" variant="contained" sx={{ mt: 1, mb: 2 }}>
+                <Button className = 'icon-button-no-focus' type="submit" variant="contained" sx={{ mt: 1, mb: 2 }}>
                   Submit
                 </Button>
                 <Button
+                  className = 'icon-button-no-focus'
                   type="reset"
                   sx={{ mt: 1, mb: 2 }}
                   style={{ marginLeft: "1.25rem" }}
@@ -153,10 +154,8 @@ const PasswordEdit = () => {
             ) : (
               <h3>Password changed successfully.</h3>
             )}
-          </Box>
         </Box>
-      </div>
-    </div>
+    </>
   );
 };
 

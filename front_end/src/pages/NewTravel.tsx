@@ -30,6 +30,7 @@ import {
 import { DisplayIconButton, DisplayViewTitle } from "src/display";
 import { hasAccessAuth, isAccessTokenNotExpired } from "src/useAuth";
 import { httpClient } from "src/requests";
+import "../basic.css";
 
 export const NewTravelSchema = yup.object({
   dateStarted: yup.string().required("Start date is required."),
@@ -128,15 +129,16 @@ const NewTravel = () => {
   }, [countries]);
 
   return (
-    <div style={{ marginTop: "4.0625rem" }}>
-      {Display.DisplayIconButton()}
-      <DisplayViewTitle text={formTitle} />
+    <>
+      
       <Box
         sx={{
-          width: "31.25rem",
-          marginTop: "1.875rem",
+          marginTop: "2.2rem",
         }}
+        className='display-form-box'
       >
+        {Display.DisplayIconButton()}
+        <DisplayViewTitle text={formTitle} />
         <form onReset={onReset} onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
             <Grid item xs={4}>
@@ -257,10 +259,11 @@ const NewTravel = () => {
               />
             </Grid>
           </Grid>
-          <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
+          <Button className = 'icon-button-no-focus' type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
             Submit
           </Button>
           <Button
+            className = 'icon-button-no-focus'
             type="reset"
             variant="outlined"
             sx={{ mt: 3, mb: 2 }}
@@ -270,7 +273,7 @@ const NewTravel = () => {
           </Button>
         </form>
       </Box>
-    </div>
+    </>
   );
 };
 

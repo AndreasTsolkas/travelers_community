@@ -1,17 +1,40 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { Navigation, useNavigate, useParams } from "react-router-dom";
-import { Box, CircularProgress, Grid, Modal, Typography } from "@mui/material";
+import { Box, CircularProgress, Grid, IconButton, Modal, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import AddIcon from "@mui/icons-material/Add";
+
+import './basic.css';
 
 export function DisplayDataGrid({
   rows,
   columns,
+  title
 }: {
   rows: any;
   columns: any;
+  title:string;
 }) {
+  const navigate = useNavigate();
   return (
-    <Box sx={{ height: '31.25rem', width: "56.25rem" }}>
+    <Box className='display-table-box'>
+      
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', marginBottom: "1.25rem" }}>
+
+        <Typography variant="h5" component="h2" gutterBottom sx={{ color: '#333', margin: 0 }}>
+          {title}
+        </Typography>
+
+        <IconButton
+          color="primary"
+          onClick={() => navigate(`/newtravel`)}
+          sx={{ position: 'absolute', right: 0 }}
+          className='icon-button-no-focus'
+        >
+          <AddIcon />
+        </IconButton>
+      </div>
+  
       <DataGrid
         rows={rows ?? []}
         columns={columns}
@@ -24,6 +47,7 @@ export function DisplayDataGrid({
         columnVisibilityModel={{
           id: false,
         }}
+        
       />
     </Box>
   );
@@ -36,7 +60,13 @@ export function DisplayLoader() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: "rgba(255, 255, 255, 0.8)", 
+        zIndex: 9999, 
       }}
     >
       <CircularProgress />
@@ -141,3 +171,5 @@ export const DisplayGenericTitle = ({ text }: { text: any }) => {
 export const DisplaySmallGenericTitle = ({ text }: { text: any }) => {
   return displaySmallTitleWithTypography(text);
 };
+
+

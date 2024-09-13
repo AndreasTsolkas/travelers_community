@@ -23,6 +23,7 @@ import { DisplayIconButton, DisplayViewTitle } from "src/display";
 import { hasAccessAuth, isAccessTokenNotExpired } from "src/useAuth";
 import { httpClient } from "src/requests";
 import "react-toastify/dist/ReactToastify.css";
+import "../basic.css"
 
 export const NewEmployeeSchema = yup.object({
   username: yup.string().required("Username is required.").min(2).max(20),
@@ -125,15 +126,16 @@ const MyProfileEdit = () => {
   }, [countries]);
 
   return (
-    <div>
-      {Display.DisplayIconButton()}
-      <DisplayViewTitle text={formTitle} />
+    <>
+      
       <Box
         sx={{
-          width: "31.25rem",
-          marginTop: "1.875rem",
+          marginTop: "-2.2rem",
         }}
+        className = 'display-form-box'
       >
+        {Display.DisplayIconButton()}
+        <DisplayViewTitle text={formTitle} />
         <form onReset={onReset} onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
             <Grid item xs={4}>
@@ -189,10 +191,11 @@ const MyProfileEdit = () => {
               />
             </Grid>
           </Grid>
-          <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
+          <Button className = 'icon-button-no-focus' type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
             Submit
           </Button>
           <Button
+            className = 'icon-button-no-focus'
             type="reset"
             variant="outlined"
             sx={{ mt: 3, mb: 2 }}
@@ -207,7 +210,7 @@ const MyProfileEdit = () => {
           Do you want to change your password? Click here.
         </Link>
       </div>
-    </div>
+    </>
   );
 };
 

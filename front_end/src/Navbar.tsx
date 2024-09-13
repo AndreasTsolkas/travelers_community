@@ -12,6 +12,7 @@ import * as Important from "src/important";
 import "src/basic.css";
 import { useCookies } from "react-cookie";
 import { httpClient } from "./requests";
+import "./basic.css";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -67,7 +68,7 @@ function Navbar() {
         <li>
           <div style={{ marginLeft: "-51.25rem" }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu}>
+              <IconButton onClick={handleOpenUserMenu} className="icon-button-no-focus">
                 <Avatar src={avatarUrl} />
               </IconButton>
             </Tooltip>

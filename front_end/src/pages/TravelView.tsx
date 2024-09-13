@@ -15,6 +15,7 @@ import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import "react-toastify/dist/ReactToastify.css";
+import "../basic.css";
 
 function TravelView() {
   const params: any | never = useParams();
@@ -78,14 +79,12 @@ function TravelView() {
     <>
       {readyToDisplayPage ? (
         <>
+          <Box
+            className='display-card-box'
+          >
           {Display.DisplayIconButton(undefined, navigate)}{" "}
           {/* Here I pass 'navigate' as an argument to the optional parameter of 'displayIconButton' to avoid conflicts between the 'useNavigate' I use on this file and this that I use into the function I call*/}
           <DisplayViewTitle text="Travel info: " />
-          <Box
-            sx={{
-              width: "37.5rem",
-            }}
-          >
             <div>
               {result ? (
                 <div>

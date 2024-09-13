@@ -77,7 +77,7 @@ function MyTravels() {
           Important.moreInformationLinkBase + cellValues?.row?.id;
         return (
           <>
-            <IconButton color="primary" onClick={() => navigate(redirectLink)}>
+            <IconButton className = 'icon-button-no-focus' color="primary" onClick={() => navigate(redirectLink)}>
               <ReadMoreIcon />
             </IconButton>
           </>
@@ -144,15 +144,8 @@ function MyTravels() {
                   width: 900,
                 }}
               >
-                <DisplayTableTitle text={"My travels"} />
-                <IconButton
-                  color="primary"
-                  onClick={() => navigate(`/newtravel`)}
-                >
-                  <AddIcon />
-                </IconButton>
               </div>
-              <DisplayDataGrid rows={rows} columns={columns} />
+              <DisplayDataGrid rows={rows} columns={columns} title={"My travels"}/>
             </>
           ) : (
             <div>

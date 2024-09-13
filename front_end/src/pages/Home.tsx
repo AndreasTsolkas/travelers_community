@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import * as Important from "src/important";
 import { travelSitesLinks } from "src/links";
 import { DisplayLoader, DisplayTitle } from "src/display";
+import { Box } from "@mui/material";
 
 function Home() {
   const navigate = useNavigate();
@@ -19,17 +20,17 @@ function Home() {
 
   const displayIframe = (url: string) => {
     return (
-      <>
+      <Box sx={{ position: 'relative', width: '375px', height: '400px' }}>
         {!isIframeLoaded && <DisplayLoader />}
         <iframe
           src={url}
           title="Travelingguide"
-          width="375px"
-          height="400px"
+          width="100%" 
+          height="100%" 
           onLoad={handleIframeLoad}
-          style={{ display: isIframeLoaded ? "block" : "none" }}
+          style={{ display: isIframeLoaded ? "block" : "none", position: 'absolute' }}
         />
-      </>
+      </Box>
     );
   };
 
