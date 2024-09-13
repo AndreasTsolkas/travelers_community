@@ -35,6 +35,7 @@ import "src/index.css";
 import * as Important from "src/important";
 import { httpClient } from "src/requests";
 import { useEffect, useState } from "react";
+import "../basic.css";
 
 const defaultTheme = createTheme();
 
@@ -406,6 +407,7 @@ export default function SignUp() {
                   </Grid>
 
                   <Button
+                    className="icon-button-no-focus"
                     type="submit"
                     fullWidth
                     variant="contained"
