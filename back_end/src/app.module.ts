@@ -15,9 +15,7 @@ import { ProfileModule } from 'src/profile/profile.module';
 import { TravelModule } from 'src/travel/travel.module';
 import { ListModule } from 'src/lists/list.module';
 import { AnalyticsModule } from 'src/analytics/analytics.module';
-
-import { DatabaseInitService } from 'src/database.init.service';
-
+import { SuggestionsModule } from 'src/suggestions/suggestions.module';
 
 dotenv.config();
 
@@ -44,6 +42,7 @@ dotenv.config();
     TravelModule,
     ListModule,
     AnalyticsModule,
+    SuggestionsModule
   ],
 
 })
