@@ -7,7 +7,7 @@ import { TravelModule } from 'src/travel/travel.module';
 import { FileModule } from 'src/file/file.module';
 import { UserService } from 'src/user/user.service';
 import { ProfileService } from './profile.service';
-import { TokenService } from 'src/token.service';
+import { UtilitiesService } from 'src/utilities.service';
 import { ProfileController} from './profile.controller';
 
 @Module({
@@ -17,7 +17,7 @@ import { ProfileController} from './profile.controller';
     TravelModule,
     TypeOrmModule.forFeature([User]),
   ],
-  providers: [ProfileService, TokenService],
+  providers: [ProfileService, UtilitiesService],
   controllers: [ProfileController],
   exports: [ProfileService, TypeOrmModule],
 })

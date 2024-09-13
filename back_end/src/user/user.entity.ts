@@ -35,4 +35,7 @@ export class User {
 
   @Column({ name: 'avatar_filepath', type: 'varchar', length: 30 })
   avatarFilepath: string;
+
+  @Column({ name: 'is_online', type: 'boolean'})
+  isOnline: boolean;
 }

@@ -11,6 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 import * as Important from "src/important";
 import "src/basic.css";
 import { useCookies } from "react-cookie";
+import { httpClient } from "./requests";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -41,16 +42,17 @@ function Navbar() {
   };
 
   const logoutUser = async () => {
+    if (!isLoggedIn) return; 
+  
     try {
-      if (isLoggedIn) {
-        removeCookie(accessTokenCookie);
-        removeCookie(avatarImageUrlCookie);
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        navigate("/signin");
-      }
+      await httpClient.patch(`${Important.authUrl}/signout`,null);
+      removeCookie(accessTokenCookie);
+      removeCookie(avatarImageUrlCookie);
+      setTimeout(() => {
+        navigate("/signin"); 
+      }, 500); 
     } catch (error) {
-      console.log(error);
-      return [];
+      console.error("Logout failed:", error);
     }
   };
 

@@ -10,7 +10,7 @@ import { UserService } from 'src/user/user.service';
 import { bcryptSaltOrRounds } from 'src/important';
 
 @Injectable()
-export class TokenService {
+export class UtilitiesService {
   constructor(
     private userService: UserService,
     private jwtService: JwtService,
@@ -25,5 +25,11 @@ export class TokenService {
   extractField(decodedToken: any, field: any) {
     let extractedField: any = decodedToken?.[field];
     return extractedField;
+  }
+
+  prepareUserId(authorization: string) {
+    const decodedToken = this.decodeToken(authorization);
+    const userId: number = this.extractField(decodedToken, 'id');
+    return userId;
   }
 }

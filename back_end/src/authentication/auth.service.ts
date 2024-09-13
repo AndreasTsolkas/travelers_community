@@ -32,6 +32,8 @@ export class AuthService {
 
       const isValid = await bcrypt.compare(pass, user.password);
       if (isValid) {
+        user.isOnline = true;
+        await this.userService.update(user.id, user);
         const payload = { id: user.id, email: user.email };
         return {
           access_token: await this.jwtService.signAsync(payload),
@@ -70,6 +72,21 @@ export class AuthService {
         throw new BadRequestException(message);
       }
       throw new InternalServerErrorException(message);
+    }
+  }
+
+  async signOut(userId: number) {
+    try {
+      const user = await this.userService.findOne(userId, false);
+      if (!user) throw new BadRequestException('User ID provided is not valid.');
+      user.isOnline = false;
+      await this.userService.update(user.id, user);
+      return { message: 'User signed out successfully.' };
+
+    } catch (error) {
+      if (error instanceof BadRequestException) throw error;
+      console.error('Internal Server Error:', error);
+      throw new InternalServerErrorException('Something went wrong. Please try again later.');
     }
   }
 }

@@ -22,7 +22,7 @@ import { AuthGuard } from 'src/auth.guard';
 import { User } from 'src/user/user.entity';
 import { JwtService } from '@nestjs/jwt';
 import { ProfileService } from 'src/profile/profile.service';
-import { TokenService } from 'src/token.service';
+import { UtilitiesService } from 'src/utilities.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Travel } from 'src/travel/travel.entity';
 
@@ -31,21 +31,17 @@ import { Travel } from 'src/travel/travel.entity';
 export class ProfileController {
   constructor(
     private profileService: ProfileService,
-    private readonly tokenService: TokenService,
+    private readonly utilitiesService: UtilitiesService,
   ) {}
 
-  prepareUserId(authorization: string) {
-    const decodedToken = this.tokenService.decodeToken(authorization);
-    const userId: number = this.tokenService.extractField(decodedToken, 'id');
-    return userId;
-  }
+  
 
   @Get()
   async findOneWithRelationshipsAndSpecialDetails(
     @Headers('Authorization') authorization: string,
   ) {
     if (!authorization) return { message: 'Unauthorized' };
-    const userId: number = this.prepareUserId(authorization);
+    const userId: number = this.utilitiesService.prepareUserId(authorization);
     if (userId !== undefined) {
       return await this.profileService.findOne(userId as number);
     } else throw new BadRequestException('User id is missing.');
@@ -67,7 +63,7 @@ export class ProfileController {
     @Body('password') password: string,
   ) {
     if (!authorization) return { message: 'Unauthorized' };
-    const userId: number = this.prepareUserId(authorization);
+    const userId: number = this.utilitiesService.prepareUserId(authorization);
     return await this.profileService.checkIfPasswordIsCorrect(userId, password);
   }
 
@@ -77,14 +73,14 @@ export class ProfileController {
     @Body('newpassword') password: string,
   ) {
     if (!authorization) return { message: 'Unauthorized' };
-    const userId: number = this.prepareUserId(authorization);
+    const userId: number = this.utilitiesService.prepareUserId(authorization);
     return await this.profileService.updatePassword(userId, password);
   }
 
   @Get('/avatar')
   async getAvatar(@Res() res: Response) {
     /*if (!authorization) return { message: 'Unauthorized' };
-    const userId: number = this.prepareUserId(authorization);*/
+    const userId: number = this.utilitiesService.prepareUserId(authorization);*/
     const userId = 2;
     const filePath: string =
       await this.profileService.getAvatarFilePath(userId);
@@ -95,7 +91,7 @@ export class ProfileController {
   @UseInterceptors(FileInterceptor('image'))
   async storeAvatar(@UploadedFile() file) {
     /*if (!authorization) return { message: 'Unauthorized' };
-    const userId: number = this.prepareUserId(authorization);*/
+    const userId: number = this.utilitiesService.prepareUserId(authorization);*/
     const userId = 1;
     await this.profileService.storeAvatar(userId, file);
   }
@@ -103,7 +99,7 @@ export class ProfileController {
   @Get('/mytravels')
   async getMyTravels(@Headers('Authorization') authorization: string) {
     if (!authorization) return { message: 'Unauthorized' };
-    const userId: number = this.prepareUserId(authorization);
+    const userId: number = this.utilitiesService.prepareUserId(authorization);
     return this.profileService.findMyTravels(userId);
   }
 
@@ -113,7 +109,7 @@ export class ProfileController {
     @Body() travelData: Partial<Travel>,
   ) {
     if (!authorization) return { message: 'Unauthorized' };
-    const userId: number = this.prepareUserId(authorization);
+    const userId: number = this.utilitiesService.prepareUserId(authorization);
     return this.profileService.createNewTravel(userId, travelData);
   }
 }
