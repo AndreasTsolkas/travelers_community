@@ -21,7 +21,7 @@ import {
 
     @Get('/test')
     async find() {
-      return await this.analyticsService.getUserSexesByMostTravels();
+      return await this.analyticsService.getOnlineNowUsersNum();
     }
   
   }

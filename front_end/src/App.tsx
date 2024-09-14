@@ -39,7 +39,6 @@ function App() {
         <Route path="/newtravel" element={<NewTravel />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/website" element={<Website />} />
         <Route path="*" element={<Home />} />
       </Routes>
     </div>

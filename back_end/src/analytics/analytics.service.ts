@@ -194,4 +194,16 @@ export class AnalyticsService {
     return Object.assign({}, ...results);
   }
 
+  async getOnlineNowUsersNum() {
+    return await this.performQuery(
+      `SELECT COUNT(*) as users_online_num FROM "user" WHERE is_online ORDER BY users_online_num DESC`,
+    );
+  }
+
+  async getOnlineNowUsers() {
+    return await this.performQuery(
+      `SELECT "user".id,  "user".first_name, "user".last_name FROM "user" WHERE is_online`,
+    );
+  }
+
 }

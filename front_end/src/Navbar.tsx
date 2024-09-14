@@ -124,9 +124,6 @@ function Navbar() {
         <li>
           <Link to="/analytics">Analytics</Link>
         </li>
-        <li>
-          <Link to="/website">Website</Link>
-        </li>
       </ul>
     </nav>
   );
