@@ -14,7 +14,6 @@ import TravelView from "src/pages/TravelView";
 import NewTravel from "src/pages/NewTravel";
 import SignIn from "src/pages/SignIn";
 import SignUp from "src/pages/SignUp";
-import Website from "src/pages/Website";
 import Navbar from "src/Navbar";
 
 function App() {

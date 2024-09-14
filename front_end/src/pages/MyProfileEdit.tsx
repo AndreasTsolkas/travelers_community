@@ -191,12 +191,13 @@ const MyProfileEdit = () => {
               />
             </Grid>
           </Grid>
-          <Button className = 'icon-button-no-focus' type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
+          <Button color='inherit' className = 'icon-button-no-focus' type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
             Submit
           </Button>
           <Button
             className = 'icon-button-no-focus'
             type="reset"
+            color='inherit'
             variant="outlined"
             sx={{ mt: 3, mb: 2 }}
             style={{ marginLeft: "1.25rem" }}
@@ -206,7 +207,7 @@ const MyProfileEdit = () => {
         </form>
       </Box>
       <div style={{ marginTop: "0.625rem" }}>
-        <Link fontSize="1.25rem" href={passwordRedirectUrl} variant="body2">
+        <Link style={{color: 'white'}} fontSize="1.25rem" href={passwordRedirectUrl} variant="body2">
           Do you want to change your password? Click here.
         </Link>
       </div>

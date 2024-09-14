@@ -259,11 +259,12 @@ const NewTravel = () => {
               />
             </Grid>
           </Grid>
-          <Button className = 'icon-button-no-focus' type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
+          <Button color='inherit' className = 'icon-button-no-focus' type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
             Submit
           </Button>
           <Button
             className = 'icon-button-no-focus'
+            color="inherit"
             type="reset"
             variant="outlined"
             sx={{ mt: 3, mb: 2 }}

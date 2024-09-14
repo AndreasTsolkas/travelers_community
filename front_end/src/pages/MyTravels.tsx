@@ -77,7 +77,7 @@ function MyTravels() {
           Important.moreInformationLinkBase + cellValues?.row?.id;
         return (
           <>
-            <IconButton className = 'icon-button-no-focus' color="primary" onClick={() => navigate(redirectLink)}>
+            <IconButton className = 'icon-button-no-focus' color='inherit' onClick={() => navigate(redirectLink)}>
               <ReadMoreIcon />
             </IconButton>
           </>

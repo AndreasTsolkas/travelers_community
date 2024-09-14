@@ -66,7 +66,7 @@ function Navbar() {
     <nav className="navbar">
       <ul>
         <li>
-          <div style={{ marginLeft: "-51.25rem" }}>
+          <div style={{ marginLeft: "-57.25rem" }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} className="icon-button-no-focus">
                 <Avatar src={avatarUrl} />

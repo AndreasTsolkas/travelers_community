@@ -2,6 +2,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Navigation, useNavigate, useParams } from "react-router-dom";
 import { Box, CircularProgress, Grid, IconButton, Modal, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import AddIcon from "@mui/icons-material/Add";
 
 import './basic.css';
@@ -26,7 +27,7 @@ export function DisplayDataGrid({
         </Typography>
 
         <IconButton
-          color="primary"
+          color="inherit"
           onClick={() => navigate(`/newtravel`)}
           sx={{ position: 'absolute', right: 0 }}
           className='icon-button-no-focus'
@@ -117,7 +118,13 @@ export const displaySmallTitleWithTypography = (name: string) => {
 
 export const DisplayViewTitle = ({ text }: { text: any }) => {
   return (
-    <div style={{ marginTop: "0.9375rem", marginBottom: "1.5625rem" }}>
+    <div
+      style={{
+        marginTop: "0.9375rem",
+        marginBottom: "1.5625rem",
+        marginRight:"2rem"
+      }}
+    >
       {displayTitleWithTypography(text)}
     </div>
   );
@@ -133,9 +140,9 @@ export const DisplayTableTitle = ({ text }: { text: string }) => {
   );
 };
 
-export const DisplayTitle = ({ text }: { text: string }) => {
+export const DisplayTitle = ({ text}: { text: string }) => {
   return (
-    <div style={{ marginTop: "1.875rem", marginBottom: "1.25rem" }}>
+    <div style={{ marginTop: "1.875rem", marginBottom: "1.25rem", color:'white' }}>
       {displayTitleWithTypography(text)}
     </div>
   );
@@ -143,21 +150,25 @@ export const DisplayTitle = ({ text }: { text: string }) => {
 
 export function DisplayIconButton(specialCase?: any, navigate?: any) {
   if (!navigate) navigate = useNavigate();
+  
+  // Set the redirection path if `specialCase` is passed, otherwise default to -1 for backward navigation
   let redirectionPath: any = -1;
-  if (specialCase)
-    // Its a little unorthodox what I did here , but I did it because in a specific case navigate with the standart value (-1) as argument doesnt work
-    redirectionPath = "/profile"; //
+  if (specialCase) redirectionPath = "/profile";
+  
+  // Define icon style
   const iconStyle = {
     cursor: "pointer",
   };
+  
   return (
-    <div style={{ position: "relative", marginLeft: "-1.25rem", height: "2.5rem" }}>
-      <ArrowBackIcon
+    <div style={{ display: "inline-block", position: "relative", float: "left",  marginLeft: '1rem', marginTop:'0.7rem'}}>
+      <ArrowCircleLeftIcon
         onClick={() => navigate(redirectionPath)}
-        color="primary"
+        color='action'
+        fontSize="large"
         style={{
           ...iconStyle,
-          position: "absolute",
+          position: "relative",
         }}
       />
     </div>

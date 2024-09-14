@@ -138,10 +138,11 @@ const PasswordEdit = () => {
                   />
                 )}
 
-                <Button className = 'icon-button-no-focus' type="submit" variant="contained" sx={{ mt: 1, mb: 2 }}>
+                <Button color = 'inherit' className = 'icon-button-no-focus' type="submit" variant="contained" sx={{ mt: 1, mb: 2 }}>
                   Submit
                 </Button>
                 <Button
+                  color = 'inherit'
                   className = 'icon-button-no-focus'
                   type="reset"
                   sx={{ mt: 1, mb: 2 }}
