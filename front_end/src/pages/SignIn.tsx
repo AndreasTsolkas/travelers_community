@@ -15,7 +15,6 @@ import { toast } from "react-toastify";
 import { CircularProgress } from "@mui/material";
 import "react-toastify/dist/ReactToastify.css";
 import { useCookies } from "react-cookie";
-import "src/index.css";
 import * as Important from "src/important";
 import * as Requests from "src/requests";
 import { httpClient } from "src/requests";

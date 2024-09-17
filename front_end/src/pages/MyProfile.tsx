@@ -92,7 +92,7 @@ const MyProfile = () => {
         <>
           <Box className='display-card-box'>
           {Display.DisplayIconButton(undefined, navigate)}
-          <Display.DisplayViewTitle text={"My Profile:"} />
+          <Display.DisplayViewTitle text={"My Profile"} />
             <div>
               {result ? (
                 <div>
@@ -111,7 +111,7 @@ const MyProfile = () => {
           </Box>
           <div style={{ marginTop: "1.1875rem" }}>
             <Link
-              style={{ fontSize: "1.5625rem", color:'white' }}
+              style={{ fontSize: "1.5625rem", color: 'inherit' }}
               to={editprofileRedirectUrl !== null ? editprofileRedirectUrl : ""}
             >
               Edit profile

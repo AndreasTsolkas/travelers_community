@@ -1,0 +1,28 @@
+import {
+    Body,
+    Controller,
+    Post,
+    HttpCode,
+    HttpStatus,
+    UseGuards,
+    Get,
+    UseInterceptors,
+    UploadedFile,
+  } from '@nestjs/common';
+  import { AuthGuard } from 'src/auth.guard';
+  import { AnalyticsService } from 'src/analytics/analytics.service';
+  import {AgeGroup} from 'src/enums/age.groups.custom.enum';
+
+  
+  /*@UseGuards(AuthGuard)*/
+  @Controller('myanalytics')
+  export class MyAnalyticsController {
+    constructor(private analyticsService: AnalyticsService) {}
+
+    @Get('/test')
+    async find() {
+      return await this.analyticsService.getOnlineNowUsersNum();
+    }
+  
+  }
+  

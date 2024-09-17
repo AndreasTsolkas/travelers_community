@@ -27,7 +27,7 @@ const PasswordEdit = () => {
     useState<boolean>(false);
   const [passwordChangedSuccessfully, setPasswordChangedSuccessfully] =
     useState<boolean>(false);
-  const defaultFormTitleText = "Validate current password:";
+  const defaultFormTitleText = "Validate current password";
   const [formTitle, setFormTitle] = useState<string>(defaultFormTitleText);
 
   hasAccessAuth();
@@ -103,7 +103,7 @@ const PasswordEdit = () => {
   };
 
   function updateFormTitle() {
-    if (isCurrentPasswordValidated) setFormTitle("Enter your new password:");
+    if (isCurrentPasswordValidated) setFormTitle("Enter your new password");
   }
 
   useEffect(() => {

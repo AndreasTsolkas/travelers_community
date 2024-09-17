@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import "src/App.css";
 import "src/basic.css";
 import MyTravels from "src/pages/MyTravels";
 import MyAnalytics from "src/pages/MyAnalytics";

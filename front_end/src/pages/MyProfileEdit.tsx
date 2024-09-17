@@ -42,7 +42,7 @@ const MyProfileEdit = () => {
   const navigate = useNavigate();
   const profileUrl = Important.profileUrl;
   const listUrl = Important.listUrl;
-  const [formTitle, setFormTitle] = useState<string>("Edit your profile:");
+  const [formTitle, setFormTitle] = useState<string>("Edit your profile");
 
   const passwordRedirectUrl = Important.passwordUrl;
 
@@ -207,7 +207,7 @@ const MyProfileEdit = () => {
         </form>
       </Box>
       <div style={{ marginTop: "0.625rem" }}>
-        <Link style={{color: 'white'}} fontSize="1.25rem" href={passwordRedirectUrl} variant="body2">
+        <Link style={{color: 'inherit'}} fontSize="1.25rem" href={passwordRedirectUrl} variant="body2">
           Do you want to change your password? Click here.
         </Link>
       </div>

@@ -31,7 +31,6 @@ import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import MuiTextField from "src/components/MuiTextField";
 import MuiSelectField from "src/components/MuiSelectField";
-import "src/index.css";
 import * as Important from "src/important";
 import { httpClient } from "src/requests";
 import { useEffect, useState } from "react";

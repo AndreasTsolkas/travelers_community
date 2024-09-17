@@ -48,6 +48,7 @@ export function DisplayDataGrid({
         columnVisibilityModel={{
           id: false,
         }}
+        style={{borderRadius: '20px'}}
         
       />
     </Box>
@@ -142,7 +143,7 @@ export const DisplayTableTitle = ({ text }: { text: string }) => {
 
 export const DisplayTitle = ({ text}: { text: string }) => {
   return (
-    <div style={{ marginTop: "1.875rem", marginBottom: "1.25rem", color:'white' }}>
+    <div style={{ marginTop: "1.875rem", marginBottom: "1.25rem"}}>
       {displayTitleWithTypography(text)}
     </div>
   );
