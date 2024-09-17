@@ -41,7 +41,7 @@ import {
         const userId: number = this.utilitiesService.prepareUserId(authorization);
         if (userId === undefined) throw new BadRequestException(Messages.noGivenIdMessage
 );
-        return await this.myAnalyticsService.getTravelsTotalNum(userId);
+        return await this.myAnalyticsService.getBusinessTravelsTotalNum(userId);
     }
 
     @Get('/cytravelsnum')
@@ -50,7 +50,7 @@ import {
         const userId: number = this.utilitiesService.prepareUserId(authorization);
         if (userId === undefined) throw new BadRequestException(Messages.noGivenIdMessage
 );
-        return await this.myAnalyticsService.getTravelsTotalNum(userId);
+        return await this.myAnalyticsService.getCurrentYearTravelsTotalNum(userId);
     }
 
     @Get('/otravelsnum')
@@ -59,7 +59,7 @@ import {
         const userId: number = this.utilitiesService.prepareUserId(authorization);
         if (userId === undefined) throw new BadRequestException(Messages.noGivenIdMessage
 );
-        return await this.myAnalyticsService.getTravelsTotalNum(userId);
+        return await this.myAnalyticsService.getOngoingTravelsTotalNum(userId);
     }
 
     @Get('/stravelsnum')
@@ -68,7 +68,7 @@ import {
         const userId: number = this.utilitiesService.prepareUserId(authorization);
         if (userId === undefined) throw new BadRequestException(Messages.noGivenIdMessage
 );
-        return await this.myAnalyticsService.getTravelsTotalNum(userId);
+        return await this.myAnalyticsService.getSuggestedTravelsTotalNum(userId);
     }
 
 
@@ -81,7 +81,7 @@ import {
         const userId: number = this.utilitiesService.prepareUserId(authorization);
         if (userId === undefined) throw new BadRequestException(Messages.noGivenIdMessage
 );
-        return await this.myAnalyticsService.getTravelsTotalNum(userId);
+        return await this.myAnalyticsService.getCountriesByExperienceRate(userId);
     }
 
     @Get('/countriesbytimespent')
@@ -90,7 +90,7 @@ import {
         const userId: number = this.utilitiesService.prepareUserId(authorization);
         if (userId === undefined) throw new BadRequestException(Messages.noGivenIdMessage
 );
-        return await this.myAnalyticsService.getTravelsTotalNum(userId);
+        return await this.myAnalyticsService.getCountriesByTotalTimeSpent(userId);
     }
 
     @Get('/countriesbysuggestions')
@@ -99,7 +99,7 @@ import {
         const userId: number = this.utilitiesService.prepareUserId(authorization);
         if (userId === undefined) throw new BadRequestException(Messages.noGivenIdMessage
 );
-        return await this.myAnalyticsService.getTravelsTotalNum(userId);
+        return await this.myAnalyticsService.getCountriesByMostTravelSuggestions(userId);
     }
   
   }
