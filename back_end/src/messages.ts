@@ -1,0 +1,1 @@
+export const noGivenIdMessage = 'User id is missing.';

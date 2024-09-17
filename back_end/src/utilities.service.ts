@@ -7,10 +7,11 @@ import {
 import { JwtService } from '@nestjs/jwt';
 
 import { UserService } from 'src/user/user.service';
-import { bcryptSaltOrRounds } from 'src/important';
+import { bcryptSaltOrRounds, databaseSchemaName } from 'src/important';
 
 @Injectable()
 export class UtilitiesService {
+  entityManager: any;
   constructor(
     private userService: UserService,
     private jwtService: JwtService,
@@ -31,5 +32,15 @@ export class UtilitiesService {
     const decodedToken = this.decodeToken(authorization);
     const userId: number = this.extractField(decodedToken, 'id');
     return userId;
+  }
+
+  async performQuery(query: string, parameters?: any[]) {
+    let response = await this.entityManager.query(`SHOW search_path`);
+    if (response.search_path !== databaseSchemaName) {
+      await this.entityManager.query(
+        `SET search_path TO ${databaseSchemaName};`,
+      );
+    }
+    return await this.entityManager.query(query, parameters);
   }
 }
