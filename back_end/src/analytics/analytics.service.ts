@@ -116,26 +116,26 @@ export class AnalyticsService {
 
   async getUsersByMostTravels() {
     return await this.utilitiesService.performQuery(
-      `SELECT "user".id, "user".first_name, "user".last_name, COUNT(*) as total_travels FROM "user" INNER JOIN "travel" ON "user".id = "travel".user_id GROUP BY "user".id ORDER BY total_travels DESC`,
+      `SELECT "user".id, CONCAT("user".first_name, ' ', "user".last_name) AS user_fullname, COUNT(*) as total_travels FROM "user" INNER JOIN "travel" ON "user".id = "travel".user_id GROUP BY "user".id ORDER BY total_travels DESC`,
     );
   }
 
   async getUsersByMostSuccessfulTravels() {
     return await this.utilitiesService.performQuery(
-      `SELECT "user".id, "user".first_name, "user".last_name, SUM(experience_rate) as total_exeprience_rate FROM "user" INNER JOIN "travel" ON "user".id = "travel".user_id GROUP BY "user".id ORDER BY total_exeprience_rate DESC`,
+      `SELECT "user".id, CONCAT("user".first_name, ' ', "user".last_name) AS user_fullname, SUM(experience_rate) as total_exeprience_rate FROM "user" INNER JOIN "travel" ON "user".id = "travel".user_id GROUP BY "user".id ORDER BY total_exeprience_rate DESC`,
     );
   }
 
   async getUsersByMostBusinessTravels() {
     return await this.utilitiesService.performQuery(
-      `SELECT "user".id, "user".first_name, "user".last_name, COUNT(*) as total_business_travels FROM "user" INNER JOIN "travel" ON "user".id = "travel".user_id WHERE "user".business_travel = $1 GROUP BY "user".id ORDER BY total_business_travels DESC`,
+      `SELECT "user".id, CONCAT("user".first_name, ' ', "user".last_name) AS user_fullname, COUNT(*) as total_business_travels FROM "user" INNER JOIN "travel" ON "user".id = "travel".user_id WHERE "user".business_travel = $1 GROUP BY "user".id ORDER BY total_business_travels DESC`,
       [true],
     );
   }
 
   async getUsersByMostCountriesVisited() {
     return await this.utilitiesService.performQuery(
-      `SELECT "user".id, "user".first_name, "user".last_name, COUNT(DISTINCT "travel".country) as total_countries_visited FROM "user" INNER JOIN "travel" ON "user".id = "travel".user_id GROUP BY "user".id ORDER BY total_countries_visited DESC`,
+      `SELECT "user".id, CONCAT("user".first_name, ' ', "user".last_name) AS user_fullname, COUNT(DISTINCT "travel".country) as total_countries_visited FROM "user" INNER JOIN "travel" ON "user".id = "travel".user_id GROUP BY "user".id ORDER BY total_countries_visited DESC`,
     );
   }
 
@@ -195,7 +195,7 @@ export class AnalyticsService {
 
   async getOnlineNowUsers() {
     return await this.utilitiesService.performQuery(
-      `SELECT "user".id,  "user".first_name, "user".last_name FROM "user" WHERE is_online`,
+      `SELECT "user".id,  CONCAT("user".first_name, ' ', "user".last_name) AS user_fullname FROM "user" WHERE is_online`,
     );
   }
 

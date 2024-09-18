@@ -14,7 +14,6 @@ import { EntityManager } from 'typeorm';
 export class UtilitiesService {
   constructor(
     private readonly entityManager: EntityManager,
-    private userService: UserService,
     private jwtService: JwtService,
   ) {}
 
