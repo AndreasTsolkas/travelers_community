@@ -8,11 +8,12 @@ import { JwtService } from '@nestjs/jwt';
 
 import { UserService } from 'src/user/user.service';
 import { bcryptSaltOrRounds, databaseSchemaName } from 'src/important';
+import { EntityManager } from 'typeorm';
 
 @Injectable()
 export class UtilitiesService {
-  entityManager: any;
   constructor(
+    private readonly entityManager: EntityManager,
     private userService: UserService,
     private jwtService: JwtService,
   ) {}

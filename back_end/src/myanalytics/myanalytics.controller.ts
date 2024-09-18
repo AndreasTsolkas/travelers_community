@@ -28,10 +28,11 @@ import {
     // Get total numbers
     @Get('/travelsnum')
     async getTravelsTotalNum(@Headers('Authorization') authorization: string) {
-        if (!authorization) return { message: 'Unauthorized' };
-        const userId: number = this.utilitiesService.prepareUserId(authorization);
-        if (userId === undefined) throw new BadRequestException(Messages.noGivenIdMessage
-);
+//         if (!authorization) return { message: 'Unauthorized' };
+//         const userId: number = this.utilitiesService.prepareUserId(authorization);
+//         if (userId === undefined) throw new BadRequestException(Messages.noGivenIdMessage
+// );
+        let userId=2;
         return await this.myAnalyticsService.getTravelsTotalNum(userId);
     }
 
