@@ -29,4 +29,9 @@ export class ListController {
   async getAllSexes() {
     return this.listService.getAllSexes();
   }
+
+  @Get('/getsuggestionsmethods')
+  async getAllSuggestionMethods() {
+    return this.listService.getAllSuggestionMethods();
+  }
 }

@@ -9,6 +9,7 @@ export const userUrl = "/user";
 export const travelUrl = "/travel";
 export const profileUrl = "/profile";
 export const listUrl = "/list";
+export const suggestionsUrl = "/suggestions";
 export const passwordUrl = "/editpassword";
 
 export const backEndAuthUrl = backEndBaseUrl + authUrl;

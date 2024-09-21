@@ -160,6 +160,27 @@ button:focus-visible {
   box-shadow: 1px 1px; 
 }
 
+.menu-label, 
+.select-menu {
+  margin-left:20px;
+}
+
+
+.menu-label {
+  height: 50px;
+  margin-bottom: -20px;
+  display: block;
+  font-size: 17px;
+}
+.select-menu {
+  height: 30px;
+  width: 150px;
+  outline: none;
+  text-align: center;
+  font-size: 16px;
+}
+
+
 
 
 
