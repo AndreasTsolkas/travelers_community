@@ -14,16 +14,19 @@ export function DisplayDataGrid({
 }: {
   rows: any;
   columns: any;
-  title:string;
+  title: string;
 }) {
   const navigate = useNavigate();
+
+  const boldColumns = columns.map((column:any) => ({
+    ...column,
+    headerClassName: 'bold-header', 
+  }));
+
   return (
     <Box className='display-table-box'>
-      
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', marginBottom: "1.25rem" }}>
-
         <DisplayTableTitle text={title} />
-
         <IconButton
           color="inherit"
           onClick={() => navigate(`/newtravel`)}
@@ -33,10 +36,10 @@ export function DisplayDataGrid({
           <AddIcon />
         </IconButton>
       </div>
-  
+
       <DataGrid
         rows={rows ?? []}
-        columns={columns}
+        columns={boldColumns} 
         autoHeight
         initialState={{
           sorting: {
@@ -46,8 +49,7 @@ export function DisplayDataGrid({
         columnVisibilityModel={{
           id: false,
         }}
-        style={{borderRadius: '20px'}}
-        
+        style={{ borderRadius: '20px' }}
       />
     </Box>
   );
