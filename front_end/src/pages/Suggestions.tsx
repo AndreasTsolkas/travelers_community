@@ -1,7 +1,13 @@
-import { DisplayErrorMessage, DisplayFieldWithTypography, DisplayTableTitle, DisplayTitle } from "src/display";
+import { DisplayErrorMessage, 
+  DisplayFieldWithTypography, 
+  DisplayTableTitle, 
+  DisplayTitle, 
+  DisplayViewTitle, 
+  DisplayLoader,
+  DisplayRandomDataList } from "src/display";
 import { hasAccessAuth } from "src/useAuth";
 import "react-toastify/dist/ReactToastify.css";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import * as Display from "src/display";
@@ -10,7 +16,7 @@ import { httpClient } from "src/requests";
 import * as Important from 'src/important';
 
 function Suggestions() {
-  const [results, setResults] = useState<any>(null);
+  const [results, setResults] = useState<any | null>(null);
   const [suggestionMethods, setSuggestionMethods] = useState<any>(null);
 
   hasAccessAuth();
@@ -18,6 +24,10 @@ function Suggestions() {
   const navigate = useNavigate();
   const suggestionsUrl = Important.suggestionsUrl;
   const listUrl = Important.listUrl;
+
+  const getSuggestionUrl = (conditionValue: any): string => {
+    return suggestionMethods.find((method: any) => method.number === Number(conditionValue))?.getEndpointUrl;
+  }
 
   const getSugesstionsMethodsList  = async () => {
     try {
@@ -29,9 +39,9 @@ function Suggestions() {
     }
   }
 
-  const getSugesstions  = async () => {
+  const getSugesstions = async (endpointPath: string) => {
     try {
-      const response: any = await httpClient.get(suggestionsUrl+'/getmethods');
+      const response: any = await httpClient.get(suggestionsUrl+`${endpointPath}`);
       setResults(response.data);
     }
     catch(error) {
@@ -40,12 +50,10 @@ function Suggestions() {
   }
 
   const onChange  = async (event:any) => {
-    console.log(event.target.value)
-    const getSuggestionsUrl = suggestionMethods.find((method: any) => method.number === Number(event.target.value))?.getEndpointUrl;
-    console.log(getSuggestionsUrl);
+    const suggestionsUrl: string = await getSuggestionUrl(event.target.value);
+    console.log(suggestionsUrl);
     try {
-      const response: any = await httpClient.get(suggestionsUrl+`${getSuggestionsUrl}`);
-      setResults(response.data);
+      await getSugesstions(suggestionsUrl);
     }
     catch(error) {
       console.log(error);
@@ -56,28 +64,49 @@ function Suggestions() {
     getSugesstionsMethodsList();
   },[])
 
-  console.log(suggestionMethods);
+  useEffect(() => {
+    if (suggestionMethods && suggestionMethods.length > 0) {
+      let suggestionsUrl: string = getSuggestionUrl(suggestionMethods[0].number);
+      getSugesstions(suggestionsUrl);
+    }
+  }, [suggestionMethods]); 
+
+  console.log(results);
   
 
   return (
     <>
-      <Box className='display-card-box'>
-      {Display.DisplayIconButton(undefined, navigate)}
-      <Display.DisplayViewTitle text={"Suggestions"} />
-      <form onChange={onChange}>
-        <label className="menu-label" htmlFor="method">Select the method:  </label>
+      <Box className='display-card-box-special'>
+        <DisplayTableTitle text='Suggestions' />
+        <form>
+          <label className="menu-label" htmlFor="method">Select the method:</label>
           {suggestionMethods ? (
-          <select className="select-menu" size={1} name="method" id="method">
-            {suggestionMethods.map((method: any, index:any) => (
-              <option key={index} value={method.number}>
-                {method.name}
-              </option>
-            ))}
-          </select>
-        ) : (
-          <DisplayErrorMessage message="Error searching for suggestion methods." />
-        )}
-      </form>
+            <select 
+              className="select-menu" 
+              size={1} 
+              name="method" 
+              id="method" 
+              onChange={onChange}
+            >
+              {suggestionMethods.map((method: any, index: any) => (
+                <option key={index} value={method.number}>
+                  {method.name}
+                </option>
+              ))}
+            </select>
+          ) : (
+            < DisplayLoader />
+          )}
+        </form>
+        <div>
+          {results !==null ? (
+            <div style={{ marginTop: '70px' }}>
+            <DisplayRandomDataList data={results} />
+            </div>
+          ) : (
+            < DisplayLoader />
+          )}
+        </div>
       </Box>
     </>
   );

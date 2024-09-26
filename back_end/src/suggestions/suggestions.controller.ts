@@ -33,7 +33,7 @@ import {
 
     @Get('/countries')
     async getAllSuggestedCountries(@Query('limit') limit: number) {
-      return await this.suggestionsService.getAllSuggestedPlaces(limit);
+      return await this.suggestionsService.getAllSuggestedCountries(limit);
     }
 
     @Get('/currentyear')

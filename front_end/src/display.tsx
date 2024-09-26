@@ -22,9 +22,7 @@ export function DisplayDataGrid({
       
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', marginBottom: "1.25rem" }}>
 
-        <Typography variant="h5" component="h2" gutterBottom sx={{ color: '#333', margin: 0 }}>
-          {title}
-        </Typography>
+        <DisplayTableTitle text={title} />
 
         <IconButton
           color="inherit"
@@ -133,11 +131,11 @@ export const DisplayViewTitle = ({ text }: { text: any }) => {
 
 export const DisplayTableTitle = ({ text }: { text: string }) => {
   return (
-    <div
-      style={{ marginLeft: "21.875rem", marginTop: "1.875rem", marginBottom: "1.25rem" }}
-    >
-      {displayTitleWithTypography(text)}
-    </div>
+    <>
+      <Typography variant="h5" component="h2" gutterBottom sx={{ color: '#333', margin: 0 }}>
+          {text}
+      </Typography>
+    </>
   );
 };
 
@@ -152,11 +150,9 @@ export const DisplayTitle = ({ text}: { text: string }) => {
 export function DisplayIconButton(specialCase?: any, navigate?: any) {
   if (!navigate) navigate = useNavigate();
   
-  // Set the redirection path if `specialCase` is passed, otherwise default to -1 for backward navigation
   let redirectionPath: any = -1;
   if (specialCase) redirectionPath = "/profile";
   
-  // Define icon style
   const iconStyle = {
     cursor: "pointer",
   };
@@ -183,5 +179,29 @@ export const DisplayGenericTitle = ({ text }: { text: any }) => {
 export const DisplaySmallGenericTitle = ({ text }: { text: any }) => {
   return displaySmallTitleWithTypography(text);
 };
+
+export const DisplayRandomDataList = ({ data}: { data: any[]}) => {
+  return (
+    <>
+       <ol>
+        {data.map((item: any, index: any) => (
+          <li className="random-data-list" key={index}>
+            {Object.entries(item).map(([key, value]) => (
+              <div 
+                key={key} 
+                className='random-data-list-item'>
+                <span style={{ textAlign: 'right' }}>{key}</span>
+                <span>:</span>
+                <span style={{ textAlign: 'left' }}>{String(value)}</span>
+              </div>
+            ))}
+          </li>
+        ))}
+      </ol>
+    </>
+  );
+};
+
+
 
 
