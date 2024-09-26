@@ -84,12 +84,12 @@ export const DisplayFieldWithTypography = ({
   return (
     <Grid container spacing={1}>
       <Grid item xs={6}>
-        <Typography variant="h6">
+        <Typography style={{fontSize: '1rem'}}>
           <strong>{name}</strong>
         </Typography>
       </Grid>
       <Grid item xs={6}>
-        <Typography variant="h6">{data}</Typography>
+        <Typography style={{fontSize: '1rem'}}>{data}</Typography>
       </Grid>
     </Grid>
   );
@@ -190,7 +190,7 @@ export const DisplayRandomDataList = ({ data}: { data: any[]}) => {
               <div 
                 key={key} 
                 className='random-data-list-item'>
-                <span style={{ textAlign: 'right' }}>{key}</span>
+                <span style={{ textAlign: 'right' }}><strong>{key}</strong></span>
                 <span>:</span>
                 <span style={{ textAlign: 'left' }}>{String(value)}</span>
               </div>
