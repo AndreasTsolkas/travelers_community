@@ -130,7 +130,7 @@ const MyProfileEdit = () => {
       
       <Box
         sx={{
-          marginTop: "-2.2rem",
+          marginTop: "2.2rem",
         }}
         className = 'display-form-box'
       >

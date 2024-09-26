@@ -111,7 +111,7 @@ const MyProfile = () => {
           </Box>
           <div style={{ marginTop: "1.1875rem" }}>
             <Link
-              style={{ fontSize: "1.5625rem", color: 'inherit' }}
+              style={{ fontSize: "1.3rem", color: 'inherit' }}
               to={editprofileRedirectUrl !== null ? editprofileRedirectUrl : ""}
             >
               Edit profile
