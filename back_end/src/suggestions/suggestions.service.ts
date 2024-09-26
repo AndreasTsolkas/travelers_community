@@ -51,7 +51,7 @@ import {
       return await this.utilitiesService.performQuery
       (`SELECT "travel".place, "travel".country, CONCAT("user".first_name, ' ', "user".last_name) AS user_fullname
         FROM travel INNER JOIN "user" ON "travel".user_id = "user".id WHERE "travel".suggest_it = $1 
-        AND "travel".date_started = $2 LIMIT $3`, 
+        AND "travel".date_started >= $2 LIMIT $3`, 
         [true, startOfYear, limit]);
     }
 
