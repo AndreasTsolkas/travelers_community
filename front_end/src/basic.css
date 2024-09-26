@@ -199,7 +199,11 @@ button:focus-visible {
 }
 
 .random-data-list {
-  margin: 50px
+  margin: 50px;
+  border: 1px solid rgb(141, 148, 247);
+  border-radius: 45px;
+  margin: 20px;
+  background-color: #E2E2F5;
 }
 
 .random-data-list-item {
@@ -208,10 +212,7 @@ button:focus-visible {
   font-size: 1rem;
   gap: 10px;
   align-items: center;
-  border: 1px solid black;
-  border-radius: 25px;
-  margin-bottom: 10px;
-  background-color: #E2E2F5;
+  margin: 10px;
 }
 
 .bold-header {
