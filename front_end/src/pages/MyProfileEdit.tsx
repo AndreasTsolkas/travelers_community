@@ -136,6 +136,7 @@ const MyProfileEdit = () => {
       >
         {Display.DisplayIconButton()}
         <DisplayViewTitle text={formTitle} />
+        <div style={{marginTop: '70px'}}>
         <form onReset={onReset} onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
             <Grid item xs={4}>
@@ -205,6 +206,7 @@ const MyProfileEdit = () => {
             Reset
           </Button>
         </form>
+        </div>
       </Box>
       <div style={{ marginTop: "0.625rem" }}>
         <Link style={{color: 'inherit'}} fontSize="1.25rem" href={passwordRedirectUrl} variant="body2">

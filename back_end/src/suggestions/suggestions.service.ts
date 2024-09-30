@@ -35,13 +35,13 @@ import {
 
     async getAllSuggestedPlaces(limit:number) {
       return await this.utilitiesService.performQuery
-      (`SELECT place, COUNT(*) AS suggestions FROM travel WHERE suggest_it = $1 GROUP BY place LIMIT $2`, 
+      (`SELECT place, COUNT(*) AS suggestions FROM travel WHERE suggest_it = $1 GROUP BY place  ORDER BY suggestions DESC LIMIT $2 `, 
         [true, limit]);
     }
 
     async getAllSuggestedCountries(limit:number) {
       return await this.utilitiesService.performQuery
-      (`SELECT country, COUNT(*) AS suggestions FROM travel WHERE suggest_it = $1 GROUP BY country LIMIT $2`, 
+      (`SELECT country, COUNT(*) AS suggestions FROM travel WHERE suggest_it = $1 GROUP BY country  ORDER BY suggestions DESC LIMIT $2 `, 
         [true, limit]);
     }
 
@@ -51,7 +51,7 @@ import {
       return await this.utilitiesService.performQuery
       (`SELECT "travel".place, "travel".country, CONCAT("user".first_name, ' ', "user".last_name) AS user_fullname
         FROM travel INNER JOIN "user" ON "travel".user_id = "user".id WHERE "travel".suggest_it = $1 
-        AND "travel".date_started >= $2 LIMIT $3`, 
+        AND "travel".date_started >= $2  ORDER BY suggestions DESC LIMIT $3`, 
         [true, startOfYear, limit]);
     }
 

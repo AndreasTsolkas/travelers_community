@@ -95,7 +95,7 @@ const MyProfile = () => {
           <Display.DisplayViewTitle text={"My Profile"} />
             <div>
               {result ? (
-                <div>
+                <div style={{marginTop: '70px'}}>
                   {displayBasicData.map((item, index) => (
                     <DisplayFieldWithTypography
                       key={`basic-${index}`}

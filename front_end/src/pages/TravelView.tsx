@@ -87,7 +87,7 @@ function TravelView() {
           <DisplayViewTitle text="Travel info " />
             <div>
               {result ? (
-                <div>
+                <div style={{marginTop: '70px'}}>
                   {displayData.map((item, index) => (
                     <DisplayFieldWithTypography
                       key={index}
