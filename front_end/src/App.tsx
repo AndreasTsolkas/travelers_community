@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import "src/css/global.css";
 import MyTravels from "src/pages/MyTravels";

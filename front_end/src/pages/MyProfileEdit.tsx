@@ -1,26 +1,22 @@
 import * as yup from "yup";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   Box,
   Button,
-  FormControlLabel,
   Grid,
-  InputLabel,
   Link,
   MenuItem,
-  Select,
-  Switch,
+  Select
 } from "@mui/material";
 import MuiTextField from "src/components/MuiTextField";
-import axios from "axios";
 import { toast } from "react-toastify";
 import * as Important from "src/important";
 import * as Display from "src/display";
-import { DisplayIconButton, DisplayViewTitle } from "src/display";
-import { hasAccessAuth, isAccessTokenNotExpired } from "src/useAuth";
+import { DisplayViewTitle } from "src/display";
+import { hasAccessAuth } from "src/useAuth";
 import { httpClient } from "src/requests";
 import "react-toastify/dist/ReactToastify.css";
 import "src/css/pages.css"
@@ -34,7 +30,6 @@ export const NewEmployeeSchema = yup.object({
 });
 
 const MyProfileEdit = () => {
-  const params = useParams();
   const [defaultCountry, setDefaultCountry] = useState<any | null>(null);
   const [deafaultSelectedCountry, setDefaultSelectedCountry] =
     useState<any>("");
@@ -49,11 +44,8 @@ const MyProfileEdit = () => {
   hasAccessAuth();
 
   const {
-    register,
     handleSubmit,
     reset,
-    setValue,
-    watch,
     formState: { errors },
     control,
   } = useForm({

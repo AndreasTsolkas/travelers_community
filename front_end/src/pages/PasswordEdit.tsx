@@ -1,8 +1,6 @@
-import * as React from "react";
-import { useForm, Controller } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Box, Button, InputLabel, MenuItem, Select } from "@mui/material";
-import * as yup from "yup";
+
+import { useForm } from "react-hook-form";
+import { Box, Button } from "@mui/material";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as Important from "src/important";
@@ -12,16 +10,12 @@ import { useNavigate } from "react-router";
 import { hasAccessAuth } from "src/useAuth";
 import { httpClient } from "src/requests";
 import MuiTextField from "src/components/MuiTextField";
-import { useParams } from "react-router-dom";
 import {
-  DisplayGenericTitle,
-  DisplayIconButton,
   DisplaySmallGenericTitle,
 } from "src/display";
 import "src/css/pages.css";
 
 const PasswordEdit = () => {
-  const params = useParams();
   const profileUrl = Important.profileUrl;
   const [isCurrentPasswordValidated, setIsCurrentPasswordValidated] =
     useState<boolean>(false);

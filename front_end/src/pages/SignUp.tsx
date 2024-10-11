@@ -4,33 +4,22 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import "react-toastify/dist/ReactToastify.css";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-import { CookiesProvider, useCookies } from "react-cookie";
-import axios from "axios";
+import { useCookies } from "react-cookie";
 import { toast } from "react-toastify";
 import {
-  FormControl,
-  FormLabel,
-  InputLabel,
   MenuItem,
-  Radio,
-  RadioGroup,
   Select,
   Box,
 } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import MuiTextField from "src/components/MuiTextField";
-import MuiSelectField from "src/components/MuiSelectField";
 import * as Important from "src/important";
 import { httpClient } from "src/requests";
 import { useEffect, useState } from "react";

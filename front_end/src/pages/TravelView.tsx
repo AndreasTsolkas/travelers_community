@@ -6,7 +6,6 @@ import {
   DisplayViewTitle,
   DisplayFieldWithTypography,
   DisplayLoader,
-  DisplayIconButton,
 } from "src/display";
 import { hasAccessAuth } from "src/useAuth";
 import { httpClient } from "src/requests";

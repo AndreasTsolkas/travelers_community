@@ -1,16 +1,10 @@
-import { DisplayErrorMessage, 
-  DisplayFieldWithTypography, 
-  DisplayTableTitle, 
-  DisplayTitle, 
-  DisplayViewTitle, 
+import { DisplayTableTitle,
   DisplayLoader,
   DisplayRandomDataList } from "src/display";
 import { hasAccessAuth } from "src/useAuth";
 import "react-toastify/dist/ReactToastify.css";
-import { Box, Typography } from "@mui/material";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Box } from "@mui/material";
 import 'src/css/pages.css';
-import * as Display from "src/display";
 import { useEffect, useState } from "react";
 import { httpClient } from "src/requests";
 import * as Important from 'src/important';
@@ -24,7 +18,6 @@ function Suggestions() {
 
   hasAccessAuth();
 
-  const navigate = useNavigate();
   const suggestionsUrl = Important.suggestionsUrl;
   const listUrl = Important.listUrl;
 

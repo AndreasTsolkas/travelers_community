@@ -1,7 +1,7 @@
 import * as yup from "yup";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   Box,
@@ -9,15 +9,11 @@ import {
   Checkbox,
   FormControlLabel,
   Grid,
-  InputLabel,
-  Link,
   MenuItem,
   Select,
-  Switch,
   TextField,
 } from "@mui/material";
 import MuiTextField from "src/components/MuiTextField";
-import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import * as Important from "src/important";
@@ -27,8 +23,7 @@ import {
   getDateFromCurrentDate,
   convertDatestringToDate,
 } from "src/datetime";
-import { DisplayIconButton, DisplayViewTitle } from "src/display";
-import { hasAccessAuth, isAccessTokenNotExpired } from "src/useAuth";
+import { DisplayViewTitle } from "src/display";
 import { httpClient } from "src/requests";
 import "src/css/pages.css";
 
@@ -53,17 +48,14 @@ const NewTravel = () => {
   const defaultSelectedStartDate = getCurrentDate(Important.datetimeFormat);
   const defaultSelectedEndDate = getDateFromCurrentDate(1, "DD/ MM/ YYYY");
   const navigate = useNavigate();
-  const travelUrl = Important.travelUrl;
   const profileUrl = Important.profileUrl;
   const listUrl = Important.listUrl;
   const [formTitle, setFormTitle] = useState<string>("Add a new travel:");
 
   const {
-    register,
     handleSubmit,
     reset,
     setValue,
-    watch,
     formState: { errors },
     control,
   } = useForm({

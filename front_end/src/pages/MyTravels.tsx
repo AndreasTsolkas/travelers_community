@@ -1,14 +1,11 @@
 import { GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-import SettingsIcon from "@mui/icons-material/Settings";
-import AddIcon from "@mui/icons-material/Add";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import { httpClient } from "src/requests";
 import * as Important from "src/important";
 import {
   DisplayDataGrid,
   DisplayLoader,
-  DisplayTableTitle,
   DisplayTitle,
 } from "src/display";
 import { hasAccessAuth } from "src/useAuth";

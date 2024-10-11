@@ -29,8 +29,6 @@ export default function SignIn() {
   const [cookies, setCookie] = useCookies();
 
   const accessTokenCookie = Important.accessTokenCookie;
-  const avatarImageUrlCookie = Important.avatarImageUrlCookie;
-  const fileReader = new FileReader();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

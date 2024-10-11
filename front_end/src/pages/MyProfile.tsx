@@ -1,38 +1,25 @@
-import * as yup from "yup";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { useCallback, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import {
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Typography,
+  Box
 } from "@mui/material";
 import { toast } from "react-toastify";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import * as Important from "src/important";
 import * as Display from "src/display";
 import * as Datetime from "src/datetime";
 import {
   DisplayErrorMessage,
   DisplayFieldWithTypography,
-  DisplayLoader,
-  DisplayTableTitle,
+  DisplayLoader
 } from "src/display";
-import { hasAccessAuth, isAccessTokenNotExpired } from "src/useAuth";
+import { hasAccessAuth } from "src/useAuth";
 import { httpClient } from "src/requests";
 import "react-toastify/dist/ReactToastify.css";
 import "src/css/pages.css";
 
 const MyProfile = () => {
-  const params: any | never = useParams();
   const navigate = useNavigate();
   const profileUrl = Important.profileUrl;
-  const moreInformationLinkBase = Important.moreInformationLinkBase;
   const [userId, setUserId] = useState<number | null>(null);
   const [result, setResult] = useState<any>();
   const [displayBasicData, setDisplayBasicData] = useState<any[]>([]);

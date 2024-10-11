@@ -1,7 +1,6 @@
 import { DataGrid } from "@mui/x-data-grid";
-import { Navigation, useNavigate, useParams } from "react-router-dom";
-import { Box, CircularProgress, Grid, IconButton, Modal, Typography } from "@mui/material";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useNavigate } from "react-router-dom";
+import { Box, CircularProgress, Grid, IconButton, Typography } from "@mui/material";
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import AddIcon from "@mui/icons-material/Add";
 

@@ -1,4 +1,4 @@
-import { DisplayTableTitle, DisplayTitle } from "src/display";
+import { DisplayTitle } from "src/display";
 import { hasAccessAuth } from "src/useAuth";
 
 function MyAnalytics() {
