@@ -107,7 +107,7 @@ import {
     }
 
     @Post('/countriesbyvisitsbynationality')
-    async getCountriesByMostVisitsOnASpecificNationality(@Body('nationality') nationality: any) {
+    async getCountriesByMostVisitsOnASpecificNationality(@Body('nationality') nationality: string) {
         return await this.analyticsService.getCountriesByMostVisitsOnASpecificNationality(nationality);
     }
 

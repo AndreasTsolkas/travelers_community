@@ -14,7 +14,7 @@ export const axiosConfig = {
   initialized: false,
 };
 
-async function getRequest(requestUrl: any, params?: any) {
+async function getRequest(requestUrl: string, params?: any) {
   try {
     if (params) axiosConfig.params = params;
 
@@ -29,7 +29,7 @@ async function getRequest(requestUrl: any, params?: any) {
   }
 }
 
-async function deleteRequest(requestUrl: any) {
+async function deleteRequest(requestUrl: string) {
   try {
     const response = await axios.delete(requestUrl, {
       baseURL: axiosConfig.url,
@@ -41,7 +41,7 @@ async function deleteRequest(requestUrl: any) {
   }
 }
 
-async function postRequest(requestUrl: any, data: any) {
+async function postRequest(requestUrl: string, data: any) {
   try {
     const response = await axios.post(`${requestUrl}`, data, {
       baseURL: axiosConfig.url,
@@ -53,7 +53,7 @@ async function postRequest(requestUrl: any, data: any) {
   }
 }
 
-async function patchRequest(requestUrl: any, data: any) {
+async function patchRequest(requestUrl: string, data: any) {
   try {
     const response = await axios.patch(`${requestUrl}`, data, {
       baseURL: axiosConfig.url,
@@ -65,7 +65,7 @@ async function patchRequest(requestUrl: any, data: any) {
   }
 }
 
-async function putRequest(requestUrl: any, data: any) {
+async function putRequest(requestUrl: string, data: any) {
   try {
     const response = await axios.put(`${requestUrl}`, data, {
       baseURL: axiosConfig.url,

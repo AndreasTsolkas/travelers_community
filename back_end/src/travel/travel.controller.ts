@@ -24,7 +24,7 @@ export class TravelController {
   }
 
   @Get('/:id')
-  async findOne(@Param('id') id: any) {
+  async findOne(@Param('id') id: number) {
     return await this.travelService.findOne(id);
   }
 

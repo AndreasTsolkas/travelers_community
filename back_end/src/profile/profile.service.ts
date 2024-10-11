@@ -99,12 +99,12 @@ export class ProfileService {
     return result;
   }
 
-  async getAvatarAbsolutePath(filePath: any): Promise<string> {
+  async getAvatarAbsolutePath(filePath: string): Promise<string> {
     const absolutePath = this.fileService.getAbsolutePath(filePath);
     return absolutePath;
   }
 
-  async getAvatarFilePath(userId: any): Promise<string> {
+  async getAvatarFilePath(userId: number): Promise<string> {
     const relativeFilePath = await this.getAvatarRelativeFilePath(userId);
     if (!relativeFilePath) throw new NotFoundException('Avatar not found.');
     const absolutePath: string =
@@ -112,7 +112,7 @@ export class ProfileService {
     return absolutePath;
   }
 
-  async storeAvatar(userId: any, file: any) {
+  async storeAvatar(userId: number, file: any) {
     let savedImagePath = await this.fileService.storeImage(
       userId,
       file,
@@ -121,14 +121,14 @@ export class ProfileService {
     await this.userService.update(userId, { avatarFilepath: savedImagePath });
   }
 
-  async findMyTravels(userId: any) {
+  async findMyTravels(userId: number) {
     return this.travelService.findManyWithRelationshipsBySpecificFieldAndValue(
       'user_id',
       userId,
     );
   }
 
-  async createNewTravel(userId: any, travelData: Partial<Travel>) {
+  async createNewTravel(userId: number, travelData: Partial<Travel>) {
     travelData.user = await this.userService.findOne(userId, false);
     travelData.dateStarted = new Date(travelData.dateStarted);
     travelData.dateFinished = new Date(travelData.dateFinished);

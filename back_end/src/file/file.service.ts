@@ -41,7 +41,7 @@ export class FileService {
     fs.writeFileSync(filePath, buffer);
   }
 
-  async storeImage(number: any, file: any, storeImageCase: any) {
+  async storeImage(number: number, file: any, storeImageCase: any) {
     const fileName = 'img' + number;
     const fileNameWithType = fileName + '.jpg';
     let imageBuffer = file;

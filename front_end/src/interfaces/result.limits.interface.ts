@@ -3,5 +3,5 @@ interface Limits {
 }
   
 export const limits: Limits = {
-  values: [1,3, 5, 10, 20, 50]
+  values: [3, 5, 10, 20, 50]
 };

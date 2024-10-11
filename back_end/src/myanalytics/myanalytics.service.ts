@@ -26,17 +26,17 @@ import {
     ) {}
 
     // Get total numbers
-    async getTravelsTotalNum(userId: any) {
+    async getTravelsTotalNum(userId: number) {
       return await this.utilitiesService.performQuery
       (`SELECT COUNT(*) FROM travel INNER JOIN "user" ON "travel".user_id = "user".id WHERE "user".id = $1`, [userId]);
     }
   
-    async getBusinessTravelsTotalNum(userId: any) {
+    async getBusinessTravelsTotalNum(userId: number) {
       return await this.utilitiesService.performQuery
       (`SELECT COUNT(*) FROM travel INNER JOIN "user" ON "travel".user_id = "user".id WHERE "user".id = $1 AND "travel".business_travel = $2`, [userId, true]);
     }
   
-    async getCurrentYearTravelsTotalNum(userId: any) {
+    async getCurrentYearTravelsTotalNum(userId: number) {
       const currentYear = Datetime.getCurrentYear();
       const startOfYear = Datetime.getStartOfTheYear(currentYear);
   
@@ -46,7 +46,7 @@ import {
       );
     }
   
-    async getOngoingTravelsTotalNum(userId: any) {
+    async getOngoingTravelsTotalNum(userId: number) {
       const currentYear = Datetime.getCurrentYear();
       const endOfYear = Datetime.getEndOfTheYear(currentYear);
   
@@ -56,7 +56,7 @@ import {
       );
     }
 
-    async getSuggestedTravelsTotalNum(userId: any) {
+    async getSuggestedTravelsTotalNum(userId: number) {
       return await this.utilitiesService.performQuery(
         `SELECT COUNT(*) FROM travel WHERE "travel".user_id = $1 AND "travel".suggest_it = $2`,
         [userId, true],
@@ -67,19 +67,19 @@ import {
 
     // Get ranked data
     
-    async getCountriesByExperienceRate(userId: any) {
+    async getCountriesByExperienceRate(userId: number) {
       return await this.utilitiesService.performQuery(
         `SELECT country, SUM(experience_rate) as total_rate FROM travel WHERE "travel".user_id = $1 GROUP BY country ORDER BY total_rate DESC`,
       [userId]);
     }
   
-    async getCountriesByTotalTimeSpent(userId: any) {
+    async getCountriesByTotalTimeSpent(userId: number) {
       return await this.utilitiesService.performQuery(
         `SELECT country, SUM(date_finished - date_started) as total_time_spent FROM travel WHERE "travel".user_id = $1 GROUP BY country ORDER BY total_time_spent DESC`,
       [userId]);
     }
 
-    async getCountriesByMostTravelSuggestions(userId: any) {
+    async getCountriesByMostTravelSuggestions(userId: number) {
       return await this.utilitiesService.performQuery(
         `SELECT country, COUNT(*) as total_suggestions FROM travel WHERE "travel".user_id = $1 AND suggest_it = $2 GROUP BY country ORDER BY total_suggestions DESC`,
         [userId, true],

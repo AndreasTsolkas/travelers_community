@@ -92,7 +92,7 @@ export default function SignUp() {
   const [deafaultSelectedNationality, setDeafaultSelectedNationality] =
     useState<any>("");
   const [nationalities, setNationalities] = useState<any[]>([]);
-  const [defaultSex, setDefaultSex] = useState<any | null>(null);
+  const [defaultSex, setDefaultSex] = useState<string | null>(null);
   const [deafaultSelectedSex, setDeafaultSelectedSex] = useState<any>("");
   const [sexes, setSexes] = useState<any[]>([]);
 

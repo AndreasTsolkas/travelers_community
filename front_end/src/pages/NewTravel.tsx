@@ -48,7 +48,7 @@ export const NewTravelSchema = yup.object({
 
 const NewTravel = () => {
   const [countries, setCountries] = useState<any[]>([]);
-  const [defaultCountry, setDefaultCountry] = useState<any | null>(null);
+  const [defaultCountry, setDefaultCountry] = useState<string | null>(null);
   const [defaultSelectedCountry, setDefaultSelectedCountry] = useState<any>("");
   const defaultSelectedStartDate = getCurrentDate(Important.datetimeFormat);
   const defaultSelectedEndDate = getDateFromCurrentDate(1, "DD/ MM/ YYYY");

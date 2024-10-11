@@ -117,7 +117,7 @@ export const displaySmallTitleWithTypography = (name: string) => {
   );
 };
 
-export const DisplayViewTitle = ({ text }: { text: any }) => {
+export const DisplayViewTitle = ({ text }: { text: string }) => {
   return (
     <div
       style={{
@@ -149,7 +149,7 @@ export const DisplayTitle = ({ text}: { text: string }) => {
   );
 };
 
-export function DisplayIconButton(specialCase?: any, navigate?: any) {
+export function DisplayIconButton(specialCase?: boolean, navigate?: any) {
   if (!navigate) navigate = useNavigate();
   
   let redirectionPath: any = -1;
@@ -174,11 +174,11 @@ export function DisplayIconButton(specialCase?: any, navigate?: any) {
   );
 }
 
-export const DisplayGenericTitle = ({ text }: { text: any }) => {
+export const DisplayGenericTitle = ({ text }: { text: string }) => {
   return displayTitleWithTypography(text);
 };
 
-export const DisplaySmallGenericTitle = ({ text }: { text: any }) => {
+export const DisplaySmallGenericTitle = ({ text }: { text: string }) => {
   return displaySmallTitleWithTypography(text);
 };
 
