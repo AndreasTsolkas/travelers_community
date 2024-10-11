@@ -30,7 +30,7 @@ import {
 import { DisplayIconButton, DisplayViewTitle } from "src/display";
 import { hasAccessAuth, isAccessTokenNotExpired } from "src/useAuth";
 import { httpClient } from "src/requests";
-import "../basic.css";
+import "src/css/pages.css";
 
 export const NewTravelSchema = yup.object({
   dateStarted: yup.string().required("Start date is required."),

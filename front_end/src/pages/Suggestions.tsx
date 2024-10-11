@@ -9,7 +9,7 @@ import { hasAccessAuth } from "src/useAuth";
 import "react-toastify/dist/ReactToastify.css";
 import { Box, Typography } from "@mui/material";
 import { Link, useNavigate, useParams } from "react-router-dom";
-
+import 'src/css/pages.css';
 import * as Display from "src/display";
 import { useEffect, useState } from "react";
 import { httpClient } from "src/requests";

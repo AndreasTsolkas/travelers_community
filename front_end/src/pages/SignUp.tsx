@@ -34,7 +34,6 @@ import MuiSelectField from "src/components/MuiSelectField";
 import * as Important from "src/important";
 import { httpClient } from "src/requests";
 import { useEffect, useState } from "react";
-import "../basic.css";
 
 const defaultTheme = createTheme();
 

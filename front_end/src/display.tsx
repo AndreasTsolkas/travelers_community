@@ -5,7 +5,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import AddIcon from "@mui/icons-material/Add";
 
-import './basic.css';
+import 'src/css/pages.css';
 
 export function DisplayDataGrid({
   rows,

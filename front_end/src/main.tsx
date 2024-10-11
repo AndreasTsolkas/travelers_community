@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
-import "./basic.css";
+import "src/css/global.css";
 import { BrowserRouter } from "react-router-dom";
 import ScheduledTasks from "src/scheduled_tasks";
 import { ToastContainer } from "react-toastify";

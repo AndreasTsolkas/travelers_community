@@ -9,10 +9,10 @@ import {
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Important from "src/important";
-import "src/basic.css";
 import { useCookies } from "react-cookie";
 import { httpClient } from "./requests";
-import "./basic.css";
+import "src/css/global.css";
+import "src/css/navbar.css";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -66,12 +66,14 @@ function Navbar() {
     <nav className="navbar">
       <ul>
         <li>
-          <div style={{ marginLeft: "-57.25rem" }}>
+          <div>
+            <div className="avatar-menu-icon">
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} className="icon-button-no-focus">
                 <Avatar src={avatarUrl} />
               </IconButton>
             </Tooltip>
+            </div>
             <Menu
               sx={{
                 mt: "0px",

@@ -6,6 +6,7 @@ import * as Important from "src/important";
 import { travelSitesLinks } from "src/links";
 import { DisplayLoader, DisplayTitle } from "src/display";
 import { Box } from "@mui/material";
+import 'src/css/pages.css';
 
 function Home() {
   const navigate = useNavigate();
@@ -14,7 +15,6 @@ function Home() {
   const accessTokenCookie = Important.accessTokenCookie;
 
   const handleIframeLoad = () => {
-    console.log("here");
     setIsIframeLoaded(true);
   };
 

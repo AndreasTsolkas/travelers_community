@@ -18,7 +18,6 @@ import { useCookies } from "react-cookie";
 import * as Important from "src/important";
 import * as Requests from "src/requests";
 import { httpClient } from "src/requests";
-import "../basic.css";
 
 const defaultTheme = createTheme();
 

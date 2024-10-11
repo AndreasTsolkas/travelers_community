@@ -26,7 +26,7 @@ import {
 import { hasAccessAuth, isAccessTokenNotExpired } from "src/useAuth";
 import { httpClient } from "src/requests";
 import "react-toastify/dist/ReactToastify.css";
-import "../basic.css";
+import "src/css/pages.css";
 
 const MyProfile = () => {
   const params: any | never = useParams();

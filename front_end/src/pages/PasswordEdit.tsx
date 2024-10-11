@@ -18,7 +18,7 @@ import {
   DisplayIconButton,
   DisplaySmallGenericTitle,
 } from "src/display";
-import "../basic.css"
+import "src/css/pages.css";
 
 const PasswordEdit = () => {
   const params = useParams();

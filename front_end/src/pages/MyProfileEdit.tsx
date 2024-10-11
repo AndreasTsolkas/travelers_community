@@ -23,7 +23,7 @@ import { DisplayIconButton, DisplayViewTitle } from "src/display";
 import { hasAccessAuth, isAccessTokenNotExpired } from "src/useAuth";
 import { httpClient } from "src/requests";
 import "react-toastify/dist/ReactToastify.css";
-import "../basic.css"
+import "src/css/pages.css"
 
 export const NewEmployeeSchema = yup.object({
   username: yup.string().required("Username is required.").min(2).max(20),
