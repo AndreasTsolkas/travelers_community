@@ -80,7 +80,7 @@ function Suggestions() {
   
   return (
     <>
-      <Box className='display-card-box-special'>
+      <div className='display-card-box-special'>
         <DisplayTableTitle text='Suggestions' />
         <form style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <div style={{ marginTop: '20px', display: 'flex', alignItems: 'center' }}>
@@ -132,7 +132,7 @@ function Suggestions() {
             < DisplayLoader />
           )}
         </div>
-      </Box>
+      </div>
     </>
   );
 }

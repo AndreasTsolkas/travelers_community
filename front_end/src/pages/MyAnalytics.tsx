@@ -5,7 +5,7 @@ function MyAnalytics() {
   hasAccessAuth();
   return (
     <>
-      <DisplayTitle text={"My Analytics"} />
+      <DisplayTitle text="My Analytics is under construction." />
     </>
   );
 }
