@@ -1,14 +1,28 @@
 import { useState } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { DisplayTitle } from 'src/display';
 import { hasAccessAuth } from "src/useAuth";
+import { BarChart } from '@mui/x-charts/BarChart';
 
 function Analytics() {
   hasAccessAuth();
 
   return (
     <div > 
-      <DisplayTitle text="Analytics is under construction." />
+      <BarChart
+  xAxis={[
+    {
+      id: 'barCategories',
+      data: ['bar A', 'bar B', 'bar C'],
+    },
+  ]}
+  series={[
+    {
+      data: [2, 5, 3],
+    },
+  ]}
+  height={300}
+  width={200}
+/>
     </div>
   );
 }
