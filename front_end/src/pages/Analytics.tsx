@@ -1,30 +1,31 @@
-import { useState } from 'react';
-import { DisplayTitle } from 'src/display';
-import { hasAccessAuth } from "src/useAuth";
-import { BarChart } from '@mui/x-charts/BarChart';
+import * as React from "react";
+import { Box} from "@mui/material";
+import {CustomBarChart, CustomPieChart, RankList}  from "src/components/display/charts";
 
-function Analytics() {
-  hasAccessAuth();
 
+export default function Analytics() {
   return (
-    <div > 
-      <BarChart
-  xAxis={[
-    {
-      id: 'barCategories',
-      data: ['bar A', 'bar B', 'bar C'],
-    },
-  ]}
-  series={[
-    {
-      data: [2, 5, 3],
-    },
-  ]}
-  height={300}
-  width={200}
-/>
-    </div>
+    <Box display="flex" flexDirection="column" gap={4} p={2}>
+      {/* First row: 3 bar charts */}
+      <Box display="flex" flexDirection="row" justifyContent="space-between" flexWrap="nowrap" gap={2}>
+        <CustomBarChart title="Bar Chart 1" />
+        <CustomBarChart title="Bar Chart 2" />
+        <CustomBarChart title="Bar Chart 3" />
+      </Box>
+
+      {/* Second row: 3 pie charts */}
+      <Box display="flex" flexDirection="row" justifyContent="space-between" flexWrap="nowrap" gap={2}>
+        <CustomPieChart title="Pie 1" />
+        <CustomPieChart title="Pie 2" />
+        <CustomPieChart title="Pie 3" />
+      </Box>
+
+      {/* Third row: rank list */}
+      <Box display="flex" flexDirection="row" justifyContent="flex-start" flexWrap="nowrap" gap={2}>
+        <RankList title="Top Ranks" />
+        <RankList title="Secondary Ranks" />
+        <RankList title="Other Ranks" />
+      </Box>
+    </Box>
   );
 }
-
-export default Analytics;
