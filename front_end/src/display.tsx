@@ -75,6 +75,12 @@ export function DisplayLoader() {
   );
 }
 
+export function DisplayLocalLoader() {
+  return (
+      <CircularProgress />
+  );
+}
+
 export const DisplayFieldWithTypography = ({
   name,
   data,

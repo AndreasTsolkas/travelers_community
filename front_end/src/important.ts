@@ -11,6 +11,8 @@ export const profileUrl = "/profile";
 export const listUrl = "/list";
 export const suggestionsUrl = "/suggestions";
 export const passwordUrl = "/editpassword";
+export const analyticsUrl = "/analytics";
+export const myAnalyticsUrl = "/myanalytics";
 
 export const backEndAuthUrl = backEndBaseUrl + authUrl;
 export const backEndUserUrl = backEndBaseUrl + userUrl;

@@ -1,4 +1,13 @@
-import { Box, Card, CardContent, Divider, List, ListItem, ListItemText, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardContent,
+  Divider,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 import { BarChart, PieChart } from "@mui/x-charts";
 import React from "react";
 
@@ -44,7 +53,6 @@ export function CustomPieChart({ title }: { title: string }) {
   );
 }
 
-// New component to display ranks
 export function RankList({ title }: { title: string }) {
   const ranks = [
     { name: "Alice", score: 95 },
@@ -63,7 +71,10 @@ export function RankList({ title }: { title: string }) {
         {ranks.map((item, index) => (
           <React.Fragment key={index}>
             <ListItem>
-              <ListItemText primary={`${index + 1}. ${item.name}`} secondary={`Score: ${item.score}`} />
+              <ListItemText
+                primary={`${index + 1}. ${item.name}`}
+                secondary={`Score: ${item.score}`}
+              />
             </ListItem>
             {index < ranks.length - 1 && <Divider />}
           </React.Fragment>
@@ -73,15 +84,43 @@ export function RankList({ title }: { title: string }) {
   );
 }
 
-export function SummaryCard() {
+function SummaryCardLine({ property, value }: { property: string; value: any }) {
+  return (
+    <Box display="flex" justifyContent="space-between">
+      <Typography variant="body1">{property}:</Typography>
+      <Typography variant="body1" fontWeight="bold">
+        {value}
+      </Typography>
+    </Box>
+  );
+}
+
+export function SummaryCard({
+  title,
+  lines,
+}: {
+  title: string;
+  lines: { property: string; value: any }[];
+}) {
+  console.log(lines);
   return (
     <Card sx={{ width: "100%", mb: 2 }}>
       <CardContent>
-        <Typography variant="h6">Dashboard Summary</Typography>
-        <Typography variant="body2">
-          Total Sales: 885 | Total Users: 665 | Active Products: 120
+        <Typography variant="h6" gutterBottom>
+          {title}
         </Typography>
+
+        <Box display="flex" flexDirection="column" gap={1}>
+          {lines.map((line, index) => (
+            <SummaryCardLine
+              key={index}
+              property={line.property}
+              value={line.value}
+            />
+          ))}
+        </Box>
       </CardContent>
     </Card>
   );
 }
+
