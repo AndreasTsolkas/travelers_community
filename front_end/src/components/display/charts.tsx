@@ -1,4 +1,4 @@
-import { Box, Divider, List, ListItem, ListItemText, Typography } from "@mui/material";
+import { Box, Card, CardContent, Divider, List, ListItem, ListItemText, Typography } from "@mui/material";
 import { BarChart, PieChart } from "@mui/x-charts";
 import React from "react";
 
@@ -70,5 +70,18 @@ export function RankList({ title }: { title: string }) {
         ))}
       </List>
     </Box>
+  );
+}
+
+export function SummaryCard() {
+  return (
+    <Card sx={{ width: "100%", mb: 2 }}>
+      <CardContent>
+        <Typography variant="h6">Dashboard Summary</Typography>
+        <Typography variant="body2">
+          Total Sales: 885 | Total Users: 665 | Active Products: 120
+        </Typography>
+      </CardContent>
+    </Card>
   );
 }
