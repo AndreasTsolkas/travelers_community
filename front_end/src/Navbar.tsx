@@ -22,7 +22,7 @@ function Navbar() {
   const avatarImageUrlCookie = Important.avatarImageUrlCookie;
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const isLoggedIn: boolean = true;
-  const settings = ["My Profile", "My Analytics", "Sign Out"];
+  const settings = ["My Profile", "Sign Out"];
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -34,11 +34,6 @@ function Navbar() {
 
   const handleProfileClick = () => {
     navigate("/myprofile");
-    handleCloseUserMenu();
-  };
-
-  const handleMyAanalyticsClick = () => {
-    navigate("/myanalytics");
     handleCloseUserMenu();
   };
 
@@ -101,8 +96,6 @@ function Navbar() {
                       logoutUser();
                     } else if (setting === "My Profile") {
                       handleProfileClick();
-                    } else if (setting === "My Analytics") {
-                      handleMyAanalyticsClick();
                     } else {
                       handleCloseUserMenu();
                     }
@@ -122,9 +115,6 @@ function Navbar() {
         </li>
         <li>
           <Link to="/suggestions">Suggestions</Link>
-        </li>
-        <li>
-          <Link to="/analytics">Analytics</Link>
         </li>
       </ul>
     </nav>
